@@ -1,9 +1,9 @@
 <libraries>
   <library
-      name="C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle@@:unityLibrary::release"
-      jars="C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\24cf7c92f3021333596f0c9295bcef90\transformed\out\jars\classes.jar;C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\24cf7c92f3021333596f0c9295bcef90\transformed\out\jars\libs\R.jar;C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\24cf7c92f3021333596f0c9295bcef90\transformed\out\jars\libs\unity-classes.jar"
+      name="C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle@@:unityLibrary::release"
+      jars="C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\fe3bc1ebd2258a32b01caa40ad359527\transformed\out\jars\classes.jar;C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\fe3bc1ebd2258a32b01caa40ad359527\transformed\out\jars\libs\R.jar;C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\fe3bc1ebd2258a32b01caa40ad359527\transformed\out\jars\libs\unity-classes.jar"
       resolved="Gradle:unityLibrary:unspecified"
-      folder="C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\24cf7c92f3021333596f0c9295bcef90\transformed\out"
+      folder="C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\.transforms\fe3bc1ebd2258a32b01caa40ad359527\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -13,7 +13,7 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="__local_aars__:C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar:unspecified@jar"
-      jars="C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar"
-      resolved="__local_aars__:C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar:unspecified"/>
+      name="__local_aars__:C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar:unspecified@jar"
+      jars="C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar"
+      resolved="__local_aars__:C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\libs\unity-classes.jar:unspecified"/>
 </libraries>

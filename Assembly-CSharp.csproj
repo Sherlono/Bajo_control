@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5BBA25A5-DC2E-3326-05CA-A555452BB5BC}</ProjectGuid>
+    <ProjectGuid>{486D5CD7-5863-1746-4726-8012A92EBC25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -69,13 +69,13 @@
     <Compile Include="Assets\Scripts\Pool\Watersplash.cs" />
     <Compile Include="Assets\Scripts\Pool\Kid.cs" />
     <Compile Include="Assets\Scripts\TouchManager.cs" />
-    <Compile Include="Assets\Scripts\Pool\ShapeMesher.cs" />
     <Compile Include="Assets\Scripts\UI\Slider.cs" />
     <Compile Include="Assets\Scripts\Pool\heat.cs" />
     <Compile Include="Assets\Scripts\PID.cs" />
     <Compile Include="Assets\Scripts\Pool\Setpointer.cs" />
     <Compile Include="Assets\Scripts\UI\ScriptBoton.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
+    <Compile Include="Assets\Scripts\ShapeMesher.cs" />
     <Compile Include="Assets\Scripts\PlayPID.cs" />
   </ItemGroup>
   <ItemGroup>

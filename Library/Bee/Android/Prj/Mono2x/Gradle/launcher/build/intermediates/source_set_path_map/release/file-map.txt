@@ -1,9 +1,9 @@
-com.JaviGames.BajoControl.launcher-pngs-0 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\pngs\release
-com.JaviGames.BajoControl.launcher-resValues-1 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\resValues\release
-com.JaviGames.BajoControl.launcher-rs-2 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\rs\release
-com.JaviGames.BajoControl.launcher-mergeReleaseResources-3 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
-com.JaviGames.BajoControl.launcher-mergeReleaseResources-4 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
-com.JaviGames.BajoControl.launcher-merged_res-5 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\merged_res\release
-com.JaviGames.BajoControl.launcher-main-6 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\res
-com.JaviGames.BajoControl.launcher-release-7 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\release\res
-com.JaviGames.BajoControl.launcher-packaged_res-8 C:\Users\javie\Bajo Control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\packaged_res\release
+com.JaviGames.BajoControl.launcher-pngs-0 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\pngs\release
+com.JaviGames.BajoControl.launcher-resValues-1 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\resValues\release
+com.JaviGames.BajoControl.launcher-rs-2 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\rs\release
+com.JaviGames.BajoControl.launcher-mergeReleaseResources-3 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.JaviGames.BajoControl.launcher-mergeReleaseResources-4 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.JaviGames.BajoControl.launcher-merged_res-5 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\merged_res\release
+com.JaviGames.BajoControl.launcher-main-6 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\res
+com.JaviGames.BajoControl.launcher-release-7 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\release\res
+com.JaviGames.BajoControl.launcher-packaged_res-8 C:\Users\javie\Bajo_control\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\packaged_res\release

@@ -446,7 +446,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 107,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/UnityEngine.TestRunner.UnityAdditionalFile.txt"
@@ -472,7 +472,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 44285,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/UnityEngine.TestRunner.rsp2"
@@ -2182,7 +2182,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 50056,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/UnityEngine.UI.UnityAdditionalFile.txt"
@@ -2208,7 +2208,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 87946,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/UnityEngine.UI.rsp2"
@@ -2724,7 +2724,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 93904,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.PixelPerfect.UnityAdditionalFile.txt"
@@ -2750,7 +2750,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 125020,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.PixelPerfect.rsp2"
@@ -3177,7 +3177,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 131063,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Tilemap.Extras.UnityAdditionalFile.txt"
@@ -3203,7 +3203,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 162574,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Tilemap.Extras.rsp2"
@@ -3615,7 +3615,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 168607,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Burst.UnityAdditionalFile.txt"
@@ -3641,7 +3641,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 203332,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Burst.rsp2"
@@ -4111,7 +4111,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 209247,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InputSystem.UnityAdditionalFile.txt"
@@ -4137,7 +4137,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 280473,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InputSystem.rsp2"
@@ -4937,7 +4937,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 286522,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InternalAPIEngineBridge.001.UnityAdditionalFile.txt"
@@ -4963,7 +4963,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 317628,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InternalAPIEngineBridge.001.rsp2"
@@ -5371,7 +5371,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 323677,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Mathematics.UnityAdditionalFile.txt"
@@ -5397,7 +5397,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 362015,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Mathematics.rsp2"
@@ -5891,7 +5891,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 368048,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.TextMeshPro.UnityAdditionalFile.txt"
@@ -5917,7 +5917,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 404006,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.TextMeshPro.rsp2"
@@ -6381,7 +6381,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 410036,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Timeline.UnityAdditionalFile.txt"
@@ -6407,7 +6407,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 447021,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Timeline.rsp2"
@@ -6885,7 +6885,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 453057,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Common.Runtime.UnityAdditionalFile.txt"
@@ -6911,7 +6911,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 484521,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Common.Runtime.rsp2"
@@ -7346,7 +7346,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 490641,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.IK.Runtime.UnityAdditionalFile.txt"
@@ -7372,7 +7372,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 522596,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.IK.Runtime.rsp2"
@@ -7813,7 +7813,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 528726,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Collections.UnityAdditionalFile.txt"
@@ -7839,7 +7839,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 564596,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.Collections.rsp2"
@@ -8326,7 +8326,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 570787,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InputSystem.ForUI.UnityAdditionalFile.txt"
@@ -8352,7 +8352,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 601944,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.InputSystem.ForUI.rsp2"
@@ -8782,7 +8782,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 608071,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Core.UnityAdditionalFile.txt"
@@ -8808,7 +8808,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 692728,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Core.rsp2"
@@ -9646,7 +9646,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 698858,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Animation.Runtime.UnityAdditionalFile.txt"
@@ -9672,7 +9672,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 731762,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.Animation.Runtime.rsp2"
@@ -10154,7 +10154,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 738226,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.SpriteShape.Runtime.UnityAdditionalFile.txt"
@@ -10180,7 +10180,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 770957,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.2D.SpriteShape.Runtime.rsp2"
@@ -10616,7 +10616,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 777247,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Flow.UnityAdditionalFile.txt"
@@ -10642,7 +10642,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 857258,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.Flow.rsp2"
@@ -11475,7 +11475,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 863477,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.State.UnityAdditionalFile.txt"
@@ -11501,7 +11501,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 897665,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Unity.VisualScripting.State.rsp2"
@@ -11963,7 +11963,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 903882,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/1300b0aP.dag/Assembly-CSharp.UnityAdditionalFile.txt"
@@ -12640,7 +12640,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 943790,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEngine.TestRunner.UnityAdditionalFile.txt"
@@ -12666,7 +12666,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 988797,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEngine.TestRunner.rsp2"
@@ -14549,7 +14549,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 996549,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEngine.UI.UnityAdditionalFile.txt"
@@ -14575,7 +14575,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1036117,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEngine.UI.rsp2"
@@ -15222,7 +15222,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1044501,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEditor.TestRunner.UnityAdditionalFile.txt"
@@ -15248,7 +15248,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1095932,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEditor.TestRunner.rsp2"
@@ -15973,7 +15973,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1104121,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEditor.UI.UnityAdditionalFile.txt"
@@ -15999,7 +15999,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1141173,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/UnityEditor.UI.rsp2"
@@ -16587,7 +16587,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1150143,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/Unity.Burst.UnityAdditionalFile.txt"
@@ -16613,7 +16613,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1185766,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/Unity.Burst.rsp2"
@@ -17159,7 +17159,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1193740,
       "PayloadLength": 27,
-      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo Control",
+      "PayloadDebugContentSnippet": "C:\\Users\\javie\\Bajo_control",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/Unity.Burst.CodeGen.UnityAdditionalFile.txt"
@@ -17185,7 +17185,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1227647,
       "PayloadLength": 40,
-      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo ",
+      "PayloadDebugContentSnippet": "/pathmap:\"C:\\Users\\javie\\Bajo_",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/Android_CodeGen/Unity.Burst.CodeGen.rsp2"
@@ -17784,7 +17784,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1236207,
       "PayloadLength": 45546,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/4747638433968585886.rsp"
@@ -18184,7 +18184,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1281843,
       "PayloadLength": 28801,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/15228710169658269968.rsp"
@@ -19140,7 +19140,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1310733,
       "PayloadLength": 28746,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/1210891531947751883.rsp"
@@ -20098,7 +20098,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1339567,
       "PayloadLength": 28748,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/438980532890055871.rsp"
@@ -21056,7 +21056,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1368405,
       "PayloadLength": 28532,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/15907415892376651998.rsp"
@@ -22015,7 +22015,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1397026,
       "PayloadLength": 29093,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/6508951009339132853.rsp"
@@ -22973,7 +22973,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1426209,
       "PayloadLength": 28758,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/10029816211379571603.rsp"
@@ -23931,7 +23931,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1455057,
       "PayloadLength": 28742,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/13525290774574426104.rsp"
@@ -24889,7 +24889,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1483889,
       "PayloadLength": 28772,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/13155616310095448955.rsp"
@@ -25847,7 +25847,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1512751,
       "PayloadLength": 28764,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/10441134206345068177.rsp"
@@ -26805,7 +26805,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1541605,
       "PayloadLength": 28807,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/11489527634371536877.rsp"
@@ -27765,7 +27765,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1570501,
       "PayloadLength": 28819,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/2287518268568367750.rsp"
@@ -28725,7 +28725,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1599409,
       "PayloadLength": 28854,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/9766718788248844585.rsp"
@@ -29688,7 +29688,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1628353,
       "PayloadLength": 28807,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/11295223868419055766.rsp"
@@ -30648,7 +30648,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1657248,
       "PayloadLength": 28962,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/125927855240037756.rsp"
@@ -31608,7 +31608,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1686299,
       "PayloadLength": 29062,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/1486766653954671424.rsp"
@@ -32577,7 +32577,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1715451,
       "PayloadLength": 28957,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/16296376693159092872.rsp"
@@ -33542,7 +33542,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1744498,
       "PayloadLength": 29126,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/13249999676030392445.rsp"
@@ -34504,7 +34504,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1773714,
       "PayloadLength": 28888,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/16778236131868972292.rsp"
@@ -35468,7 +35468,7 @@
       "ActionType": "WriteFile",
       "PayloadOffset": 1802692,
       "PayloadLength": 29822,
-      "PayloadDebugContentSnippet": "\"unity-ilpp-5aaac6eca7d264d071",
+      "PayloadDebugContentSnippet": "\"unity-ilpp-8691a798b0fd097366",
       "Inputs": [],
       "Outputs": [
         "Library/Bee/artifacts/rsp/15201509376401771623.rsp"
@@ -37058,7 +37058,7 @@
     {
       "Annotation": "BuildPlayerDataGenerator Library/BuildPlayerData/Player/RuntimeInitializeOnLoads.json (+1 other)",
       "DisplayName": "BuildPlayerDataGenerator RuntimeInitializeOnLoads",
-      "Action": "\"C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Assembly-CSharp.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Animation.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Common.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.IK.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.PixelPerfect.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.SpriteShape.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Tilemap.Extras.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Burst.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Collections.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InputSystem.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InputSystem.ForUI.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InternalAPIEngineBridge.001.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Mathematics.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Timeline.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.UI.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.burst@1.8.17\\Unity.Burst.Unsafe.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.collections@1.2.4\\Unity.Collections.LowLevel.ILSupport\\Unity.Collections.LowLevel.ILSupport.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"C:\\Users\\javie\\Bajo Control\\Library\\Bee\\PlayerScriptAssemblies\" -s=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.burst@1.8.17\" -s=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.collections@1.2.4\\Unity.Collections.LowLevel.ILSupport\" -s=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"C:\\Users\\javie\\Bajo Control\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Player\" -rn=\"RuntimeInitializeOnLoads.json\" -tn=\"TypeDb-All.json\"",
+      "Action": "\"C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data\\Tools\\netcorerun\\netcorerun.exe\" \"C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Assembly-CSharp.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Animation.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Common.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.IK.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.PixelPerfect.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.SpriteShape.Runtime.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.2D.Tilemap.Extras.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Burst.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Collections.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InputSystem.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InputSystem.ForUI.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.InternalAPIEngineBridge.001.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Mathematics.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.TextMeshPro.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.Timeline.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Core.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.Flow.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\Unity.VisualScripting.State.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.TestRunner.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\\UnityEngine.UI.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.burst@1.8.17\\Unity.Burst.Unsafe.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.collections@1.2.4\\Unity.Collections.LowLevel.ILSupport\\Unity.Collections.LowLevel.ILSupport.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\\nunit.framework.dll\" -a=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\\Unity.VisualScripting.Antlr3.Runtime.dll\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\Managed\\UnityEngine\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netfx\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\compat\\2.1.0\\shims\\netstandard\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\Extensions\\2.0.0\" -s=\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.48f1\\Editor\\Data\\NetStandard\\ref\\2.1.0\" -s=\"C:\\Users\\javie\\Bajo_control\\Library\\Bee\\PlayerScriptAssemblies\" -s=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.burst@1.8.17\" -s=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.collections@1.2.4\\Unity.Collections.LowLevel.ILSupport\" -s=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.ext.nunit@1.0.6\\net35\\unity-custom\" -s=\"C:\\Users\\javie\\Bajo_control\\Library\\PackageCache\\com.unity.visualscripting@1.9.4\\Runtime\\VisualScripting.Flow\\Dependencies\\NCalc\" -o=\"Library/BuildPlayerData/Player\" -rn=\"RuntimeInitializeOnLoads.json\" -tn=\"TypeDb-All.json\"",
       "Inputs": [
         "C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data/Tools/netcorerun/netcorerun.exe",
         "C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data/Tools/BuildPlayerDataGenerator/BuildPlayerDataGenerator.exe",
@@ -37369,6 +37369,6 @@
   "SharedResources": [],
   "Scanners": [],
   "Identifier": "Library/Bee/1300b0aP.dag.json",
-  "PayloadsFile": "C:/Users/javie/Bajo Control/Library/Bee/1300b0aP.dag.payloads",
+  "PayloadsFile": "C:/Users/javie/Bajo_control/Library/Bee/1300b0aP.dag.payloads",
   "RelativePathToRoot": "../.."
 }

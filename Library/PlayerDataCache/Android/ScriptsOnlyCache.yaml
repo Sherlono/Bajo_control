@@ -29,7 +29,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -64,10 +63,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -160,33 +157,33 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16766}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 18164}
+      Script: {instanceID: 18166}
     - Class: 114
-      Script: {instanceID: 18438}
+      Script: {instanceID: 18440}
     - Class: 114
-      Script: {instanceID: 18820}
+      Script: {instanceID: 18822}
     - Class: 114
-      Script: {instanceID: 19420}
+      Script: {instanceID: 19424}
     - Class: 114
-      Script: {instanceID: 20494}
+      Script: {instanceID: 20498}
     - Class: 114
-      Script: {instanceID: 21320}
+      Script: {instanceID: 21326}
     - Class: 114
-      Script: {instanceID: 21590}
+      Script: {instanceID: 21596}
     - Class: 114
-      Script: {instanceID: 21954}
+      Script: {instanceID: 21960}
     - Class: 114
-      Script: {instanceID: 22360}
+      Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 23052}
+      Script: {instanceID: 23058}
     - Class: 114
-      Script: {instanceID: 25162}
+      Script: {instanceID: 25168}
     - Class: 114
-      Script: {instanceID: 25278}
+      Script: {instanceID: 25284}
     - Class: 114
-      Script: {instanceID: 25396}
+      Script: {instanceID: 25402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -225,29 +222,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16766}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 17550}
+      Script: {instanceID: 17552}
     - Class: 114
-      Script: {instanceID: 18164}
+      Script: {instanceID: 18166}
     - Class: 114
-      Script: {instanceID: 18438}
+      Script: {instanceID: 18440}
     - Class: 114
-      Script: {instanceID: 18820}
+      Script: {instanceID: 18822}
     - Class: 114
-      Script: {instanceID: 20230}
+      Script: {instanceID: 20234}
     - Class: 114
-      Script: {instanceID: 20580}
+      Script: {instanceID: 20584}
     - Class: 114
-      Script: {instanceID: 21590}
+      Script: {instanceID: 21596}
     - Class: 114
-      Script: {instanceID: 22360}
+      Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 22596}
+      Script: {instanceID: 22602}
     - Class: 114
-      Script: {instanceID: 23052}
+      Script: {instanceID: 23058}
     - Class: 114
-      Script: {instanceID: 25162}
+      Script: {instanceID: 25168}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -292,55 +289,55 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16766}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 17940}
+      Script: {instanceID: 17942}
     - Class: 114
-      Script: {instanceID: 18164}
+      Script: {instanceID: 18166}
     - Class: 114
-      Script: {instanceID: 18276}
+      Script: {instanceID: 18278}
     - Class: 114
-      Script: {instanceID: 18438}
+      Script: {instanceID: 18440}
     - Class: 114
-      Script: {instanceID: 18820}
+      Script: {instanceID: 18822}
     - Class: 114
-      Script: {instanceID: 19420}
+      Script: {instanceID: 18850}
     - Class: 114
-      Script: {instanceID: 19668}
+      Script: {instanceID: 19424}
     - Class: 114
-      Script: {instanceID: 19984}
+      Script: {instanceID: 19672}
     - Class: 114
-      Script: {instanceID: 20494}
+      Script: {instanceID: 19988}
     - Class: 114
-      Script: {instanceID: 20966}
+      Script: {instanceID: 20498}
     - Class: 114
-      Script: {instanceID: 21320}
+      Script: {instanceID: 20970}
     - Class: 114
-      Script: {instanceID: 21590}
+      Script: {instanceID: 20974}
     - Class: 114
-      Script: {instanceID: 21992}
+      Script: {instanceID: 21326}
     - Class: 114
-      Script: {instanceID: 22360}
+      Script: {instanceID: 21596}
     - Class: 114
-      Script: {instanceID: 22430}
+      Script: {instanceID: 21998}
     - Class: 114
-      Script: {instanceID: 22596}
+      Script: {instanceID: 22366}
     - Class: 114
-      Script: {instanceID: 22892}
+      Script: {instanceID: 22436}
     - Class: 114
-      Script: {instanceID: 23554}
+      Script: {instanceID: 22602}
     - Class: 114
-      Script: {instanceID: 23852}
+      Script: {instanceID: 22898}
     - Class: 114
-      Script: {instanceID: 24500}
+      Script: {instanceID: 23560}
     - Class: 114
-      Script: {instanceID: 25162}
+      Script: {instanceID: 23858}
     - Class: 114
-      Script: {instanceID: 25396}
+      Script: {instanceID: 24506}
     - Class: 114
-      Script: {instanceID: 31284}
+      Script: {instanceID: 25168}
     - Class: 114
-      Script: {instanceID: 39908}
+      Script: {instanceID: 25402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -678,6 +675,12 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
+      Hash: b4b68c932fa81f3d2e6900211e5cbec4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MaskModifier
+  - hash:
+      serializedVersion: 2
       Hash: d90629714fa6b0145fcaffc87f5c6559
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -976,6 +979,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Spawner
+  - hash:
+      serializedVersion: 2
+      Hash: 9841a247603513e59a6e9a0dc68974ca
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShapeMesher
   - hash:
       serializedVersion: 2
       Hash: 0b63f6d3335e11939ce8790b904c8691
@@ -1624,18 +1633,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 91f02eda3974a5965ed37a7451cd50ba
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: ShapeMesher
-  - hash:
-      serializedVersion: 2
-      Hash: b4b68c932fa81f3d2e6900211e5cbec4
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: MaskModifier
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main_Scene.unity

@@ -39,7 +39,7 @@ public class Kid : MonoBehaviour
         switch(state){
             case 0: // Aproaching target
                 if (target - transform.position.x > 1 || target - transform.position.x < - 1){   // Running to target
-                    transform.position = new Vector3(transform.position.x + 0.8f - 1.6f * targetIsBehind, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
                 }else{
                     state++;
                 }
@@ -102,7 +102,7 @@ public class Kid : MonoBehaviour
                 }
                 if (target - transform.position.x > 25 || target - transform.position.x < -25)
                 {
-                    transform.position = new Vector3(transform.position.x + 0.3f - 0.6f * targetIsBehind, pool.transform.position.y, transform.position.z);
+                    transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
                 }else{
                     Destroy(this.gameObject);
                 }

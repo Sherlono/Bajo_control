@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Setpointer : MonoBehaviour
 {
-    public PlayPID PlayPID;
+    public PIDPanel PlayPID;
     public float value;
     private float min_position, max_position, max_value;
     private float last_time;

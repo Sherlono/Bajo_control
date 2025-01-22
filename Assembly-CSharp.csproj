@@ -61,22 +61,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Pool\shaker.cs" />
+    <Compile Include="Assets\Scripts\Drone\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Pool\MaskModifier.cs" />
     <Compile Include="Assets\Scripts\Pool\hpool.cs" />
+    <Compile Include="Assets\Scripts\Drone\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\value2text.cs" />
+    <Compile Include="Assets\Scripts\Pool\PID.cs" />
     <Compile Include="Assets\Scripts\Pool\Spawner.cs" />
     <Compile Include="Assets\Scripts\Drone\hdrone.cs" />
     <Compile Include="Assets\Scripts\Pool\Watersplash.cs" />
     <Compile Include="Assets\Scripts\Pool\Kid.cs" />
+    <Compile Include="Assets\Scripts\PIDPanel.cs" />
     <Compile Include="Assets\Scripts\TouchManager.cs" />
     <Compile Include="Assets\Scripts\UI\Slider.cs" />
     <Compile Include="Assets\Scripts\Pool\heat.cs" />
-    <Compile Include="Assets\Scripts\PID.cs" />
     <Compile Include="Assets\Scripts\Pool\Setpointer.cs" />
     <Compile Include="Assets\Scripts\UI\ScriptBoton.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\ShapeMesher.cs" />
-    <Compile Include="Assets\Scripts\PlayPID.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

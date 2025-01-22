@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class Slider : MonoBehaviour
 {
-    public GameObject circle;
     public GameObject bar;
-    public float value;
-    private float min_position, max_position, max_value;
+    public float value, max_value;
+    private float min_position, max_position;
 
     // Start is called before the first frame update
     void Start()
     {
-        min_position = transform.position.x;
-        max_position = min_position + bar.GetComponent<SpriteRenderer>().bounds.size.x;
-        max_value = 50;
+        min_position = bar.GetComponent<Transform>().position.x - (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        max_position = bar.GetComponent<Transform>().position.x + (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
+    }
+
+    private void Update()
+    {
+        min_position = bar.GetComponent<Transform>().position.x - (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        max_position = bar.GetComponent<Transform>().position.x + (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+    }
+
+    public void Reset()
+    {
+        value = 0;
+        transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
     }
 
     private void OnMouseDrag()

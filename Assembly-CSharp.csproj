@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\PIDPanel.cs" />
     <Compile Include="Assets\Scripts\TouchManager.cs" />
     <Compile Include="Assets\Scripts\UI\Slider.cs" />
+    <Compile Include="Assets\Menu.cs" />
     <Compile Include="Assets\Scripts\Pool\heat.cs" />
     <Compile Include="Assets\Scripts\Pool\Setpointer.cs" />
     <Compile Include="Assets\Scripts\UI\ScriptBoton.cs" />

@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - GameManager
     - Kid
     - MaskModifier
+    - Menu
     - PID
     - PIDPanel
     - SceneManagerScript
@@ -84,7 +85,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
-    - UnityEngine.UI.Text
   serializedClasses:
     Unity.InputSystem:
     - UnityEngine.InputSystem.InputAction
@@ -120,7 +120,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.AnimationTriggers
     - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
-    - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
@@ -137,6 +136,18 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: SceneManagerScript
     methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: Menu
+    methodName: Toggle
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneManagerScript
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: SceneManagerScript
+    methodName: LoadScene
+  - assembly: Assembly-CSharp
+    fullTypeName: Menu
+    methodName: Toggle
   sceneClasses:
     Assets/Scenes/Drone_scene.unity:
     - Class: 1
@@ -182,9 +193,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 21598}
     - Class: 114
-      Script: {instanceID: 21962}
-    - Class: 114
       Script: {instanceID: 22368}
+    - Class: 114
+      Script: {instanceID: 22604}
     - Class: 114
       Script: {instanceID: 23060}
     - Class: 114
@@ -195,6 +206,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 25288}
     - Class: 114
       Script: {instanceID: 25406}
+    - Class: 114
+      Script: {instanceID: 31384}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -355,6 +368,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 25172}
     - Class: 114
       Script: {instanceID: 25406}
+    - Class: 114
+      Script: {instanceID: 31384}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -1662,9 +1677,15 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 358ff342f8209ffeeadeda57d5c38c44
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Menu
   platform: 13
   scenePathNames:
   - Assets/Scenes/Main_Scene.unity
   - Assets/Scenes/Pool_scene.unity
   - Assets/Scenes/Drone_scene.unity
-  playerPath: C:/Users/javie/OneDrive/Escritorio/bajocontrolgame.apk
+  playerPath: C:/Users/javie/OneDrive/Escritorio/resources/bajocontrolgame.apk

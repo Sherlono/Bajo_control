@@ -10,7 +10,7 @@ public class PIDPanel : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (state == 0)
         {
@@ -18,7 +18,7 @@ public class PIDPanel : MonoBehaviour
         }
         else if (state == 1)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - (20.0f * Mathf.Sqrt(Time.time - activate_time)), transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - (5.0f * Mathf.Sqrt(Time.time - activate_time)), transform.position.z);
             if (transform.position.y < -1000)
             {
                 state = 2;
@@ -27,7 +27,7 @@ public class PIDPanel : MonoBehaviour
         }
         else if (state == 3)    // Restart was called
         {
-            float next_y = transform.position.y + (20.0f * Mathf.Sqrt(Time.time - activate_time));
+            float next_y = transform.position.y + (5.0f * Mathf.Sqrt(Time.time - activate_time));
             if (next_y < _y)
             {
                 transform.position = new Vector3(transform.position.x, next_y, transform.position.z);

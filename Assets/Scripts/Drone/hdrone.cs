@@ -5,7 +5,7 @@ using UnityEngine;
 public class hdrone : MonoBehaviour
 {
     //public PID script;
-    public GameObject point1, point2;
+    public Vector2 refpoint;
     private Rigidbody2D rb2d;
 
     private float x_des, y_des, vx_des, vy_des, ax_des, ay_des;
@@ -21,13 +21,13 @@ public class hdrone : MonoBehaviour
 
     void Trajectory(){
         if (Time.realtimeSinceStartup < 30.0f){
-            x_des = point1.transform.position.x;    // [m]
-            y_des = point1.transform.position.y;    // [m]
+            x_des = refpoint.x;    // [m]
+            y_des = refpoint.y;    // [m]
         }
         else
         {
-            x_des = point1.transform.position.x;    // [m]
-            y_des = point1.transform.position.y;    // [m]
+            x_des = refpoint.x;    // [m]
+            y_des = refpoint.y;    // [m]
         }
 
         vx_des = 0.0f;
@@ -67,13 +67,6 @@ public class hdrone : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        
-        /*Kp_x = 0.4f;
-        Kv_x = 1.0f;
-        Kp_y = 0.4f;
-        Kv_y = 1.0f;
-        Kp_phi = 18.0f;
-        Kv_phi = 15.0f;*/
     }
 
     // Update is called once per frame
@@ -84,4 +77,5 @@ public class hdrone : MonoBehaviour
             xdot();
         }
     }
+
 }

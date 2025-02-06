@@ -1,23 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DroneGameManager : MonoBehaviour
 {
-    public Camera mainCam;
-    public PIDPanel panel;
-    public GameObject panelLogo;
-    public GameObject creator;
-    public GameObject finishFlag;
-    public Slider KpSlider, TdSlider;
-    public hdrone drone;
-    public List<GameObject> pointsList = new List<GameObject>();
     public int state = 0;
-    public int maxPoints, currentPoint = 0;
+    public List<GameObject> pointsList = new List<GameObject>();
+
+    [HideInInspector]
+    public Camera mainCam;
+    [HideInInspector]
+    public hdrone drone;
+    private PIDPanel panel;
+    private GameObject creator;
+    private GameObject finishFlag;
+    private SpriteRenderer panelLogo;
+    public Slider KpSlider, TdSlider;
+    [SerializeField]
+    private int maxPoints, currentPoint = 0;
 
     private void Start()
     {
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        drone = GameObject.Find("Drone").GetComponent<hdrone>();
+        panel = GameObject.Find("Control Panel").GetComponent<PIDPanel>();
+        finishFlag = GameObject.Find("Flag");
+        panelLogo = GameObject.Find("DroneLogo").GetComponent<SpriteRenderer>();
+
+        creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("Controls").transform);
+        creator.SetActive(false);
         mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
     }
 
@@ -36,10 +49,10 @@ public class DroneGameManager : MonoBehaviour
                     state++;
                 }
                 break;
-            case 1: // Entering first parameters
+            case 1: // First parameters entered
                 if (panel.state == 2)
                 {
-                    panelLogo.GetComponent<SpriteRenderer>().sprite = Resources.Load("drone_rotate", typeof(Sprite)) as Sprite;
+                    panelLogo.sprite = Resources.Load("drone_rotate", typeof(Sprite)) as Sprite;
                     panel.Restart();
                     KpSlider.Reset();
                     TdSlider.Reset();
@@ -63,8 +76,8 @@ public class DroneGameManager : MonoBehaviour
                 if(pointsList.Count == maxPoints)
                 {
                     creator.SetActive(false);
-                    drone.refpoint = new Vector2(pointsList[0].transform.position.x, pointsList[0].transform.position.y);
-                    drone.power = true;
+                    drone.targetpoint = new Vector2(pointsList[0].transform.position.x, pointsList[0].transform.position.y);
+                    drone.Power(true);
                     state++;
                 }
                 break;
@@ -78,13 +91,13 @@ public class DroneGameManager : MonoBehaviour
                         currentPoint++;
                         if (currentPoint != maxPoints)
                         {
-                            drone.refpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
+                            drone.targetpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
                         }
                     }
                 }
                 else
                 {
-                    drone.refpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
+                    drone.targetpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
                 }
                 break;
         }

@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class hdrone : MonoBehaviour
 {
-    //public PID script;
-    public Vector2 refpoint;
-    private Rigidbody2D rb2d;
+    [HideInInspector]
+    public Vector2 targetpoint;
+    [HideInInspector]
+    public float x_des, y_des, vx_des, vy_des, ax_des, ay_des;  // Setpoint
 
-    private float x_des, y_des, vx_des, vy_des, ax_des, ay_des;
-    private float phi_c, F, M;
-    private float Ixx = 0.00025f;   // Mass moment of inertia (kg*m^2) 0.00025f
-    private float L = 0.086f;       // Arm length (m)
-    public float Kp_x, Kv_x, Kp_y, Kv_y, Kp_phi, Kv_phi;
-    public float max_motor;         // 1.7658
-    public bool power;
+    [Header("Ganancias PID")]
+    public float Kp_x;
+    public float Kv_x;
+    public float Kp_y;
+    public float Kv_y;
+    public float Kp_phi;
+    public float Kv_phi;
 
+    [Header("Fuerza")]
+    [SerializeField]
+    private float max_motor;         // 1.7658
     [SerializeField]
     private float F_clamped, M_clamped;
 
+    private Rigidbody2D rb2d;
+    private float phi_c, F, M;
+    private float Ixx = 0.00025f;   // Mass moment of inertia (kg*m^2) 0.00025f
+    private float L = 0.086f;       // Arm length (m)
+    private bool _power;
+
     void Trajectory(){
         if (Time.realtimeSinceStartup < 30.0f){
-            x_des = refpoint.x;    // [m]
-            y_des = refpoint.y;    // [m]
+            x_des = targetpoint.x;    // [m]
+            y_des = targetpoint.y;    // [m]
         }
         else
         {
-            x_des = refpoint.x;    // [m]
-            y_des = refpoint.y;    // [m]
+            x_des = targetpoint.x;    // [m]
+            y_des = targetpoint.y;    // [m]
         }
 
         vx_des = 0.0f;
@@ -63,6 +73,11 @@ public class hdrone : MonoBehaviour
         rb2d.AddTorque(100 * rb2d.mass * M_clamped / Ixx);
     }
 
+    public void Power(bool on)
+    {
+        _power = on;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +87,7 @@ public class hdrone : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(power == true)
+        if(_power == true)
         {
             xdot();
         }

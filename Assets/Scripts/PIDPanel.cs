@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PIDPanel : MonoBehaviour
 {
-    private float activate_time;
-    private float _y;
     public int state = 0;   // 0: Boton no precionado, 1: Moviendo panel hacia abajo, 2: Panel detenido y fuera de vista
 
+    private float activate_time;
+    private float _y;
 
     // Update is called once per frame
     void FixedUpdate()

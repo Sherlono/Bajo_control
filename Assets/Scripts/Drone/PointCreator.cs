@@ -5,14 +5,12 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class PointCreator : MonoBehaviour
 {
-    public DroneGameManager manager;
-    public GameObject point;
+    [SerializeField]
+    private DroneGameManager manager;
 
-    private Vector2 touchStart;
-    private Vector2 touchEnd;
-
-    private void Start()
+    void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DroneGameManager>();
         float height = 2f * manager.mainCam.orthographicSize;
         float width = height * manager.mainCam.aspect;
 
@@ -20,11 +18,11 @@ public class PointCreator : MonoBehaviour
         GetComponent<BoxCollider>().center = Vector3.zero;
     }
 
-    private void OnMouseUp()
+    void OnMouseUp()
     {
         float x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         float y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-        GameObject newpoint = Instantiate(point, new Vector3(x, y, transform.position.z), Quaternion.identity);
+        GameObject newpoint = Instantiate(Resources.Load<GameObject>("Prefabs/Refpoint"), new Vector3(x, y, transform.position.z), Quaternion.identity);
         manager.pointsList.Add(newpoint);
         Debug.Log("Point");
     }

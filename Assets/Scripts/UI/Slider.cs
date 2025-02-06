@@ -5,7 +5,9 @@ using UnityEngine;
 public class Slider : MonoBehaviour
 {
     public GameObject bar;
-    public float value, max_value;
+    public float value;
+    [SerializeField]
+    private float max_value;
     private float min_position, max_position;
 
     // Start is called before the first frame update

@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class ShapeMesher : MonoBehaviour
 {
-    public Material fillMaterial;
-    public Color fillColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+    [SerializeField]
+    private Color fillColor = new Color(0.3632075f, 0.8306069f, 1.0f, 1.0f);
+    private Material fillMaterial;
 
     void Start()
     {
+        fillMaterial = Resources.Load("pool_material", typeof(Material)) as Material;
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
         MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
         MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();

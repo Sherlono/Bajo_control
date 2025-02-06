@@ -6,7 +6,8 @@ using TMPro;
 public class value2text : MonoBehaviour
 {
     public Slider slider;
-    public string text_name;
+    [SerializeField]
+    private string text_name;
     private TextMeshPro Text;
 
     // Start is called before the first frame update

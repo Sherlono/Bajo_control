@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Kid : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Water_splash;
-    [SerializeField]
     private Animator kidanim;
     private PID pool;
     private bool splashed = false;
@@ -38,76 +35,116 @@ public class Kid : MonoBehaviour
     {
         switch(state){
             case 0: // Aproaching target
-                if (target - transform.position.x > 1 || target - transform.position.x < - 1){   // Running to target
-                    transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
-                }else{
-                    state++;
-                }
+                Run();
                 break;
-            case 1: // Target reached, starting jump
-                if (start == 0){
-                    start = Time.time;
-                    kidanim.Play("boy_jump_0");
-                }else if (Time.time - start > 0.6f){    // Jump windup time
-                    start = 0;
-                    state++;
-                }
+            case 1: // Target reached, starting jump, is grounded
+                Jump(true);
                 break;
-            case 2: // Target reached, in the air jumping
-                if (transform.position.y > pool.transform.position.y)
-                {     
-                    if (start == 0){
-                        start = Time.time;
-                    }
-                    float _temp = (Time.time - start) * 5.5f;
-                    transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 0);
-
-                    if (transform.position.y < pool.transform.position.y + 33 && !splashed) // Feet enter water
-                    {
-                        Instantiate(Water_splash, new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        splashed = true;
-                    }
-                }else{
-                    start = 0;
-                    state++;
-                }
+            case 2: // During jump the air, is not grounded
+                Jump(false);
                 break;
             case 3: // Kid is floating
-                if (start == 0){
-                    start = Time.time;
-                    kidanim.Play("boy_float_0");
-                    pool.splashlist.Add(10);    // The splash "pulse" lasts n updates. Add(n)
-                }
-                transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 0);
-                if(Time.time > start + swimLinger_t)
-                {
-                    target = GameObject.Find("Stairs").transform.position.x;
-                    if(target - transform.position.x < 0){
-                        targetIsBehind = 1;
-                        transform.Rotate(0, 180,0);
-                    }
-                    else
-                    {
-                        targetIsBehind = 0;
-                    }
-                    start = 0;
-                    state++;
-                }
+                Float();
                 break;
             case 4: // Kid swims to the stairs
+                Swim();
+                break;
+            //case 5:
+        }
+    }
+
+    void Run()
+    {
+        //float error = target - transform.position.x;
+        if (target - transform.position.x > 1 || target - transform.position.x < -1)
+        {   // Running to target
+            transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
+        }
+        else
+        {
+            state++;
+        }
+    }
+
+    void Jump(bool grounded)
+    {
+        if (grounded)
+        {
+            if (start == 0)
+            {
+                start = Time.time;
+                kidanim.Play("boy_jump_0");
+            }
+            else if (Time.time - start > 0.6f)    // Jump windup time
+            {
+                start = 0;
+                state++;
+            }
+        }
+        else
+        {
+            if (transform.position.y > pool.transform.position.y)
+            {
                 if (start == 0)
                 {
                     start = Time.time;
-                    kidanim.Play("boy_swim_0");
                 }
-                if (target - transform.position.x > 25 || target - transform.position.x < -25)
+                float _temp = (Time.time - start) * 5.5f;
+                transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 0);
+
+                if (transform.position.y < pool.transform.position.y + 33 && !splashed) // Feet enter water
                 {
-                    transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
-                }else{
-                    Destroy(this.gameObject);
+                    GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                    splashed = true;
                 }
-                break;
-                //case 1:
+            }
+            else
+            {
+                start = 0;
+                state++;
+            }
+        }
+    }
+    void Float()
+    {
+        if (start == 0)
+        {
+            start = Time.time;
+            kidanim.Play("boy_float_0");
+            pool.splashlist.Add(10);    // The splash "pulse" lasts n updates. Add(n)
+        }
+        transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 0);
+        if (Time.time > start + swimLinger_t)
+        {
+            target = GameObject.Find("Stairs").transform.position.x;
+            if (target - transform.position.x < 0)
+            {
+                targetIsBehind = 1;
+                transform.Rotate(0, 180, 0);
+            }
+            else
+            {
+                targetIsBehind = 0;
+            }
+            start = 0;
+            state++;
+        }
+    }
+
+    void Swim()
+    {
+        if (start == 0)
+        {
+            start = Time.time;
+            kidanim.Play("boy_swim_0");
+        }
+        if (target - transform.position.x > 25 || target - transform.position.x < -25)
+        {
+            transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
+        }
+        else
+        {
+            state++;
         }
     }
 }

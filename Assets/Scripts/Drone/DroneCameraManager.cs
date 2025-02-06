@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class DroneCameraManager : MonoBehaviour
 {
-    public GameObject manager;
-    public GameObject drone;
-    public GameObject Focus;
+    private DroneGameManager manager;
+    private hdrone drone;
     private Camera _camera;
 
     private float zoom;
@@ -18,8 +17,13 @@ public class DroneCameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DroneGameManager>();
+        drone = manager.drone;
+
         posX = transform.position.x;
         posY = transform.position.y;
+
+        GameObject Focus = GameObject.Find("FocusPoint");
         focusPoint = new Vector2(Focus.GetComponent<Transform>().position.x, Focus.GetComponent<Transform>().position.y);
         _camera = GetComponent<Camera>();
         zoom = _camera.orthographicSize;

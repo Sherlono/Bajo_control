@@ -62,15 +62,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Drone\PointCreator.cs" />
     <Compile Include="Assets\Scripts\Pool\shaker.cs" />
-    <Compile Include="Assets\Scripts\Pool\MaskModifier.cs" />
     <Compile Include="Assets\Scripts\Pool\hpool.cs" />
     <Compile Include="Assets\Scripts\UI\value2text.cs" />
     <Compile Include="Assets\Scripts\Pool\PID.cs" />
+    <Compile Include="Assets\Scripts\Pool\WaterModifier.cs" />
     <Compile Include="Assets\Scripts\Pool\Spawner.cs" />
     <Compile Include="Assets\Scripts\Drone\hdrone.cs" />
     <Compile Include="Assets\Scripts\Pool\Watersplash.cs" />
     <Compile Include="Assets\Scripts\Pool\Kid.cs" />
     <Compile Include="Assets\Scripts\Drone\DroneGameManager.cs" />
+    <Compile Include="Assets\Scripts\Pool\WaterOrganizer.cs" />
     <Compile Include="Assets\Scripts\PIDPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
     <Compile Include="Assets\Scripts\Drone\DroneCameraManager.cs" />
@@ -78,14 +79,13 @@
     <Compile Include="Assets\Scripts\Pool\heat.cs" />
     <Compile Include="Assets\Scripts\Drone\refpoint.cs" />
     <Compile Include="Assets\Scripts\Pool\Setpointer.cs" />
-    <Compile Include="Assets\Scripts\UI\ScriptBoton.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\ShapeMesher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\NewUnlitShader.shader" />
+    <None Include="Assets\Resources\NewUnlitShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />

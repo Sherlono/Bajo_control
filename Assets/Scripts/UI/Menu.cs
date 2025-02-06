@@ -5,20 +5,16 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public GameObject CenterPoint;
+    private GameObject CenterPoint;
     private float _y;
-    public bool isIn = false;
+    private bool isIn = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        CenterPoint = GameObject.Find("centerPoint");
         _y = transform.position.y;
     }
-
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 
     public void Toggle() {
         if (isIn)

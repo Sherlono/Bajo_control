@@ -10,6 +10,13 @@ public class Spawner : MonoBehaviour
     private List<GameObject> kidList = new List<GameObject>();
     private int t = 0;
 
+    public void Activate(bool a)
+    {
+        activated = a;
+    }
+
+    public bool IsActive () { return activated; }
+
     // Update is called once per frame
     void FixedUpdate()
     {

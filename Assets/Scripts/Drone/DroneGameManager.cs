@@ -8,6 +8,7 @@ public class DroneGameManager : MonoBehaviour
 {
     public int state = 0;
     public List<GameObject> pointsList = new List<GameObject>();
+    public List<Obstacle> obstacleList = new List<Obstacle>();
 
     [HideInInspector]
     public Camera mainCam;
@@ -15,8 +16,10 @@ public class DroneGameManager : MonoBehaviour
     public hdrone drone;
     private PIDPanel panel;
     private GameObject creator;
-    private GameObject finishFlag;
+    private EndFlag finishFlag;
+    private Vector3 canvasCenter;
     private SpriteRenderer panelLogo;
+    public GameObject WinObject, LoseObject;
     public Slider KpSlider, TdSlider;
     [SerializeField]
     private int maxPoints, currentPoint = 0;
@@ -26,7 +29,8 @@ public class DroneGameManager : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         drone = GameObject.Find("Drone").GetComponent<hdrone>();
         panel = GameObject.Find("Control Panel").GetComponent<PIDPanel>();
-        finishFlag = GameObject.Find("Flag");
+        finishFlag = GameObject.Find("Flag").GetComponent<EndFlag>();
+        canvasCenter = GameObject.Find("DroneLogo").transform.localPosition;
         panelLogo = GameObject.Find("DroneLogo").GetComponent<SpriteRenderer>();
 
         creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("Controls").transform);
@@ -82,22 +86,43 @@ public class DroneGameManager : MonoBehaviour
                 }
                 break;
             case 5: // Drone is active
-                mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
-
-                if (currentPoint < maxPoints)
+                if (!finishFlag.win)
                 {
-                    if (pointsList[currentPoint].GetComponent<refpoint>().done == true)
+                    if (currentPoint < maxPoints)
                     {
-                        currentPoint++;
-                        if (currentPoint != maxPoints)
+                        if (pointsList[currentPoint].GetComponent<refpoint>().done == true)
                         {
-                            drone.targetpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
+                            currentPoint++;
+                            if (currentPoint != maxPoints)
+                            {
+                                drone.targetpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
+                            }
                         }
+                    }
+                    else
+                    {
+                        drone.targetpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
+                    }
+
+                    foreach (Obstacle obs in obstacleList)
+                    {
+                        if (obs.colided)
+                        {
+                            drone.Power(false);
+                        }
+                    }
+                    if (drone.IsPowered())
+                    {
+                        mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+                    }
+                    else
+                    {
+                        LoseObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
                     }
                 }
                 else
                 {
-                    drone.targetpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
+                    WinObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
                 }
                 break;
         }

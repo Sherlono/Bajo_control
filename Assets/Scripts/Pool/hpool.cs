@@ -33,7 +33,8 @@ public class hpool : MonoBehaviour
         }
         else // Sobre limite
         {
-            A = -0.0313f; B = 0; E = 0;
+            //A = -0.0313f; B = 0; E = 0;
+            pool.Pause(true);
         }
 
     }

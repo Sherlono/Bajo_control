@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Drone\PointCreator.cs" />
+    <Compile Include="Assets\Scripts\Drone\Hazard.cs" />
     <Compile Include="Assets\Scripts\Pool\shaker.cs" />
     <Compile Include="Assets\Scripts\Pool\hpool.cs" />
     <Compile Include="Assets\Scripts\UI\value2text.cs" />
@@ -74,6 +75,9 @@
     <Compile Include="Assets\Scripts\Pool\WaterOrganizer.cs" />
     <Compile Include="Assets\Scripts\PIDPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
+    <Compile Include="Assets\Scripts\Drone\EndFlag.cs" />
+    <Compile Include="Assets\Scripts\Drone\Obstacle.cs" />
+    <Compile Include="Assets\PoolGameManager.cs" />
     <Compile Include="Assets\Scripts\Drone\DroneCameraManager.cs" />
     <Compile Include="Assets\Scripts\UI\Slider.cs" />
     <Compile Include="Assets\Scripts\Pool\heat.cs" />

@@ -16,6 +16,7 @@ public class PID : MonoBehaviour
     public float h, u;
     private float _prev_error, _integral, _memory;
     private float y_offset;
+    private bool _paused;
 
     [SerializeField]
     private float factor = 1.54f;
@@ -42,10 +43,18 @@ public class PID : MonoBehaviour
         return _memory;
     }
 
+    public void Pause(bool p)
+    {
+        _paused = p;
+    }
+
+    public bool IsPaused() { return _paused; }
+
     // Start is called before the first frame update
     void Start()
     {
         // Inicializar valores PID
+        _paused = false;
         setpoint = sp.value;
         y_offset = transform.localPosition.y;
         h = (transform.localPosition.y - y_offset) / factor;
@@ -59,34 +68,37 @@ public class PID : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setpoint = sp.value;
-
-        if (sp.state == 1)  // Si se dio el valor del setpoint correctamente
+        if (!_paused)
         {
-            p = 0;
-            if (splashlist.Count != 0)
+            setpoint = sp.value;
+
+            if (sp.state == 1)  // Si se dio el valor del setpoint correctamente
             {
-                for(int i = 0; i < splashlist.Count; i++)
+                p = 0;
+                if (splashlist.Count != 0)
                 {
-                    if (splashlist[i] != 0) // Si no se ha vaciado el splash
+                    for (int i = 0; i < splashlist.Count; i++)
                     {
-                        p += 6.5f;
-                        splashlist[i] -= 1;
-                    }
-                    else
-                    {
-                        splashlist.Remove(i);
+                        if (splashlist[i] != 0) // Si no se ha vaciado el splash
+                        {
+                            p += 6.5f;
+                            splashlist[i] -= 1;
+                        }
+                        else
+                        {
+                            splashlist.Remove(i);
+                        }
                     }
                 }
+                h = (transform.localPosition.y - y_offset) / factor;    // Nivel sin el desplazamiento inicial en el eje y
+                u = Calculate();    // Señal PID
+
+                dh = hp.A * h + hp.B * u + p; // Salida dh
+
+                float w_level = Integrator();       // Integrador para obtener h despues del actuamiento
+
+                transform.localPosition = new Vector3(transform.localPosition.x, w_level + y_offset, transform.localPosition.z);
             }
-            h = (transform.localPosition.y - y_offset) / factor;    // Nivel sin el desplazamiento inicial en el eje y
-            u = Calculate();    // Señal PID
-
-            dh = hp.A * h + hp.B * u + p; // Salida dh
-
-            float w_level = Integrator();       // Integrador para obtener h despues del actuamiento
-
-            transform.localPosition = new Vector3(transform.localPosition.x, w_level + y_offset, transform.localPosition.z);
         }
     }
 }

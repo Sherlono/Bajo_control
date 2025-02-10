@@ -78,6 +78,8 @@ public class hdrone : MonoBehaviour
         _power = on;
     }
 
+    public bool IsPowered() { return _power; }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -8,6 +8,7 @@ public class hdrone : MonoBehaviour
     public Vector2 targetpoint;
     [HideInInspector]
     public float x_des, y_des, vx_des, vy_des, ax_des, ay_des;  // Setpoint
+    public float x_wind, y_wind;
 
     [Header("Ganancias PID")]
     public float Kp_x;
@@ -69,8 +70,10 @@ public class hdrone : MonoBehaviour
         Controller();
         Clamp();
         
-        rb2d.AddRelativeForce(new Vector3(0, F_clamped, 0));
+        rb2d.AddRelativeForce(new Vector2(0, F_clamped));
         rb2d.AddTorque(100 * rb2d.mass * M_clamped / Ixx);
+
+        rb2d.AddForce(new Vector2(x_wind, y_wind));
     }
 
     public void Power(bool on)

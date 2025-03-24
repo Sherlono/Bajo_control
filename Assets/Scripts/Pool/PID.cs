@@ -28,10 +28,10 @@ public class PID : MonoBehaviour
     {
         float error = setpoint - h;
 
-        _integral += error * Time.deltaTime;
+        _integral += error * Time.fixedDeltaTime;
         float kp = kp_slider.value * error;
         float ki = ti_slider.value * _integral;
-        float kd = td_slider.value * (error - _prev_error) / Time.deltaTime;
+        float kd = td_slider.value * (error - _prev_error) / Time.fixedDeltaTime;
         _prev_error = error;
 
         return kp + ki + kd;
@@ -39,7 +39,7 @@ public class PID : MonoBehaviour
 
     float Integrator()
     {
-        _memory += dh * Time.deltaTime;
+        _memory += dh * Time.fixedDeltaTime;
         return _memory;
     }
 
@@ -66,7 +66,7 @@ public class PID : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!_paused)
         {
@@ -81,8 +81,16 @@ public class PID : MonoBehaviour
                     {
                         if (splashlist[i] != 0) // Si no se ha vaciado el splash
                         {
-                            p += 6.5f;
-                            splashlist[i] -= 1;
+                            if (splashlist[i] > 0)
+                            {
+                                p += 6.5f;
+                                splashlist[i] -= 1;
+                            }
+                            else
+                            {
+                                p -= 1.625f;
+                                splashlist[i] += 1;
+                            }
                         }
                         else
                         {

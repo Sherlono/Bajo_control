@@ -73,11 +73,11 @@
     <Compile Include="Assets\Scripts\Pool\Kid.cs" />
     <Compile Include="Assets\Scripts\Drone\DroneGameManager.cs" />
     <Compile Include="Assets\Scripts\Pool\WaterOrganizer.cs" />
+    <Compile Include="Assets\Scripts\Pool\PoolGameManager.cs" />
     <Compile Include="Assets\Scripts\PIDPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
     <Compile Include="Assets\Scripts\Drone\EndFlag.cs" />
     <Compile Include="Assets\Scripts\Drone\Obstacle.cs" />
-    <Compile Include="Assets\PoolGameManager.cs" />
     <Compile Include="Assets\Scripts\Drone\DroneCameraManager.cs" />
     <Compile Include="Assets\Scripts\UI\Slider.cs" />
     <Compile Include="Assets\Scripts\Pool\heat.cs" />

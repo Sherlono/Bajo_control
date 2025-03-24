@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DroneGameManager : MonoBehaviour
 {
     public int state = 0;
+    public int level;
     public List<GameObject> pointsList = new List<GameObject>();
-    public List<Obstacle> obstacleList = new List<Obstacle>();
+    public List<Obstacle> wallList = new List<Obstacle>();
 
     [HideInInspector]
     public Camera mainCam;
@@ -19,6 +21,7 @@ public class DroneGameManager : MonoBehaviour
     private EndFlag finishFlag;
     private Vector3 canvasCenter;
     private SpriteRenderer panelLogo;
+    private Image windArrow;
     public GameObject WinObject, LoseObject;
     public Slider KpSlider, TdSlider;
     [SerializeField]
@@ -32,10 +35,18 @@ public class DroneGameManager : MonoBehaviour
         finishFlag = GameObject.Find("Flag").GetComponent<EndFlag>();
         canvasCenter = GameObject.Find("DroneLogo").transform.localPosition;
         panelLogo = GameObject.Find("DroneLogo").GetComponent<SpriteRenderer>();
+        windArrow = GameObject.Find("Arrow").GetComponent<Image>();
 
-        creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("Controls").transform);
+        creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("centerPoint").transform);
         creator.SetActive(false);
         mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+
+        if (level == 0) // Wind force
+        {
+            drone.x_wind = Random.Range(-0.5f, 0.5f);
+            drone.y_wind = Random.Range(-0.1f, 0.1f);
+            windArrow.transform.localScale = new Vector3(-drone.x_wind / 0.5f, 1, 1);
+        }
     }
 
     // Update is called once per frame
@@ -104,7 +115,7 @@ public class DroneGameManager : MonoBehaviour
                         drone.targetpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
                     }
 
-                    foreach (Obstacle obs in obstacleList)
+                    foreach (Obstacle obs in wallList)
                     {
                         if (obs.colided)
                         {

@@ -45,7 +45,7 @@ public class WaterModifier : MonoBehaviour
             Mask.transform.position = new Vector3(9999.0f, transform.position.y, Mask.transform.position.z);
         }
 
-        if (pool.h >= 2.95f)
+        if (pool.h >= 3.0f)
         {
             Overflow.transform.position = new Vector3(Overflow.transform.position.x, 240f, Overflow.transform.position.z);
             Color tmp = Surface.GetComponent<SpriteRenderer>().color;

@@ -11,6 +11,7 @@ public class Kid : MonoBehaviour
     private float target, _y;
     private float start = 0.0f, swimLinger_t, targetIsBehind;
     public int state = 0;
+    public bool paused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +22,10 @@ public class Kid : MonoBehaviour
         _y = transform.position.y;
         swimLinger_t = 5 + Random.value * 10;
 
-        if(target - transform.position.x < 0)
-        {
+        if(target - transform.position.x < 0){
             targetIsBehind = 1;
             transform.Rotate(0, 180, 0);
-        }else{
+        } else {
             targetIsBehind = 0;
         }
     }
@@ -49,102 +49,127 @@ public class Kid : MonoBehaviour
             case 4: // Kid swims to the stairs
                 Swim();
                 break;
-            //case 5:
+            case 5: // Kid climbs out of pool
+                Climb();
+                break;
+            case 6: // Kid leaves
+                Run();
+                break;
         }
     }
 
     void Run()
     {
-        //float error = target - transform.position.x;
-        if (target - transform.position.x > 1 || target - transform.position.x < -1)
-        {   // Running to target
-            transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
+        if(start == 0) {
+            start = Time.time;
+            kidanim.Play("boy_run_0");
         }
-        else
-        {
+
+        //float error = target - transform.position.x;
+        if (target - transform.position.x > 1 || target - transform.position.x < -1) {   // Running to target
+            transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
+        } else {
+            start = 0;
             state++;
         }
     }
 
     void Jump(bool grounded)
     {
-        if (grounded)
-        {
-            if (start == 0)
-            {
+        if (grounded) {
+            if (start == 0) {
                 start = Time.time;
                 kidanim.Play("boy_jump_0");
-            }
-            else if (Time.time - start > 0.6f)    // Jump windup time
-            {
+            } 
+            else if (Time.time - start > 0.6f) {    // Jump windup time
                 start = 0;
                 state++;
             }
-        }
-        else
-        {
-            if (transform.position.y > pool.transform.position.y)
-            {
-                if (start == 0)
-                {
-                    start = Time.time;
-                }
-                float _temp = (Time.time - start) * 5.5f;
-                transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 0);
+        } else {
+            if (!paused) {
+                if (transform.position.y > pool.transform.position.y) {
+                    if (start == 0) {
+                        start = Time.time;
+                    }
+                    float _temp = (Time.time - start) * 5.5f;
+                    transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 0);
 
-                if (transform.position.y < pool.transform.position.y + 33 && !splashed) // Feet enter water
-                {
-                    GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                    splashed = true;
+                    // Feet enter water
+                    if (transform.position.y < pool.transform.position.y + 33 && !splashed) {
+                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                        splashed = true;
+                    }
+                } else {
+                    start = 0;
+                    state++;
                 }
-            }
-            else
-            {
-                start = 0;
-                state++;
             }
         }
     }
     void Float()
     {
-        if (start == 0)
-        {
+        if (start == 0) {
             start = Time.time;
             kidanim.Play("boy_float_0");
-            pool.splashlist.Add(10);    // The splash "pulse" lasts n updates. Add(n)
+            pool.splashlist.Add(10);    // The splash "pulse" lasts |n| updates. Add(|n|)
         }
-        transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 0);
-        if (Time.time > start + swimLinger_t)
-        {
-            target = GameObject.Find("Stairs").transform.position.x;
-            if (target - transform.position.x < 0)
-            {
-                targetIsBehind = 1;
-                transform.Rotate(0, 180, 0);
+
+        if (!paused) {
+            transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 0);
+
+            if (Time.time > start + swimLinger_t) {
+                target = GameObject.Find("Stairs").transform.position.x;
+                if (target - transform.position.x < 0) {
+                    targetIsBehind = 1;
+                    transform.Rotate(0, 180, 0);
+                } else {
+                    targetIsBehind = 0;
+                }
+                start = 0;
+                state++;
             }
-            else
-            {
-                targetIsBehind = 0;
-            }
-            start = 0;
-            state++;
         }
     }
 
     void Swim()
     {
-        if (start == 0)
-        {
+        if (start == 0) {
             start = Time.time;
             kidanim.Play("boy_swim_0");
         }
-        if (target - transform.position.x > 25 || target - transform.position.x < -25)
-        {
-            transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
+        if (!paused) {
+            if (target - transform.position.x > 25 || target - transform.position.x < -25) {
+                transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
+            } else {
+                start = 0;
+                state++;
+            }
         }
-        else
-        {
+        
+    }
+
+    void Climb()
+    {
+        if (start == 0){
+            start = Time.time;
+            kidanim.Play("boy_climb_0");
+            target = GameObject.Find("Stairs").transform.position.y + 20.0f;
+            transform.position = new Vector3(GameObject.Find("Stairs").transform.position.x, transform.position.y, transform.position.z);
+            pool.splashlist.Add(-40);    // The splash "pulse" lasts |n| updates. Add(|n|)
+        }
+
+        if (target - transform.position.y > 0.0f){
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
+        } else {
+            start = 0;
+            transform.position = new Vector3(transform.position.x , 310 + (Random.value * 20), transform.position.z);
+            target = -120;
             state++;
         }
+    }
+
+    public void Pause(bool p)
+    {
+        paused = p;
     }
 }

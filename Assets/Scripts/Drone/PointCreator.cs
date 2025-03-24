@@ -22,8 +22,7 @@ public class PointCreator : MonoBehaviour
     {
         float x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         float y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-        GameObject newpoint = Instantiate(Resources.Load<GameObject>("Prefabs/Refpoint"), new Vector3(x, y, transform.position.z), Quaternion.identity);
+        GameObject newpoint = Instantiate(Resources.Load<GameObject>("Prefabs/Refpoint"), new Vector3(x, y, 85), Quaternion.identity);
         manager.pointsList.Add(newpoint);
-        Debug.Log("Point");
     }
 }

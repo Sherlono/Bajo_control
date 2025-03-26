@@ -2141,11 +2141,11 @@ MonoBehaviour:
   ti_slider: {fileID: 1259625476}
   td_slider: {fileID: 1118466228}
   setpoint: 0
-  dh: 0
-  p: 0
   h: 0
   u: 0
-  factor: 1.54
+  maxPump: 30
+  minPump: 0
+  _paused: 0
   splashlist: 
 --- !u!114 &1447833790
 MonoBehaviour:
@@ -3983,7 +3983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2740844148254951516, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3289663559854469776, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_Name
@@ -3991,11 +3991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7025848530332963268, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7676670357705973044, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

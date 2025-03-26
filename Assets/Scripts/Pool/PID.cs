@@ -9,19 +9,36 @@ public class PID : MonoBehaviour
 
     public Slider kp_slider, ti_slider, td_slider;
 
+    
+    [Header("Variables sistema")]
     [SerializeField]
     private float setpoint;
-    [SerializeField]
+    public float h;
+    public float u;
     private float dh, p;
-    public float h, u;
-    private float _prev_error, _integral, _memory;
-    private float y_offset;
-    private bool _paused;
 
+    private float _prev_error, _integral, _memory;
+
+    [Header("Parametros Motor")]
     [SerializeField]
-    private float factor = 1.54f;
+    private float maxPump;
+    [SerializeField]
+    private float minPump;
+
+    
+    [Header("Misc")]
+    [SerializeField]
+    private bool _paused;
+    private float factor = 1.54f;   // Comentar de donde viene
+    private float y_offset;
 
     public List<int> splashlist;
+
+    public void Pause(bool p){ _paused = p;}
+
+    public bool IsPaused() { return _paused; }
+
+    float Clamp(float value){ value = value > maxPump ? maxPump : value; return value < minPump ? minPump : value;}
 
 
     float Calculate()
@@ -34,7 +51,7 @@ public class PID : MonoBehaviour
         float kd = td_slider.value * (error - _prev_error) / Time.fixedDeltaTime;
         _prev_error = error;
 
-        return kp + ki + kd;
+        return Clamp(kp + ki + kd);
     }
 
     float Integrator()
@@ -42,13 +59,6 @@ public class PID : MonoBehaviour
         _memory += dh * Time.fixedDeltaTime;
         return _memory;
     }
-
-    public void Pause(bool p)
-    {
-        _paused = p;
-    }
-
-    public bool IsPaused() { return _paused; }
 
     // Start is called before the first frame update
     void Start()

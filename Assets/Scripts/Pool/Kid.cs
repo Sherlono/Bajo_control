@@ -10,9 +10,9 @@ public class Kid : MonoBehaviour
 
     private float target, _y;
     private float start = 0.0f, swimLinger_t, targetIsBehind;
+    private int gender;
     public int state = 0;
     public bool paused = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +28,13 @@ public class Kid : MonoBehaviour
         } else {
             targetIsBehind = 0;
         }
+        gender = Random.Range(0,2);
+        if(gender == 0){
+            kidanim.runtimeAnimatorController = Resources.Load("Animations/Boy/boy_run_0", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        }else{
+            kidanim.runtimeAnimatorController = Resources.Load("Animations/Girl/girl_run_0", typeof(RuntimeAnimatorController)) as RuntimeAnimatorController;
+        }
+
     }
 
     // Update is called once per frame
@@ -62,7 +69,7 @@ public class Kid : MonoBehaviour
     {
         if(start == 0) {
             start = Time.time;
-            kidanim.Play("boy_run_0");
+            kidanim.Play("run_0");
         }
 
         //float error = target - transform.position.x;
@@ -79,7 +86,7 @@ public class Kid : MonoBehaviour
         if (grounded) {
             if (start == 0) {
                 start = Time.time;
-                kidanim.Play("boy_jump_0");
+                kidanim.Play("jump_0");
             } 
             else if (Time.time - start > 0.6f) {    // Jump windup time
                 start = 0;
@@ -110,7 +117,7 @@ public class Kid : MonoBehaviour
     {
         if (start == 0) {
             start = Time.time;
-            kidanim.Play("boy_float_0");
+            kidanim.Play("float_0");
             pool.splashlist.Add(10);    // The splash "pulse" lasts |n| updates. Add(|n|)
         }
 
@@ -135,7 +142,7 @@ public class Kid : MonoBehaviour
     {
         if (start == 0) {
             start = Time.time;
-            kidanim.Play("boy_swim_0");
+            kidanim.Play("swim_0");
         }
         if (!paused) {
             if (target - transform.position.x > 25 || target - transform.position.x < -25) {
@@ -152,7 +159,7 @@ public class Kid : MonoBehaviour
     {
         if (start == 0){
             start = Time.time;
-            kidanim.Play("boy_climb_0");
+            kidanim.Play("climb_0");
             target = GameObject.Find("Stairs").transform.position.y + 20.0f;
             transform.position = new Vector3(GameObject.Find("Stairs").transform.position.x, transform.position.y, transform.position.z);
             pool.splashlist.Add(-40);    // The splash "pulse" lasts |n| updates. Add(|n|)

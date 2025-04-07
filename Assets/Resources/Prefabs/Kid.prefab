@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 6757095543447883119}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 350cd8b330a88f3408dfee7fc3821411, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,6 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5f0047200550a4e90f540d4001f274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Water_splash: {fileID: 3367441269876602864, guid: 729e392ef4ebf54489a5ee0830fc4ce1, type: 3}
-  kidanim: {fileID: 0}
   state: 0
+  paused: 0

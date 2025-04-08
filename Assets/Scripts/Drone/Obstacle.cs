@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
         float collisionForce = collision.relativeVelocity.magnitude;
 
         // Check if the collision force exceeds the threshold
-        if (collisionForce > 130.0f)
+        if (collisionForce > 90.0f)
         {
             // Implement your action here
             Debug.Log("Strong collision detected! Force: " + collisionForce);

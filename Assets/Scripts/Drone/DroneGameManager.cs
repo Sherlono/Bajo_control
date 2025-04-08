@@ -39,13 +39,14 @@ public class DroneGameManager : MonoBehaviour
 
         creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("centerPoint").transform);
         creator.SetActive(false);
-        mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+        mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, mainCam.transform.position.z);
 
         if (level == 0) // Wind force
         {
-            drone.x_wind = Random.Range(-0.5f, 0.5f);
+            float maxwind = 0.4f;
+            drone.x_wind = Random.Range(-maxwind, maxwind);
             drone.y_wind = Random.Range(-0.1f, 0.1f);
-            windArrow.transform.localScale = new Vector3(-drone.x_wind / 0.5f, 1, 1);
+            windArrow.transform.localScale = new Vector3(-drone.x_wind / maxwind, 1, 1);
         }
     }
 

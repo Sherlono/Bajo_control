@@ -8,15 +8,11 @@ public class Obstacle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Calculate the collision force
         float collisionForce = collision.relativeVelocity.magnitude;
 
-        // Check if the collision force exceeds the threshold
-        if (collisionForce > 90.0f)
+        if (collisionForce > 90.0f)     
         {
-            // Implement your action here
             Debug.Log("Strong collision detected! Force: " + collisionForce);
-            // Example action: Destroy the GameObject
             colided = true;
         }
     }

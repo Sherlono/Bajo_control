@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Kid"), new Vector3(-120, 310 + (Random.value * 20), -1), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Kid"), new Vector3(-120, 310 + (Random.value * 20), 0), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                 kidList.Add(newkid);
                 kidCount++;
                 t = 0;

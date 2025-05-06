@@ -74,7 +74,7 @@ public class Kid : MonoBehaviour
 
         //float error = target - transform.position.x;
         if (target - transform.position.x > 1 || target - transform.position.x < -1) {   // Running to target
-            transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 0.4f - 0.8f * targetIsBehind, transform.position.y, 88);
         } else {
             start = 0;
             state++;
@@ -99,11 +99,11 @@ public class Kid : MonoBehaviour
                         start = Time.time;
                     }
                     float _temp = (Time.time - start) * 5.5f;
-                    transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 0);
+                    transform.position = new Vector3(transform.position.x, -(9.8f * _temp * _temp) + (50.0f * _temp) + _y, 88);
 
                     // Feet enter water
                     if (transform.position.y < pool.transform.position.y + 33 && !splashed) {
-                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, transform.position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, 88), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                         splashed = true;
                     }
                 } else {
@@ -122,7 +122,7 @@ public class Kid : MonoBehaviour
         }
 
         if (!paused) {
-            transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 0);
+            transform.position = new Vector3(transform.position.x, pool.transform.position.y - 15, 88);
 
             if (Time.time > start + swimLinger_t) {
                 target = GameObject.Find("Stairs").transform.position.x;
@@ -146,7 +146,7 @@ public class Kid : MonoBehaviour
         }
         if (!paused) {
             if (target - transform.position.x > 25 || target - transform.position.x < -25) {
-                transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + 0.15f - 0.3f * targetIsBehind, pool.transform.position.y, 88);
             } else {
                 start = 0;
                 state++;
@@ -161,15 +161,15 @@ public class Kid : MonoBehaviour
             start = Time.time;
             kidanim.Play("climb_0");
             target = GameObject.Find("Stairs").transform.position.y + 20.0f;
-            transform.position = new Vector3(GameObject.Find("Stairs").transform.position.x, transform.position.y, transform.position.z);
+            transform.position = new Vector3(GameObject.Find("Stairs").transform.position.x, transform.position.y, 88);
             pool.splashlist.Add(-40);    // The splash "pulse" lasts |n| updates. Add(|n|)
         }
 
         if (target - transform.position.y > 0.0f){
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, 88);
         } else {
             start = 0;
-            transform.position = new Vector3(transform.position.x , 310 + (Random.value * 20), transform.position.z);
+            transform.position = new Vector3(transform.position.x , 310 + (Random.value * 20), 88);
             target = -120;
             state++;
         }

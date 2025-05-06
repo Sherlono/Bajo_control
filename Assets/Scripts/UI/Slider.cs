@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Slider : MonoBehaviour
@@ -11,17 +12,16 @@ public class Slider : MonoBehaviour
     private float min_position, max_position;
 
     // Start is called before the first frame update
-    void Start()
+    void Start()    
     {
-        min_position = bar.GetComponent<Transform>().position.x - (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
-        max_position = bar.GetComponent<Transform>().position.x + (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+        min_position = transform.Find("start").position.x;  // Issue here!!!
+        max_position = transform.Find("end").position.x;  // Issue here!!!
         transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
     }
 
     private void Update()
     {
-        min_position = bar.GetComponent<Transform>().position.x - (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
-        max_position = bar.GetComponent<Transform>().position.x + (bar.GetComponent<SpriteRenderer>().bounds.size.x / 2);
+
     }
 
     public void Reset()

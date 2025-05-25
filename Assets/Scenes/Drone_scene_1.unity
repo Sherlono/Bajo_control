@@ -1029,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1172419867613815929, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 2172981380591249487, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1153,7 +1153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023836648144981461, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.38
       objectReference: {fileID: 0}
     - target: {fileID: 8624506935499839062, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_TargetGraphic
@@ -1343,33 +1343,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1146507726}
     m_Modifications:
-    - target: {fileID: 234310041455771561, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1146507727}
-    - target: {fileID: 234310041455771561, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5080128224802127576, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: CenterPoint
-      value: 
-      objectReference: {fileID: 103587441}
     - target: {fileID: 5261251436495017048, guid: f012b3751a53f8344824cb108e464978, type: 3}
       propertyPath: m_Name
       value: Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 5979698239199011510, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1146507727}
-    - target: {fileID: 5979698239199011510, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 5979698239199011510, guid: f012b3751a53f8344824cb108e464978, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Drone_scene
       objectReference: {fileID: 0}
     - target: {fileID: 7245790921319318737, guid: f012b3751a53f8344824cb108e464978, type: 3}
       propertyPath: m_Pivot.x
@@ -1456,6 +1432,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f012b3751a53f8344824cb108e464978, type: 3}
+--- !u!114 &531970531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 688395200743148284, guid: f012b3751a53f8344824cb108e464978, type: 3}
+  m_PrefabInstance: {fileID: 531970530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819a7342a0849a34b871fad17cc78268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &648015195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1823,6 +1810,7 @@ MonoBehaviour:
   max_motor: 10
   F_clamped: 0
   M_clamped: 0
+  _fuel: 1000
 --- !u!1 &760125076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,9 +2350,8 @@ GameObject:
   - component: {fileID: 1146507725}
   - component: {fileID: 1146507724}
   - component: {fileID: 1146507723}
-  - component: {fileID: 1146507727}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2430,7 +2417,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -27382757
   m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!224 &1146507726
@@ -2457,18 +2444,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1146507727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146507722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819a7342a0849a34b871fad17cc78268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1228458854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3738,7 +3713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927494346413001143, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193.00002
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 7927494346413001143, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3755,7 +3730,11 @@ PrefabInstance:
     - target: {fileID: 8406981520574807788, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1146507727}
+      objectReference: {fileID: 531970531}
+    - target: {fileID: 8406981520574807788, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8406981520574807788, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Drone_scene_2
@@ -3839,7 +3818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2493786730631383242, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193.00002
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 2493786730631383242, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3856,10 +3835,14 @@ PrefabInstance:
     - target: {fileID: 4837407305241163241, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1146507727}
+      objectReference: {fileID: 531970531}
+    - target: {fileID: 4837407305241163241, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4837407305241163241, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Drone_scene_1
+      value: _Restart_
       objectReference: {fileID: 0}
     - target: {fileID: 5955379006864625665, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_Name

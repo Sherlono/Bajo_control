@@ -7,7 +7,7 @@ public class hdrone : MonoBehaviour
     [HideInInspector]
     public Vector2 targetpoint;
     [HideInInspector]
-    public float x_des, y_des, vx_des, vy_des, ax_des, ay_des;  // Setpoint
+    public float x_des, y_des, vx_des = 0.0f, vy_des = 0.0f, ax_des = 0.0f, ay_des = 0.0f;  // Setpoint
     public float x_wind, y_wind;
 
     [Header("Ganancias PID")]
@@ -23,6 +23,7 @@ public class hdrone : MonoBehaviour
     private float max_motor;         // 1.7658
     [SerializeField]
     private float F_clamped, M_clamped;
+    public float _fuel;
 
     private Rigidbody2D rb2d;
     private float phi_c, F, M;
@@ -31,20 +32,8 @@ public class hdrone : MonoBehaviour
     private bool _power;
 
     void Trajectory(){
-        if (Time.realtimeSinceStartup < 30.0f){
-            x_des = targetpoint.x;    // [m]
-            y_des = targetpoint.y;    // [m]
-        }
-        else
-        {
-            x_des = targetpoint.x;    // [m]
-            y_des = targetpoint.y;    // [m]
-        }
-
-        vx_des = 0.0f;
-        vy_des = 0.0f;
-        ax_des = 0.0f;
-        ay_des = 0.0f;
+        x_des = targetpoint.x;    // [m]
+        y_des = targetpoint.y;    // [m]
     }
 
     void Controller()
@@ -54,7 +43,6 @@ public class hdrone : MonoBehaviour
         M     = Ixx * (Kv_phi * (- rb2d.angularVelocity) + Kp_phi * (phi_c - rb2d.rotation));                               // Momento
     }
 
-
     void Clamp() {
         float u1 = 0.5f * (F - (M / L));
         float u2 = 0.5f * (F + (M / L));
@@ -63,6 +51,7 @@ public class hdrone : MonoBehaviour
         float u2_clamped = Mathf.Min(Mathf.Max(0, u2), max_motor);
         F_clamped = u1_clamped + u2_clamped;
         M_clamped = (u2_clamped - u1_clamped) * L;
+        _fuel -= (F_clamped + M_clamped)*0.023f;
     }
 
     void xdot(){
@@ -92,6 +81,10 @@ public class hdrone : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(_fuel <= 0)
+        {
+            _power = false;
+        }
         if(_power == true)
         {
             xdot();

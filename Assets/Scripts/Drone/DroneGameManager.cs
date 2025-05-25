@@ -123,6 +123,7 @@ public class DroneGameManager : MonoBehaviour
                             drone.Power(false);
                         }
                     }
+
                     if (drone.IsPowered())
                     {
                         mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
@@ -130,11 +131,13 @@ public class DroneGameManager : MonoBehaviour
                     else
                     {
                         LoseObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
+                        state++;
                     }
                 }
                 else
                 {
                     WinObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
+                    state++;
                 }
                 break;
         }

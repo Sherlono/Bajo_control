@@ -14,14 +14,15 @@ public class Slider : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
-        min_position = transform.Find("start").position.x;  // Issue here!!!
-        max_position = transform.Find("end").position.x;  // Issue here!!!
+        min_position = transform.parent.gameObject.transform.Find("start").position.x;  // Issue here!!!
+        max_position = transform.parent.gameObject.transform.Find("end").position.x;  // Issue here!!!
         transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
     }
 
     private void Update()
     {
-
+        min_position = transform.parent.gameObject.transform.Find("start").position.x;  // Issue here!!!
+        max_position = transform.parent.gameObject.transform.Find("end").position.x;  // Issue here!!!
     }
 
     public void Reset()

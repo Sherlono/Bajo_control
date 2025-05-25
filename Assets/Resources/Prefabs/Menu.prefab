@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 688395200743148284}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -130,7 +130,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Pool_scene
+          m_StringArgument: _Restart_
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &4461492211262485532
@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 3019684338582203865}
   - component: {fileID: 4204187124273387004}
   - component: {fileID: 5080128224802127576}
+  - component: {fileID: 688395200743148284}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -357,8 +358,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd1cb2f69e6045419da1f7073b1cdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterPoint: {fileID: 0}
-  isIn: 0
+--- !u!114 &688395200743148284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5261251436495017048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819a7342a0849a34b871fad17cc78268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8652898739452927371
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +491,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 688395200743148284}
         m_TargetAssemblyTypeName: SceneManagerScript, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5

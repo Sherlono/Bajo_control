@@ -53,7 +53,8 @@ public class DroneGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (state) {
+        switch (state)
+        {
             case 0: // Entering first parameters
                 if (panel.state == 1)
                 {
@@ -79,8 +80,8 @@ public class DroneGameManager : MonoBehaviour
                 if (panel.state == 1)
                 {
                     drone.Kp_phi = KpSlider.value;
-                    drone.Kv_phi = KpSlider.value;
-                        
+                    drone.Kv_phi = TdSlider.value;
+
                     state++;
                 }
                 break;
@@ -89,7 +90,7 @@ public class DroneGameManager : MonoBehaviour
                 state++;
                 break;
             case 4: // Point creating end, then drone start
-                if(pointsList.Count == maxPoints)
+                if (pointsList.Count == maxPoints)
                 {
                     creator.SetActive(false);
                     drone.targetpoint = new Vector2(pointsList[0].transform.position.x, pointsList[0].transform.position.y);
@@ -130,7 +131,7 @@ public class DroneGameManager : MonoBehaviour
                     }
                     else
                     {
-                        LoseObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
+                        LoseObject.transform.localPosition = new Vector3(0, canvasCenter.y, LoseObject.transform.localPosition.z);
                         state++;
                     }
                 }

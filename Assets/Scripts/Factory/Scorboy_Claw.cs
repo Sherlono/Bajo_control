@@ -1,0 +1,111 @@
+using UnityEngine;
+
+public class Scorboy_Claw : MonoBehaviour
+{
+    [Header("Hinges")]
+    public HingeJoint2D claw_joint;
+    public SliderJoint2D claw_left, claw_right;
+
+    private float clawSpeed = 10.0f;
+    private bool IsOpen = true;
+    private bool enable = true;
+
+    // Functionality
+    public void Set(int value)
+    {
+        JointMotor2D hingeMotor = claw_joint.motor;
+        hingeMotor.motorSpeed = value;
+        claw_joint.motor = hingeMotor;
+    }
+
+    public void Toggle()
+    {
+        if (IsOpen) Close();
+        else Open();
+    }
+
+    private void Clamp()
+    {
+        JointTranslationLimits2D left_limits = claw_left.limits;
+        JointTranslationLimits2D right_limits = claw_right.limits;
+
+        float distance = Vector2.Distance(claw_left.transform.position, claw_right.transform.position);
+        float new_limit = 0.01f + (2.34f - distance) / 2.0f;    // 2.34f is the current distance between the homes of each claw part and it might be subject to changes in the future
+
+        left_limits.max = new_limit;
+        claw_left.limits = left_limits;
+
+        right_limits.max = new_limit;
+        claw_right.limits = right_limits;
+        enable = true;
+    }
+
+    private void Relax()
+    {
+        JointMotor2D motor_left = claw_left.motor;
+        JointMotor2D motor_right = claw_right.motor;
+        motor_left.motorSpeed = 0;
+        motor_right.motorSpeed = 0;
+        claw_left.motor = motor_left;
+        claw_right.motor = motor_right;
+        enable = true;
+    }
+
+    private void Open()
+    {
+        if (enable)
+        {
+            // Reset Limits
+            JointTranslationLimits2D left_limits = claw_left.limits;
+            JointTranslationLimits2D right_limits = claw_right.limits;
+
+            left_limits.max = 1.0f;
+            claw_left.limits = left_limits;
+
+            right_limits.max = 1.0f;
+            claw_right.limits = right_limits;
+
+            // Activate motors
+            JointMotor2D motor_left = claw_left.motor;
+            JointMotor2D motor_right = claw_right.motor;
+
+            motor_left.motorSpeed = -clawSpeed;
+            motor_right.motorSpeed = -clawSpeed;
+
+            claw_left.motor = motor_left;
+            claw_right.motor = motor_right;
+
+            // Post opening actions
+            IsOpen = true;
+            enable = false;
+            Invoke("Relax", 0.3f);
+        }
+    }
+
+    private void Close()
+    {
+        if (enable)
+        {
+            JointMotor2D motor_left = claw_left.motor;
+            JointMotor2D motor_right = claw_right.motor;
+            motor_left.motorSpeed = clawSpeed;
+            motor_right.motorSpeed = clawSpeed;
+            claw_left.motor = motor_left;
+            claw_right.motor = motor_right;
+            IsOpen = false;
+            enable = false;
+            Invoke("Clamp", 0.3f);
+        }
+    }
+
+    // Getters
+    public float Angle()
+    {
+        return claw_joint.jointAngle;
+    }
+
+    public bool Is_Open()
+    {
+        return IsOpen;
+    }
+}

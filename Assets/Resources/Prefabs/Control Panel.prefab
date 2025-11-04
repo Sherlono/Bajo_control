@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 341440866942677413}
   - component: {fileID: 6605327538331356448}
   - component: {fileID: 8624506935499839062}
+  - component: {fileID: 6491778922159915722}
   m_Layer: 5
   m_Name: InfoTd
   m_TagString: Untagged
@@ -119,7 +120,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6605327538331356448}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6491778922159915722}
+        m_TargetAssemblyTypeName: InstantiatePrefab, Assembly-CSharp
+        m_MethodName: AddObject
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Derivative
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6491778922159915722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437733823155861746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9043e4b182a7c20419e18c2b45f1d164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1538621191157795282
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +253,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -27382757
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5208610589665318403
 MonoBehaviour:
@@ -1152,6 +1177,7 @@ GameObject:
   - component: {fileID: 4353101492717568655}
   - component: {fileID: 6967068612026344793}
   - component: {fileID: 4479712966850293061}
+  - component: {fileID: 6810992841619562924}
   m_Layer: 5
   m_Name: InfoTi
   m_TagString: Untagged
@@ -1259,7 +1285,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6967068612026344793}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6810992841619562924}
+        m_TargetAssemblyTypeName: InstantiatePrefab, Assembly-CSharp
+        m_MethodName: AddObject
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Integrative
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6810992841619562924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939514931013737769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9043e4b182a7c20419e18c2b45f1d164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3981211474711728611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1387,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -27382757
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &410826224569459851
 MonoBehaviour:
@@ -1508,7 +1558,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -27382757
   m_SortingLayer: 1
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4540114775560193196
 MonoBehaviour:
@@ -2414,6 +2464,7 @@ GameObject:
   - component: {fileID: 8720807365681644827}
   - component: {fileID: 7606707878085250968}
   - component: {fileID: 5626646895998509326}
+  - component: {fileID: 944608268550107908}
   m_Layer: 5
   m_Name: InfoKp
   m_TagString: Untagged
@@ -2522,18 +2573,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 944608268550107908}
+        m_TargetAssemblyTypeName: InstantiatePrefab, Assembly-CSharp
+        m_MethodName: AddObject
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Proportional
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &944608268550107908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958783009978986348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9043e4b182a7c20419e18c2b45f1d164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8972385964379945230
 GameObject:
   m_ObjectHideFlags: 0

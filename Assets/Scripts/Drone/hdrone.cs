@@ -28,7 +28,7 @@ public class hdrone : MonoBehaviour
     private Rigidbody2D rb2d;
     private float phi_c, F, M;
     private float Ixx = 0.00025f;   // Mass moment of inertia (kg*m^2) 0.00025f
-    private float L = 0.086f;       // Arm length (m)
+    public float L;       // Arm length (m)
     private bool _power;
 
     void Trajectory(){
@@ -38,9 +38,9 @@ public class hdrone : MonoBehaviour
 
     void Controller()
     {
-        phi_c = (-1 / 9.81f) * (ax_des + Kv_x * (vx_des - rb2d.velocity.x) + Kp_x * (x_des - rb2d.position.x));             // Phi
-        F     = 100 * rb2d.mass * (9.81f + ay_des + Kv_y * (vy_des - rb2d.velocity.y) + Kp_y * (y_des - rb2d.position.y));  // Magnitud fuerza Neta
-        M     = Ixx * (Kv_phi * (- rb2d.angularVelocity) + Kp_phi * (phi_c - rb2d.rotation));                               // Momento
+        phi_c = (-1 / 9.81f) * (ax_des + Kv_x * (vx_des - rb2d.linearVelocity.x) + Kp_x * (x_des - rb2d.position.x));               // Phi
+        F     = 100 * rb2d.mass * (9.81f + ay_des + Kv_y * (vy_des - rb2d.linearVelocity.y) + Kp_y * (y_des - rb2d.position.y));    // Magnitud fuerza Neta
+        M     = Ixx * (Kv_phi * (- rb2d.angularVelocity) + Kp_phi * (phi_c - rb2d.rotation));                                       // Momento
     }
 
     void Clamp() {

@@ -2,12 +2,13 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Controlable
   - Canvas
   - Manager
   - PIDpanel
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Surface
   - Water
   - UI
-  - 
+  - No Interact
   - 
   - 
   - 
@@ -48,3 +49,5 @@ TagManager:
   - name: Background
     uniqueID: 4267584539
     locked: 0
+  m_RenderingLayers:
+  - Default

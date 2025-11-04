@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*namespace jv
+{
+    public class PID_controller
+    {
+
+    }
+}*/
+
 public class PID : MonoBehaviour
 {
     public hpool hp;
@@ -32,13 +40,17 @@ public class PID : MonoBehaviour
     private float factor = 1.54f;   // Comentar de donde viene
     private float y_offset;
 
-    public List<int> splashlist;
+    public List<int> splashlist = new();
 
     public void Pause(bool p){ _paused = p;}
 
     public bool IsPaused() { return _paused; }
 
-    float Clamp(float value){ value = value > maxPump ? maxPump : value; return value < minPump ? minPump : value;}
+    float Clamp(float value)
+    {
+        value = value > maxPump ? maxPump : value;
+        return value < minPump ? minPump : value;
+    }
 
 
     float Calculate()
@@ -46,9 +58,11 @@ public class PID : MonoBehaviour
         float error = setpoint - h;
 
         _integral += error * Time.fixedDeltaTime;
+
         float kp = kp_slider.value * error;
         float ki = ti_slider.value * _integral;
         float kd = td_slider.value * (error - _prev_error) / Time.fixedDeltaTime;
+
         _prev_error = error;
 
         return Clamp(kp + ki + kd);
@@ -71,8 +85,6 @@ public class PID : MonoBehaviour
         dh = 0;
         _prev_error = setpoint - h;
         _memory = h;
-        // Otros
-        splashlist = new List<int>();
     }
 
     // Update is called once per frame

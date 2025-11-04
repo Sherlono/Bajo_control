@@ -388,7 +388,8 @@ MonoBehaviour:
   activated: 0
   kidList: []
   kidCount: 0
-  maxKids: 6
+  maxKids: 9
+  level: 2
 --- !u!4 &218049646
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,7 +1253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2740844148254951516, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3289663559854469776, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: m_Name
@@ -1260,11 +1261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7025848530332963268, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7676670357705973044, guid: 0b19ec3bbf31b6c4c98a4b07d867cba2, type: 3}
       propertyPath: max_value
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1729,7 +1730,7 @@ GameObject:
   - component: {fileID: 1301954205}
   m_Layer: 5
   m_Name: UI
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2703,7 +2704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2493786730631383242, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193.00002
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 2493786730631383242, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2727,7 +2728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837407305241163241, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Pool_scene
+      value: Pool_scene_2
       objectReference: {fileID: 0}
     - target: {fileID: 5955379006864625665, guid: 450277ac5b3b2e2418719207512cdac3, type: 3}
       propertyPath: m_Name
@@ -2933,7 +2934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927494346413001143, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193.00002
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 7927494346413001143, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2957,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8406981520574807788, guid: 589e98e1dfaed4545af1d06a84086f65, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Pool_scene
+      value: _Restart_
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

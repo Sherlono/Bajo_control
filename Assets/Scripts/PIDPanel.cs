@@ -23,7 +23,6 @@ public class PIDPanel : MonoBehaviour
             if (transform.position.y < -1200)
             {
                 state = 2;
-                //GetComponent<Collider2D>().enabled = false;
             }
         }
         else if (state == 3)    // Restart was called
@@ -43,7 +42,6 @@ public class PIDPanel : MonoBehaviour
 
     public void Restart()
     {
-        //GetComponent<Collider2D>().enabled = true;
         activate_time = Time.time;
         state = 3;
     }

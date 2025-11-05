@@ -1338,7 +1338,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1712162058347136690}
-  - {fileID: 1669089705268485709}
   - {fileID: 8489169506350854383}
   - {fileID: 3270900738795974941}
   - {fileID: 946243968478673630}
@@ -1572,9 +1571,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defd0d855615ed147a1e5f124261449b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Claw: {fileID: 2895536208368864387}
   hj2d_1: {fileID: 3075513132622296429}
   hj2d_2: {fileID: 7204448669048959517}
   LED_sr: {fileID: 1947303453453618617}
+  State_List: []
 --- !u!1 &4782259676926344631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,6 +1607,7 @@ Transform:
   m_Children:
   - {fileID: 6958677121781636076}
   - {fileID: 3510139667553404435}
+  - {fileID: 1669089705268485709}
   - {fileID: 6588211608271105606}
   - {fileID: 4458363162229741438}
   m_Father: {fileID: 3046328326403945503}
@@ -2556,7 +2558,7 @@ GameObject:
   - component: {fileID: 1669089705268485709}
   - component: {fileID: 2163268643895198329}
   m_Layer: 0
-  m_Name: Circle (1)
+  m_Name: Circle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2571,11 +2573,11 @@ Transform:
   m_GameObject: {fileID: 7332984807027847048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -18, z: 0}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2886021427948145914}
+  m_Father: {fileID: 2613323837158813158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2163268643895198329
 SpriteRenderer:

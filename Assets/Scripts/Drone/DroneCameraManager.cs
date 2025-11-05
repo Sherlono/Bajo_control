@@ -6,7 +6,7 @@ using UnityEngine;
 public class DroneCameraManager : MonoBehaviour
 {
     private DroneGameManager manager;
-    private hdrone drone;
+    //private hdrone drone;
     private Camera _camera;
 
     private float zoom;
@@ -18,7 +18,7 @@ public class DroneCameraManager : MonoBehaviour
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DroneGameManager>();
-        drone = manager.drone;
+        //drone = manager.drone;
 
         posX = transform.position.x;
         posY = transform.position.y;

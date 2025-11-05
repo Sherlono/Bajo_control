@@ -1,37 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using jv;
 
-/*namespace jv
+public class Pool : MonoBehaviour
 {
-    public class PID_controller
-    {
+    public PID controller;
 
-    }
-}*/
-
-public class PID : MonoBehaviour
-{
+    [Header("Objetos")]
     public hpool hp;
     public Setpointer sp;
 
     public Slider kp_slider, ti_slider, td_slider;
 
-    
-    [Header("Variables sistema")]
-    [SerializeField]
-    private float setpoint;
-    public float h;
-    public float u;
-    private float dh, p;
-
-    private float _prev_error, _integral, _memory;
-
     [Header("Parametros Motor")]
-    [SerializeField]
-    private float maxPump;
-    [SerializeField]
-    private float minPump;
+    [SerializeField] private float maxPump;
+    [SerializeField] private float minPump;
 
     
     [Header("Misc")]
@@ -42,49 +26,18 @@ public class PID : MonoBehaviour
 
     public List<int> splashlist = new();
 
-    public void Pause(bool p){ _paused = p;}
+    public void Pause(bool p) { _paused = p;}
 
     public bool IsPaused() { return _paused; }
-
-    float Clamp(float value)
-    {
-        value = value > maxPump ? maxPump : value;
-        return value < minPump ? minPump : value;
-    }
-
-
-    float Calculate()
-    {
-        float error = setpoint - h;
-
-        _integral += error * Time.fixedDeltaTime;
-
-        float kp = kp_slider.value * error;
-        float ki = ti_slider.value * _integral;
-        float kd = td_slider.value * (error - _prev_error) / Time.fixedDeltaTime;
-
-        _prev_error = error;
-
-        return Clamp(kp + ki + kd);
-    }
-
-    float Integrator()
-    {
-        _memory += dh * Time.fixedDeltaTime;
-        return _memory;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         // Inicializar valores PID
         _paused = false;
-        setpoint = sp.value;
+        controller.setpoint = sp.value;
         y_offset = transform.localPosition.y;
-        h = (transform.localPosition.y - y_offset) / factor;
-        dh = 0;
-        _prev_error = setpoint - h;
-        _memory = h;
+        controller.h = (transform.localPosition.y - y_offset) / factor;
     }
 
     // Update is called once per frame
@@ -92,11 +45,15 @@ public class PID : MonoBehaviour
     {
         if (!_paused)
         {
-            setpoint = sp.value;
+            controller.kp_gain = kp_slider.value;
+            controller.ki_gain = ti_slider.value;
+            controller.kd_gain = td_slider.value;
+
+            controller.setpoint = sp.value;
 
             if (sp.state == 1)  // Si se dio el valor del setpoint correctamente
             {
-                p = 0;
+                controller.p = 0;
                 if (splashlist.Count != 0)
                 {
                     for (int i = 0; i < splashlist.Count; i++)
@@ -105,12 +62,12 @@ public class PID : MonoBehaviour
                         {
                             if (splashlist[i] > 0)
                             {
-                                p += 6.5f;
+                                controller.p += 6.5f;
                                 splashlist[i] -= 1;
                             }
                             else
                             {
-                                p -= 1.625f;
+                                controller.p -= 1.625f;
                                 splashlist[i] += 1;
                             }
                         }
@@ -120,12 +77,13 @@ public class PID : MonoBehaviour
                         }
                     }
                 }
-                h = (transform.localPosition.y - y_offset) / factor;    // Nivel sin el desplazamiento inicial en el eje y
-                u = Calculate();    // Señal PID
 
-                dh = hp.A * h + hp.B * u + p; // Salida dh
+                controller.h = (transform.localPosition.y - y_offset) / factor;    // Nivel sin el desplazamiento inicial en el eje y
+                controller.u = controller.Calculate();    // Señal PID
 
-                float w_level = Integrator();       // Integrador para obtener h despues del actuamiento
+                controller.dh = hp.A * controller.h + hp.B * controller.u + controller.p; // Salida dh
+
+                float w_level = controller.Integrator();       // Integrador para obtener h despues del actuamiento
 
                 transform.localPosition = new Vector3(transform.localPosition.x, w_level + y_offset, transform.localPosition.z);
             }

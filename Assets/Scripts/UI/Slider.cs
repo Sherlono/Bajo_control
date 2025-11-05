@@ -7,6 +7,7 @@ public class Slider : MonoBehaviour
 {
     public GameObject bar;
     public float value;
+
     [SerializeField]
     private float max_value;
     private float min_position, max_position;
@@ -14,15 +15,15 @@ public class Slider : MonoBehaviour
     // Start is called before the first frame update
     void Start()    
     {
-        min_position = transform.parent.gameObject.transform.Find("start").position.x;  // Issue here!!!
-        max_position = transform.parent.gameObject.transform.Find("end").position.x;  // Issue here!!!
+        min_position = transform.parent.gameObject.transform.Find("start").position.x;
+        max_position = transform.parent.gameObject.transform.Find("end").position.x;
         transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
     }
 
     private void Update()
     {
-        min_position = transform.parent.gameObject.transform.Find("start").position.x;  // Issue here!!!
-        max_position = transform.parent.gameObject.transform.Find("end").position.x;  // Issue here!!!
+        min_position = transform.parent.gameObject.transform.Find("start").position.x;
+        max_position = transform.parent.gameObject.transform.Find("end").position.x;
     }
 
     public void Reset()

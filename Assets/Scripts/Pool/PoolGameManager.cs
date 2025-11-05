@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolGameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    private PID pool;
+    private Pool pool;
     private Spawner kidSpawner;
     private Setpointer setpointer;
     private GameObject WinObject, LoseObject;
@@ -16,7 +16,7 @@ public class PoolGameManager : MonoBehaviour
 
     private void Start()
     {
-        pool = GameObject.Find("Water_Surface").GetComponent<PID>();
+        pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
         kidSpawner = GameObject.Find("KidSpawner").GetComponent<Spawner>();
         setpointer = GameObject.Find("Setpointer").GetComponent<Setpointer>();
         pnt1 = GameObject.Find("p1 mark").GetComponent<Transform>();
@@ -37,7 +37,7 @@ public class PoolGameManager : MonoBehaviour
             WinObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
         } else {
             if (setpointer.state == 1) {  // Simulation start
-                if (pool.h > setpointer.value - 0.1f) {   // Setpoint "reached"
+                if (pool.controller.h > setpointer.value - 0.1f) {   // Setpoint "reached"
                     kidSpawner.Activate(true);
                 }
 

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class shaker : MonoBehaviour
 {
-    public PID script;
+    public Pool pool;
     public float power;
 
     private Vector3 initial_pos;
     private float limit;
-
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +20,7 @@ public class shaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        power = script.u;
+        power = pool.controller.u;
 
         if (power >= limit)
         {

@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Scorboy_Arm : MonoBehaviour
 {
+    [Header("Claw script")]
+    public Scorboy_Claw Claw;
+
     [Header("Hinges")]
     public HingeJoint2D hj2d_1;
     public HingeJoint2D hj2d_2;
 
+    [Header("LED Sprite Renderer")]
     public SpriteRenderer LED_sr;
 
     [System.Serializable] public struct ArmState
@@ -29,8 +33,8 @@ public class Scorboy_Arm : MonoBehaviour
 
     public void Create_State()
     {
-        Scorboy_Claw Claw = transform.GetChild(0).GetComponent<Scorboy_Claw>();
-        State_List.Add(new ArmState(Angle_1(), Angle_2(), Claw.Angle(), Claw.Is_Open()));
+        //Scorboy_Claw Claw
+        if(State_List.Count < 8) State_List.Add(new ArmState(Angle_1(), Angle_2(), Claw.Angle(), Claw.Is_Open()));
     }
 
     // Functionality
@@ -40,7 +44,6 @@ public class Scorboy_Arm : MonoBehaviour
         hingeMotor.motorSpeed = value;
         hj2d_1.motor = hingeMotor;
     }
-
     public void Joint_2_Set(int value)
     {
         JointMotor2D hingeMotor = hj2d_2.motor;
@@ -53,7 +56,6 @@ public class Scorboy_Arm : MonoBehaviour
     {
         return hj2d_1.jointAngle;
     }
-
     public float Angle_2()
     {
         return hj2d_2.jointAngle;

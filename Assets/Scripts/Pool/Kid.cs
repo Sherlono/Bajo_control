@@ -5,7 +5,7 @@ using UnityEngine;
 public class Kid : MonoBehaviour
 {
     private Animator kidanim;
-    private PID pool;
+    private Pool pool;
     private bool splashed = false;
 
     private float target, _y;
@@ -16,7 +16,7 @@ public class Kid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pool = GameObject.Find("Water_Surface").GetComponent<PID>();
+        pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
         kidanim = GetComponent<Animator>();
         target = 190 + Random.value * 380;
         _y = transform.position.y;

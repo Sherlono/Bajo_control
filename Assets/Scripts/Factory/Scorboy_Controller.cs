@@ -1,5 +1,6 @@
 using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
@@ -47,9 +48,16 @@ public class Scorboy_Controller : MonoBehaviour
         joint1_plus.onClick.RemoveListener(delegate { Arm.Joint_1_Set(20); });
     }
 
+    public void Set_Scorboy(GameObject new_scorboy)
+    {
+        Scorbot_obj = new_scorboy;
+        Arm = new_scorboy.GetComponent<Scorboy_Arm>();
+        Claw = new_scorboy.transform.GetChild(0).GetComponent<Scorboy_Claw>();
+    }
+
     // Update is called once per frame
-    void Update()
+    /*private void FixedUpdate()
     {
         
-    }
+    }*/
 }

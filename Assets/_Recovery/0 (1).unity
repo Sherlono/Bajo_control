@@ -2452,12 +2452,8 @@ MonoBehaviour:
     ki_gain: 0
     kd_gain: 0
     setpoint: 0
-    h: 0
-    u: 0
-    dh: 0
-    p: 0
-    max_output: 50
-    min_output: 0
+    max: 0
+    min: 0
   hp: {fileID: 1447833790}
   sp: {fileID: 1475263964}
   kp_slider: {fileID: 633884366}

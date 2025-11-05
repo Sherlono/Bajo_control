@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class heat : MonoBehaviour
 {
-    public PID script;
+    public Pool pool;
     public float power;
 
     private Vector3 initial_pos;
@@ -20,7 +19,7 @@ public class heat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        power = script.u;
+        power = pool.controller.u;
         float red_level = 0.4666667f + power * 0.005333333f;   // 1/x = 1-0.46666667
         float green_level = 0.7019608f - power * 0.007019608f;
         float blue_level = 0.9921569f - power * 0.009921569f;

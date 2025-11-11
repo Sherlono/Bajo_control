@@ -1,3 +1,4 @@
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace jv
@@ -14,17 +15,27 @@ namespace jv
         public float h;
         public float u;
         public float dh = 0, p = 0;
+        public float error = 0;
 
         private float _prev_error, _integral, _memory;
 
+        [HideInInspector]
         public float max_output;
+        [HideInInspector]
         public float min_output;
 
-        /*private void Start()
+        public void Reset_Memory()
         {
-            _prev_error = setpoint - h;
-            _memory = h;
-        }*/
+            //setpoint = 0;
+            h = 0;
+            u = 0;
+            dh = 0;
+            p = 0;
+            error = 0;
+            _prev_error = 0;
+            _integral = 0;
+            _memory = 0;
+        }
 
         private float Clamp(float value)
         {
@@ -32,10 +43,9 @@ namespace jv
             return value < min_output ? min_output : value;
         }
 
-
         public float Calculate()
         {
-            float error = setpoint - h;
+            error = setpoint - h;
 
             _integral += error * Time.fixedDeltaTime;
 

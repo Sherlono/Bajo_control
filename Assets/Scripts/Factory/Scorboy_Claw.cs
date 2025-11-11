@@ -3,7 +3,6 @@ using UnityEngine;
 public class Scorboy_Claw : MonoBehaviour
 {
     [Header("Hinges")]
-    public HingeJoint2D claw_joint;
     public SliderJoint2D claw_left, claw_right;
 
     private float clawSpeed = 10.0f;
@@ -11,13 +10,6 @@ public class Scorboy_Claw : MonoBehaviour
     private bool enable = true;
 
     // Functionality
-    public void Set(int value)
-    {
-        JointMotor2D hingeMotor = claw_joint.motor;
-        hingeMotor.motorSpeed = value;
-        claw_joint.motor = hingeMotor;
-    }
-
     public void Toggle()
     {
         if (IsOpen) Close();
@@ -37,6 +29,7 @@ public class Scorboy_Claw : MonoBehaviour
 
         right_limits.max = new_limit;
         claw_right.limits = right_limits;
+        IsOpen = false;
         enable = true;
     }
 
@@ -44,10 +37,11 @@ public class Scorboy_Claw : MonoBehaviour
     {
         JointMotor2D motor_left = claw_left.motor;
         JointMotor2D motor_right = claw_right.motor;
-        motor_left.motorSpeed = 0;
-        motor_right.motorSpeed = 0;
+        motor_left.motorSpeed = -clawSpeed / 10;
+        motor_right.motorSpeed = -clawSpeed / 10;
         claw_left.motor = motor_left;
         claw_right.motor = motor_right;
+        IsOpen = true;
         enable = true;
     }
 
@@ -55,6 +49,7 @@ public class Scorboy_Claw : MonoBehaviour
     {
         if (enable)
         {
+            //Debug.Log("Opening");
             // Reset Limits
             JointTranslationLimits2D left_limits = claw_left.limits;
             JointTranslationLimits2D right_limits = claw_right.limits;
@@ -76,7 +71,6 @@ public class Scorboy_Claw : MonoBehaviour
             claw_right.motor = motor_right;
 
             // Post opening actions
-            IsOpen = true;
             enable = false;
             Invoke("Relax", 0.3f);
         }
@@ -86,26 +80,26 @@ public class Scorboy_Claw : MonoBehaviour
     {
         if (enable)
         {
+            //Debug.Log("Closing");
             JointMotor2D motor_left = claw_left.motor;
             JointMotor2D motor_right = claw_right.motor;
             motor_left.motorSpeed = clawSpeed;
             motor_right.motorSpeed = clawSpeed;
             claw_left.motor = motor_left;
             claw_right.motor = motor_right;
-            IsOpen = false;
             enable = false;
             Invoke("Clamp", 0.3f);
         }
     }
 
     // Getters
-    public float Angle()
-    {
-        return claw_joint.jointAngle;
-    }
-
     public bool Is_Open()
     {
         return IsOpen;
+    }
+
+    private void Start()
+    {
+        Open();
     }
 }

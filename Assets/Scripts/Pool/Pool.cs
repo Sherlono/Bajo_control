@@ -33,7 +33,6 @@ public class Pool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Inicializar valores PID
         _paused = false;
         controller.setpoint = sp.value;
         y_offset = transform.localPosition.y;

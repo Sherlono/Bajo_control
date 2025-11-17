@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 773868433}
   - component: {fileID: 773868432}
   m_Layer: 0
-  m_Name: cloud1 (1)
+  m_Name: cloud 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 921353803}
   - component: {fileID: 921353805}
   m_Layer: 0
-  m_Name: cloud1
+  m_Name: cloud 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1720,7 +1720,7 @@ GameObject:
   - component: {fileID: 1214133828}
   - component: {fileID: 1214133830}
   m_Layer: 0
-  m_Name: cloud2
+  m_Name: cloud 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2456,6 +2456,7 @@ MonoBehaviour:
     u: 0
     dh: 0
     p: 0
+    error: 0
     max_output: 50
     min_output: 0
   hp: {fileID: 1447833790}

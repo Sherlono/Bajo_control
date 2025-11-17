@@ -8,7 +8,7 @@ public class Cloud : MonoBehaviour
     public GameObject start_obj;
     public GameObject end_obj;
     private float x_start, x_end, y_start;
-    private float speed = 0.03f;
+    private float speed = 0.01f;
 
     // Start is called before the first frame update
     void Start()

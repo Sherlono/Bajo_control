@@ -37,8 +37,8 @@ public class Scorboy_Claw : MonoBehaviour
     {
         JointMotor2D motor_left = claw_left.motor;
         JointMotor2D motor_right = claw_right.motor;
-        motor_left.motorSpeed = -clawSpeed / 10;
-        motor_right.motorSpeed = -clawSpeed / 10;
+        motor_left.motorSpeed = -clawSpeed / 5;
+        motor_right.motorSpeed = -clawSpeed / 5;
         claw_left.motor = motor_left;
         claw_right.motor = motor_right;
         IsOpen = true;
@@ -72,7 +72,7 @@ public class Scorboy_Claw : MonoBehaviour
 
             // Post opening actions
             enable = false;
-            Invoke("Relax", 0.3f);
+            Invoke("Relax", 0.4f);
         }
     }
 

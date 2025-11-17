@@ -8,8 +8,9 @@ public class FactoryGameManager : MonoBehaviour
 {
     [System.Serializable] public enum States
     {
-        Start,
-        Run,
+        Config_Arms,
+        Run_Arms,
+        Run_Machines,
         End,
     }
 
@@ -17,36 +18,35 @@ public class FactoryGameManager : MonoBehaviour
     [HideInInspector]
     public Scorboy_Controller scorboy_controller;
     private List<GameObject> _scorboy_Objects = new();
-    [HideInInspector]
-    public Factory_Block Block;
+    public Machine[] _machine_Objects;
+    [HideInInspector] public Factory_Block Block;
+
+    public GameObject WinObject, LoseObject;
+    private Vector3 centerPoint;
 
     [Header("PID Stuff")]
     [SerializeField] private PID[] _pid_controllers;
     public float max_output;
-    public float kp;
-    public float ki;
-    public float kd;
+    public float kp, ki, kd;
 
     [Header("Camera Stuff")]
     public Camera ui_camera;
     public float cam_offset;
 
     [Header("Botones")]
-    [HideInInspector]
-    public Button next_arm_btn;
-    [HideInInspector]
-    public Button save_state_btn;
+    [HideInInspector] public Button next_arm_btn;
+    [HideInInspector] public Button save_state_btn;
 
     [Header("Data")]
-    [SerializeField] private States state = States.Start;
+    [SerializeField] private States state = States.Config_Arms;
     public int scorboy_max;
     private int _scorboy_index = 0;
-    public float state_list_count;
+    //public float state_list_count;
     public float error_threshold;
 
     private void Create_State()
     {
-        if(state == States.Start) _scorboy_Objects[_scorboy_index].GetComponent<Scorboy_Arm>().Create_State();
+        if(state == States.Config_Arms) _scorboy_Objects[_scorboy_index].GetComponent<Scorboy_Arm>().Create_State();
     }
     private void Go2State()
     {
@@ -62,9 +62,12 @@ public class FactoryGameManager : MonoBehaviour
     private bool State_Is_Reached()
     {
         bool angle_reached = true;
+        float error;
+
         for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++)
         {
-            angle_reached = angle_reached && (Mathf.Abs(scorboy_controller.Arm.Target_State().angles[joint_index] - scorboy_controller.Arm.Angle(joint_index)) <= error_threshold);
+            error = scorboy_controller.Arm.Target_State().angles[joint_index] - scorboy_controller.Arm.Angle(joint_index);
+            angle_reached = angle_reached && (Mathf.Abs(error) <= error_threshold);
         }
 
         bool open_close_reached = scorboy_controller.Claw.Is_Open() == scorboy_controller.Arm.Target_State().claw_open;
@@ -73,7 +76,7 @@ public class FactoryGameManager : MonoBehaviour
 
     private void Next_Arm_btn()
     {
-        if (state == States.Start)
+        if (state == States.Config_Arms)
         {
             if ( scorboy_controller.Arm.State_List.Count != 0) 
             {
@@ -81,6 +84,8 @@ public class FactoryGameManager : MonoBehaviour
                 {
                     scorboy_controller.Arm.LED_OFF();
                     scorboy_controller.Freeze_Scorboy();
+
+                    _machine_Objects[_scorboy_index].Transform_Block();
 
                     _scorboy_index++;
                     scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
@@ -99,7 +104,7 @@ public class FactoryGameManager : MonoBehaviour
 
                     state++;
                     
-                    Block.Reset_Pos();
+                    Block.Reset_Block();
                 }
             }
         }
@@ -116,7 +121,7 @@ public class FactoryGameManager : MonoBehaviour
 
             state++;
 
-            Block.Reset_Pos();
+            Block.Reset_Block();
         }
     }
     private void Move_Camera_to_Target(Vector2 target)
@@ -131,7 +136,7 @@ public class FactoryGameManager : MonoBehaviour
 
         for (int i = 0; i < scorboy_max; i++)
         {
-            GameObject newScorboy = Instantiate(Resources.Load<GameObject>("Prefabs/Scorboy"),
+            GameObject newScorboy = Instantiate(Resources.Load<GameObject>("Prefabs/Factory/Scorboy"),
                                                 new Vector3(-7f + i*7.0f, -3.178f, 0),
                                                 Quaternion.identity,
                                                 GameObject.FindGameObjectWithTag("Canvas").transform);
@@ -170,10 +175,11 @@ public class FactoryGameManager : MonoBehaviour
     {
         switch (state)
         {
-            case States.Start:
-                state_list_count = scorboy_controller.Arm.State_List.Count;
+            case States.Config_Arms:
+                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, -3.463393f));
                 break;
-            case States.Run:
+
+            case States.Run_Arms:
                 Go2State();
 
                 if (State_Is_Reached())
@@ -190,25 +196,36 @@ public class FactoryGameManager : MonoBehaviour
                     else if(_scorboy_index < scorboy_max - 1)    // Scorboy runs out of states 
                     {
                         scorboy_controller.Arm.state_index = 0;
-                        _scorboy_index++;
-                        scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
-                        for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
+                        _machine_Objects[_scorboy_index].enable = true;
+                        state = States.Run_Machines;
                     }
                     else    // Ran out of scorboys
                     {
                         _scorboy_index = 0;
                         scorboy_controller.Arm.state_index = 0;
-                        state++;
+                        state = States.End;
+
+                        WinObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
                         Debug.Log("All done!");
                     }
                 }
 
-                state_list_count = scorboy_controller.Arm.State_List.Count;
-
+                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, -3.463393f));
                 break;
+
+            case States.Run_Machines:   // Machine is enabled and doing it's thing
+                if (_machine_Objects[_scorboy_index].done == true)
+                {
+                    _scorboy_index++;
+                    scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
+                    for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
+                    state = States.Run_Arms;
+                }
+                Move_Camera_to_Target(new Vector2(Block.transform.position.x + cam_offset, -3.463393f));
+                break;
+
             case States.End:
                 break;
         }
-        Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, -3.463393f));
     }
 }

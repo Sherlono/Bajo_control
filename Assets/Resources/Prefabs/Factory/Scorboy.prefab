@@ -143,8 +143,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2
-  m_LinearDamping: 20
-  m_AngularDamping: 50
+  m_LinearDamping: 10
+  m_AngularDamping: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 4503186231294249804}
   - component: {fileID: 2793281705324739607}
   - component: {fileID: 1229168050622573458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Claw_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,9 +814,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_Mass: 0.5
+  m_LinearDamping: 10
+  m_AngularDamping: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -872,7 +872,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1173,8 +1173,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2
-  m_LinearDamping: 0
-  m_AngularDamping: 50
+  m_LinearDamping: 10
+  m_AngularDamping: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1474,7 +1474,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2091,8 +2091,8 @@ Transform:
   m_GameObject: {fileID: 6279970441950527450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.47, y: 8.98, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -52.47, y: 6.1, z: -1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8667590370204948801}
@@ -2253,7 +2253,7 @@ GameObject:
   - component: {fileID: 1338716694440144245}
   - component: {fileID: 9081542271142197767}
   - component: {fileID: 7972501374921035174}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Claw_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2346,9 +2346,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
-  m_LinearDamping: 0
-  m_AngularDamping: 0
+  m_Mass: 0.5
+  m_LinearDamping: 10
+  m_AngularDamping: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2404,7 +2404,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -2778,8 +2778,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2
-  m_LinearDamping: 0
-  m_AngularDamping: 50
+  m_LinearDamping: 10
+  m_AngularDamping: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:

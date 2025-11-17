@@ -23,4 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drone_scene_2.unity
     guid: c73477179b2bd8747b641024f239314e
+  - enabled: 1
+    path: Assets/Scenes/Factory_1.unity
+    guid: edfc19ce44f0d4e40adcec470e075879
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

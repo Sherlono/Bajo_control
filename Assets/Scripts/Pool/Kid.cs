@@ -103,7 +103,7 @@ public class Kid : MonoBehaviour
 
                     // Feet enter water
                     if (transform.position.y < pool.transform.position.y + 33 && !splashed) {
-                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, 88), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/Water_Splash"), new Vector3(transform.position.x, transform.position.y + 15, 88), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                         splashed = true;
                     }
                 } else {

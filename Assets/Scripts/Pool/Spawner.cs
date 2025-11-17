@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
                     }
                     else
                     {
-                        GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Kid"), new Vector3(-120, 310 + (Random.value * 20), 0), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                        GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/Kid"), new Vector3(-120, 310 + (Random.value * 20), 0), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                         kidList.Add(newkid);
                         kidCount++;
                         t = 0;
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
                     {
                         for (int i = 0; i < 3; i++)
                         {
-                            GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Kid"), new Vector3(-120 - 50*i, 310 + (Random.value * 20), 0), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
+                            GameObject newkid = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/Kid"), new Vector3(-120 - 50*i, 310 + (Random.value * 20), 0), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
                             kidList.Add(newkid);
                             kidCount++;
                         }

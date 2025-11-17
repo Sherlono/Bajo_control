@@ -9,7 +9,7 @@ public class PoolGameManager : MonoBehaviour
     private Spawner kidSpawner;
     private Setpointer setpointer;
     private GameObject WinObject, LoseObject;
-    private Transform pnt1, pnt2;
+    private Vector3 pnt1, pnt2;
     private Vector3 centerPoint;
 
     private float a, b;
@@ -19,11 +19,11 @@ public class PoolGameManager : MonoBehaviour
         pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
         kidSpawner = GameObject.Find("KidSpawner").GetComponent<Spawner>();
         setpointer = GameObject.Find("Setpointer").GetComponent<Setpointer>();
-        pnt1 = GameObject.Find("p1 mark").GetComponent<Transform>();
-        pnt2 = GameObject.Find("p2 mark").GetComponent<Transform>();
+        pnt1 = GameObject.Find("p1 mark").GetComponent<Transform>().position;
+        pnt2 = GameObject.Find("p2 mark").GetComponent<Transform>().position;
 
-        a = (pnt2.position.y - pnt1.position.y) / (pnt2.position.x - pnt1.position.x);
-        b = pnt1.position.y - a * pnt1.position.x;
+        a = (pnt2.y - pnt1.y) / (pnt2.x - pnt1.x);
+        b = pnt1.y - a * pnt1.x;
 
         WinObject = GameObject.Find("WinSplash");
         LoseObject = GameObject.Find("FailSplash");
@@ -31,45 +31,45 @@ public class PoolGameManager : MonoBehaviour
         centerPoint = GameObject.Find("centerPoint").transform.localPosition;
     }
 
+    private bool Below_Pool(Vector3 kid_position)
+    {
+        float kid_y_minus_offset = kid_position.y - 55;
+        bool below_area1 = kid_position.x <= pnt1.x && kid_y_minus_offset < pnt1.y;
+        bool below_area2 = kid_position.x <= pnt2.x && kid_y_minus_offset < a * kid_position.x + b;
+        bool below_area3 = kid_position.x > pnt2.x && kid_y_minus_offset < pnt2.y;
+
+        return below_area1 || below_area2 || below_area3;
+    }
+
+
     private void Update()
     {
         if (kidSpawner.kidCount == kidSpawner.maxKids && kidSpawner.kidList.Count == 0) { // Win
             WinObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
+            gameObject.SetActive(false);
         } else {
             if (setpointer.state == 1) {  // Simulation start
                 if (pool.controller.h > setpointer.value - 0.1f) {   // Setpoint "reached"
                     kidSpawner.Activate(true);
                 }
 
-                foreach(GameObject kid in kidSpawner.kidList) {
-                    if (kid.transform.position.x <= pnt1.position.x) {
-                        if (kid.transform.position.y - 55 < pnt1.position.y) {
-                            pool.Pause(true);
-                            Vector3 kid_position = kid.GetComponent<Transform>().position;
-                            GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/hurt"), new Vector3(kid_position.x, kid_position.y - 55, kid_position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        }
-                    }else if (kid.transform.position.x <= pnt2.position.x)
-                    {
-                        if (kid.transform.position.y - 55 < a * kid.transform.position.x + b) {
-                            pool.Pause(true);
-                            Vector3 kid_position = kid.GetComponent<Transform>().position;
-                            GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/hurt"), new Vector3(kid_position.x, kid_position.y - 55, kid_position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        }
-                    } else {
-                        if (kid.transform.position.y - 55 < pnt2.position.y) {
-                            pool.Pause(true);
-                            Vector3 kid_position = kid.GetComponent<Transform>().position;
-                            GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/hurt"), new Vector3(kid_position.x, kid_position.y - 55, kid_position.z), Quaternion.identity, GameObject.FindGameObjectWithTag("Canvas").transform);
-                        }
+                foreach(GameObject kid in kidSpawner.kidList)
+                {
+                    Vector3 kid_position = kid.GetComponent<Transform>().position;
+
+                    if (Below_Pool(kid_position)) {
+                        pool.Pause(true);
+                        GameObject Water_splash = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/hurt"),
+                                                              new Vector3(kid_position.x, kid_position.y - 55, kid_position.z),
+                                                              Quaternion.identity,
+                                                              GameObject.FindGameObjectWithTag("Canvas").transform);
                     }
                 }
             }
             if (pool.IsPaused()) {    // Fail
                 LoseObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
                 kidSpawner.Activate(false);
-                foreach(GameObject kid in kidSpawner.kidList) {
-                    kid.GetComponent<Kid>().Pause(true);
-                }
+                foreach(GameObject kid in kidSpawner.kidList) kid.GetComponent<Kid>().Pause(true);
                 gameObject.SetActive(false);
             }
         }

@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace jv
@@ -51,7 +50,7 @@ namespace jv
 
             float kp = kp_gain * error;
             float ki = ki_gain * _integral;
-            float kd = kd_gain * (error - _prev_error) / Time.fixedDeltaTime;
+            float kd = kd_gain * ((error - _prev_error) / Time.fixedDeltaTime);
 
             _prev_error = error;
 

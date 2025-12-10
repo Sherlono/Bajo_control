@@ -22,7 +22,7 @@ public class Scorboy_Claw : MonoBehaviour
         JointTranslationLimits2D right_limits = claw_right.limits;
 
         float distance = Vector2.Distance(claw_left.transform.position, claw_right.transform.position);
-        float new_limit = 0.01f + (2.34f - distance) / 2.0f;    // 2.34f is the current distance between the homes of each claw part and it might be subject to changes in the future
+        float new_limit = 0.005f + (2.34f - distance) / 2.0f;    // 2.34f is the current distance between the homes of each claw part and it might be subject to changes in the future
 
         left_limits.max = new_limit;
         claw_left.limits = left_limits;
@@ -49,7 +49,6 @@ public class Scorboy_Claw : MonoBehaviour
     {
         if (enable)
         {
-            //Debug.Log("Opening");
             // Reset Limits
             JointTranslationLimits2D left_limits = claw_left.limits;
             JointTranslationLimits2D right_limits = claw_right.limits;

@@ -16,16 +16,15 @@ namespace jv
         public float dh = 0, p = 0;
         public float error = 0;
 
-        private float _prev_error, _integral, _memory;
+        [SerializeField] private float _prev_error;
+        [SerializeField] private float _integral;
+        [SerializeField] private float _memory;
 
-        [HideInInspector]
         public float max_output;
-        [HideInInspector]
         public float min_output;
 
         public void Reset_Memory()
         {
-            //setpoint = 0;
             h = 0;
             u = 0;
             dh = 0;
@@ -50,7 +49,7 @@ namespace jv
 
             float kp = kp_gain * error;
             float ki = ki_gain * _integral;
-            float kd = kd_gain * ((error - _prev_error) / Time.fixedDeltaTime);
+            float kd = kd_gain * (error - _prev_error) / Time.fixedDeltaTime;
 
             _prev_error = error;
 

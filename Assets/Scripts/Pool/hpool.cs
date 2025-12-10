@@ -6,16 +6,7 @@ public class hpool : MonoBehaviour
 {
     public Pool pool;
     public float A, B, E;
-    private float stage1, stage2;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        A = -0.1171f;
-        B = 0.0316f;
-        stage1 = 1.5f;
-        stage2 = 3.0f;
-    }
+    private const float stage1 = 1.5f, stage2 = 3.0f;
 
     // Update is called once per frame
     void Update()

@@ -5,31 +5,32 @@ using UnityEngine;
 
 public class Slider : MonoBehaviour
 {
-    public GameObject bar;
+    public Transform bar;
+    public PIDPanel panel;
     public float value;
 
-    [SerializeField]
     private float max_value;
     private float min_position, max_position;
 
     // Start is called before the first frame update
     void Start()    
     {
-        min_position = transform.parent.gameObject.transform.Find("start").position.x;
-        max_position = transform.parent.gameObject.transform.Find("end").position.x;
-        transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
+        max_value = panel.maxSliderValue;
+        min_position = transform.parent.gameObject.transform.GetChild(0).position.x;
+        max_position = transform.parent.gameObject.transform.GetChild(1).position.x;
+        transform.position = new Vector3(min_position, bar.position.y, transform.position.z);
     }
 
     private void Update()
     {
-        min_position = transform.parent.gameObject.transform.Find("start").position.x;
-        max_position = transform.parent.gameObject.transform.Find("end").position.x;
+        min_position = transform.parent.gameObject.transform.GetChild(0).position.x;
+        max_position = transform.parent.gameObject.transform.GetChild(1).position.x;
     }
 
     public void Reset()
     {
         value = 0;
-        transform.position = new Vector3(min_position, bar.GetComponent<Transform>().position.y, transform.position.z);
+        transform.position = new Vector3(min_position, bar.position.y, transform.position.z);
     }
 
     private void OnMouseDrag()

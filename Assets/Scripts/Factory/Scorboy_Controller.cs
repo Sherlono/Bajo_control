@@ -8,48 +8,11 @@ public class Scorboy_Controller : MonoBehaviour
     [HideInInspector] public Scorboy_Arm Arm;
     [HideInInspector] public Scorboy_Claw Claw;
 
-    [HideInInspector] public Button claw_toggle;
-    [HideInInspector] public Button claw_minus, claw_stop, claw_plus;
-    [HideInInspector] public Button joint2_minus, joint2_stop, joint2_plus;
-    [HideInInspector] public Button joint1_minus, joint1_stop, joint1_plus;
+    public Button[] buttons = new Button[10];
 
     public TextMeshProUGUI State_number_display;
     private float joint_speed = 20.0f;
     private int prev_state_count;
-
-    private void Start()
-    {
-        Scorbot_obj = GameObject.FindGameObjectWithTag("Controlable");
-        Claw = Scorbot_obj.transform.GetChild(0).GetComponent<Scorboy_Claw>();
-        Arm = Scorbot_obj.gameObject.GetComponent<Scorboy_Arm>();
-
-        prev_state_count = 0;
-
-        claw_toggle.onClick.AddListener(delegate { Claw.Toggle(); });
-        claw_minus.onClick.AddListener(delegate { Arm.Joint_Set(2, -joint_speed); });
-        claw_stop.onClick.AddListener(delegate { Arm.Joint_Set(2, 0); });
-        claw_plus.onClick.AddListener(delegate { Arm.Joint_Set(2, joint_speed); });
-        joint2_minus.onClick.AddListener(delegate { Arm.Joint_Set(1, -joint_speed); });
-        joint2_stop.onClick.AddListener(delegate { Arm.Joint_Set(1, 0); });
-        joint2_plus.onClick.AddListener(delegate { Arm.Joint_Set(1, joint_speed); });
-        joint1_minus.onClick.AddListener(delegate { Arm.Joint_Set(0, -joint_speed); });
-        joint1_stop.onClick.AddListener(delegate { Arm.Joint_Set(0, 0); });
-        joint1_plus.onClick.AddListener(delegate { Arm.Joint_Set(0, joint_speed); });
-    }
-
-    private void OnDestroy()
-    {
-        claw_toggle.onClick.RemoveListener(delegate { Claw.Toggle(); });
-        claw_minus.onClick.RemoveListener(delegate { Arm.Joint_Set(2, -joint_speed); });
-        claw_stop.onClick.RemoveListener(delegate { Arm.Joint_Set(2, 0); });
-        claw_plus.onClick.RemoveListener(delegate { Arm.Joint_Set(2, joint_speed); });
-        joint2_minus.onClick.RemoveListener(delegate { Arm.Joint_Set(1, -joint_speed); });
-        joint2_stop.onClick.RemoveListener(delegate { Arm.Joint_Set(1, 0); });
-        joint2_plus.onClick.RemoveListener(delegate { Arm.Joint_Set(1, joint_speed); });
-        joint1_minus.onClick.RemoveListener(delegate { Arm.Joint_Set(0, -joint_speed); });
-        joint1_stop.onClick.RemoveListener(delegate { Arm.Joint_Set(0, 0); });
-        joint1_plus.onClick.RemoveListener(delegate { Arm.Joint_Set(0, joint_speed); });
-    }
 
     public void Set_Scorboy(GameObject new_scorboy)
     {
@@ -61,6 +24,42 @@ public class Scorboy_Controller : MonoBehaviour
     public void Freeze_Scorboy()
     {
         for(int joint_index = 0; joint_index < 3; joint_index++) Arm.Joint_Set(joint_index, 0);
+    }
+
+    public void Toggle_Interactable()
+    {
+        foreach (Button btn in buttons) btn.interactable = !btn.interactable;
+    }
+
+    private void Start()
+    {
+        Scorbot_obj = GameObject.FindGameObjectWithTag("Controlable");
+        Claw = Scorbot_obj.transform.GetChild(0).GetComponent<Scorboy_Claw>();
+        Arm = Scorbot_obj.gameObject.GetComponent<Scorboy_Arm>();
+
+        prev_state_count = 0;
+
+        buttons[0].onClick.AddListener(delegate { Claw.Toggle(); });
+
+        for (int i = 0; i < 3; i++)
+        {
+            int joint_index = i, btn_index = 1 + i * 3;
+            buttons[btn_index].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
+            buttons[btn_index + 1].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, 0); });
+            buttons[btn_index + 2].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+        }
+    }
+
+    private void OnDestroy()
+    {
+        buttons[0].onClick.RemoveListener(delegate { Claw.Toggle(); });
+        for (int i = 0; i < 3; i++)
+        {
+            int joint_index = i, btn_index = 1 + i * 3;
+            buttons[btn_index].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
+            buttons[btn_index + 1].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, 0); });
+            buttons[btn_index + 2].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+        }
     }
 
     private void FixedUpdate()

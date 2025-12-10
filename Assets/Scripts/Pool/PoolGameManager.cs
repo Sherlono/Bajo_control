@@ -14,6 +14,17 @@ public class PoolGameManager : MonoBehaviour
 
     private float a, b;
 
+    private bool Below_Pool(Vector3 kid_position)
+    {
+        float kid_y_minus_offset = kid_position.y - 55;
+        bool below_area1 = kid_position.x <= pnt1.x && kid_y_minus_offset < pnt1.y;
+        bool below_area2 = kid_position.x <= pnt2.x && kid_y_minus_offset < a * kid_position.x + b;
+        bool below_area3 = kid_position.x > pnt2.x && kid_y_minus_offset < pnt2.y;
+
+        return below_area1 || below_area2 || below_area3;
+    }
+
+
     private void Start()
     {
         pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
@@ -31,18 +42,7 @@ public class PoolGameManager : MonoBehaviour
         centerPoint = GameObject.Find("centerPoint").transform.localPosition;
     }
 
-    private bool Below_Pool(Vector3 kid_position)
-    {
-        float kid_y_minus_offset = kid_position.y - 55;
-        bool below_area1 = kid_position.x <= pnt1.x && kid_y_minus_offset < pnt1.y;
-        bool below_area2 = kid_position.x <= pnt2.x && kid_y_minus_offset < a * kid_position.x + b;
-        bool below_area3 = kid_position.x > pnt2.x && kid_y_minus_offset < pnt2.y;
-
-        return below_area1 || below_area2 || below_area3;
-    }
-
-
-    private void Update()
+    private void FixedUpdate()
     {
         if (kidSpawner.kidCount == kidSpawner.maxKids && kidSpawner.kidList.Count == 0) { // Win
             WinObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
@@ -66,7 +66,7 @@ public class PoolGameManager : MonoBehaviour
                     }
                 }
             }
-            if (pool.IsPaused()) {    // Fail
+            if (pool.IsPaused() && setpointer.state == 1) {    // Fail
                 LoseObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
                 kidSpawner.Activate(false);
                 foreach(GameObject kid in kidSpawner.kidList) kid.GetComponent<Kid>().Pause(true);

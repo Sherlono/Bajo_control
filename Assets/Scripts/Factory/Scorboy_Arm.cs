@@ -40,11 +40,6 @@ public class Scorboy_Arm : MonoBehaviour
         if(State_List.Count < max_states) State_List.Add(new ArmState(Angle(0), Angle(1), Angle(2), Claw.Is_Open()));
     }
 
-    /*public void Reset_Arm()
-    {
-        
-    }*/
-
     // Functionality
     public void Joint_Set(int joint_index, float value)
     {

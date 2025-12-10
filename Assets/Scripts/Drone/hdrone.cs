@@ -23,7 +23,8 @@ public class hdrone : MonoBehaviour
     private float max_motor;         // 1.7658
     [SerializeField]
     private float F_clamped, M_clamped;
-    public float _fuel;
+    public float fuel;
+    private float _fuel_eficiency = 0.023f;
 
     private Rigidbody2D rb2d;
     private float phi_c, F, M;
@@ -51,7 +52,7 @@ public class hdrone : MonoBehaviour
         float u2_clamped = Mathf.Min(Mathf.Max(0, u2), max_motor);
         F_clamped = u1_clamped + u2_clamped;
         M_clamped = (u2_clamped - u1_clamped) * L;
-        _fuel -= (F_clamped + M_clamped)*0.023f;
+        fuel -= (F_clamped + M_clamped)*_fuel_eficiency;
     }
 
     void xdot(){
@@ -81,7 +82,7 @@ public class hdrone : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(_fuel <= 0)
+        if(fuel <= 0)
         {
             _power = false;
         }

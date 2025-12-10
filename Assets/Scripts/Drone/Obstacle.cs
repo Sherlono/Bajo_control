@@ -10,9 +10,9 @@ public class Obstacle : MonoBehaviour
     {
         float collisionForce = collision.relativeVelocity.magnitude;
 
-        if (collisionForce > 90.0f)     
+        if (collisionForce > 80.0f)     
         {
-            Debug.Log("Strong collision detected! Force: " + collisionForce);
+            //Debug.Log("Strong collision detected! Force: " + collisionForce);
             colided = true;
         }
     }

@@ -10,6 +10,8 @@ public class PIDPanel : MonoBehaviour
     private float activate_time;
     private float _y;
 
+    public float maxSliderValue;
+
     // Update is called once per frame
     void FixedUpdate()
     {

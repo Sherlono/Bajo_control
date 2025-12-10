@@ -1,5 +1,6 @@
 using jv;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -17,17 +18,20 @@ public class FactoryGameManager : MonoBehaviour
     [Header("Objects")]
     [HideInInspector]
     public Scorboy_Controller scorboy_controller;
+    public GameObject Scorboy_Prefab;
     private List<GameObject> _scorboy_Objects = new();
-    public Machine[] _machine_Objects;
+    public Factory_Machine[] _machine_Objects;
+    public Conveyor_Belt _conveyor;
     [HideInInspector] public Factory_Block Block;
 
-    public GameObject WinObject, LoseObject;
+    [HideInInspector] public GameObject WinObject;
+    [HideInInspector] public GameObject LoseObject;
     private Vector3 centerPoint;
 
     [Header("PID Stuff")]
-    [SerializeField] private PID[] _pid_controllers;
     public float max_output;
     public float kp, ki, kd;
+    public PID[] _pid_controllers;
 
     [Header("Camera Stuff")]
     public Camera ui_camera;
@@ -36,13 +40,13 @@ public class FactoryGameManager : MonoBehaviour
     [Header("Botones")]
     [HideInInspector] public Button next_arm_btn;
     [HideInInspector] public Button save_state_btn;
+    [HideInInspector] public Button reset_block_btn;
 
     [Header("Data")]
-    [SerializeField] private States state = States.Config_Arms;
     public int scorboy_max;
     private int _scorboy_index = 0;
-    //public float state_list_count;
     public float error_threshold;
+    private States state = States.Config_Arms;
 
     private void Create_State()
     {
@@ -76,70 +80,74 @@ public class FactoryGameManager : MonoBehaviour
 
     private void Next_Arm_btn()
     {
-        if (state == States.Config_Arms)
+        if (state == States.Config_Arms && scorboy_controller.Arm.State_List.Count != 0)
         {
-            if ( scorboy_controller.Arm.State_List.Count != 0) 
+            if (!Is_Last_Scorboy()) // Setup stage
             {
-                if (_scorboy_index < scorboy_max - 1)    // Not the last scorboy
-                {
-                    scorboy_controller.Arm.LED_OFF();
-                    scorboy_controller.Freeze_Scorboy();
+                scorboy_controller.Arm.LED_OFF();
+                scorboy_controller.Freeze_Scorboy();
 
-                    _machine_Objects[_scorboy_index].Transform_Block();
+                _machine_Objects[_scorboy_index].Set_Highlight(false);
+                _machine_Objects[_scorboy_index].Transform_Block();
 
-                    _scorboy_index++;
-                    scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
+                _scorboy_index++;
+                scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
+                if (_scorboy_index < _machine_Objects.Length) _machine_Objects[_scorboy_index].Set_Highlight(true);
+                if (_scorboy_index == _scorboy_Objects.Count - 1) _conveyor.Set_Highlight(true);
 
-                    scorboy_controller.Arm.LED_ON();
-                }
-                else    // Is the last scorboy
-                {
-                    scorboy_controller.Arm.LED_OFF();
-                    _scorboy_index = 0;
-                    scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
+                scorboy_controller.Arm.LED_ON();
+            }
+            else    // Scorboys Autopilot begins
+            {
+                scorboy_controller.Arm.LED_OFF();
+                scorboy_controller.Freeze_Scorboy();
 
-                    scorboy_controller.Arm.LED_ON();
+                if(_scorboy_index < _machine_Objects.Length) _machine_Objects[_scorboy_index].Set_Highlight(false);
+                _conveyor.Set_Highlight(false);
 
-                    for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
+                _scorboy_index = 0;
+                scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
 
-                    state++;
+                scorboy_controller.Arm.LED_ON();
+
+                for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
+
+                Block.Reset_Block();
                     
-                    Block.Reset_Block();
-                }
+                scorboy_controller.Toggle_Interactable();
+                next_arm_btn.interactable = false;
+                save_state_btn.interactable = false;
+                reset_block_btn.interactable = false;
+
+                state = States.Run_Arms;
             }
         }
-        else
-        {
-            scorboy_controller.Arm.LED_OFF();
-            _scorboy_index = 0;
-            scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
-
-            scorboy_controller.Arm.LED_ON();
-            scorboy_controller.Arm.state_index = 0;
-
-            for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
-
-            state++;
-
-            Block.Reset_Block();
-        }
     }
+    
     private void Move_Camera_to_Target(Vector2 target)
     {
         Vector2 target_lerp = Vector2.Lerp(ui_camera.transform.position, target, 0.01f);
-        ui_camera.transform.position = new Vector3(target_lerp.x, ui_camera.transform.position.y, ui_camera.transform.position.z);
+        ui_camera.transform.position = new Vector3(target_lerp.x, target_lerp.y, ui_camera.transform.position.z);
+    }
+
+    private bool Is_Last_State()
+    {
+        return scorboy_controller.Arm.state_index >= scorboy_controller.Arm.State_List.Count - 1;
+    }
+    private bool Is_Last_Scorboy()
+    {
+        return _scorboy_index >= scorboy_max - 1;
     }
 
     private void Awake()
     {
-        Scorboy_Arm.max_states = 9;
+        Scorboy_Arm.max_states = 15;
 
         for (int i = 0; i < scorboy_max; i++)
         {
-            GameObject newScorboy = Instantiate(Resources.Load<GameObject>("Prefabs/Factory/Scorboy"),
-                                                new Vector3(-7f + i*7.0f, -3.178f, 0),
-                                                Quaternion.identity,
-                                                GameObject.FindGameObjectWithTag("Canvas").transform);
+            GameObject newScorboy = Instantiate(Scorboy_Prefab,
+                                                new Vector3(-7.0f + i*7.0f, -3.0f, -1),
+                                                Quaternion.identity);
 
             newScorboy.tag = "Controlable";
             Scorboy_Arm Arm = newScorboy.GetComponent<Scorboy_Arm>();
@@ -152,7 +160,8 @@ public class FactoryGameManager : MonoBehaviour
     }
     private void Start()
     {
-        foreach(PID pid_controller in _pid_controllers)
+        _machine_Objects[0].Set_Highlight(true);
+        foreach (PID pid_controller in _pid_controllers)
         {
             pid_controller.max_output = max_output;
             pid_controller.min_output = -max_output;
@@ -163,11 +172,13 @@ public class FactoryGameManager : MonoBehaviour
 
         next_arm_btn.onClick.AddListener(Next_Arm_btn);
         save_state_btn.onClick.AddListener(Create_State);
+        reset_block_btn.onClick.AddListener(delegate { Block.Load_Saved_Block(); });
     }
     private void OnDestroy()
     {
         next_arm_btn.onClick.RemoveListener(Next_Arm_btn);
         save_state_btn.onClick.RemoveListener(Create_State);
+        reset_block_btn.onClick.RemoveListener(delegate { Block.Load_Saved_Block(); });
     }
 
 
@@ -176,7 +187,7 @@ public class FactoryGameManager : MonoBehaviour
         switch (state)
         {
             case States.Config_Arms:
-                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, -3.463393f));
+                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, ui_camera.transform.position.y));
                 break;
 
             case States.Run_Arms:
@@ -187,44 +198,55 @@ public class FactoryGameManager : MonoBehaviour
                     scorboy_controller.Freeze_Scorboy();
                     foreach (PID controller in _pid_controllers) controller.Reset_Memory();
 
-                    if ( scorboy_controller.Arm.state_index < scorboy_controller.Arm.State_List.Count - 1)    // Scorboy not run out of states 
+                    if (!Is_Last_State())
                     {
-                        // Set PID controllers setpoint
                         scorboy_controller.Arm.state_index++;
                         for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
                     }
-                    else if(_scorboy_index < scorboy_max - 1)    // Scorboy runs out of states 
+                    else if(!Is_Last_Scorboy())
                     {
+                        scorboy_controller.Arm.LED_OFF();
                         scorboy_controller.Arm.state_index = 0;
                         _machine_Objects[_scorboy_index].enable = true;
                         state = States.Run_Machines;
                     }
-                    else    // Ran out of scorboys
+                    else
                     {
                         _scorboy_index = 0;
                         scorboy_controller.Arm.state_index = 0;
                         state = States.End;
 
-                        WinObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
+                        //WinObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
+                        scorboy_controller.Arm.LED_OFF();
+
+                        _conveyor.Set_Enable(true);
+
                         Debug.Log("All done!");
                     }
                 }
 
-                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, -3.463393f));
+                Move_Camera_to_Target(new Vector2(_scorboy_Objects[_scorboy_index].transform.GetChild(0).transform.position.x + cam_offset, ui_camera.transform.position.y));
                 break;
 
-            case States.Run_Machines:   // Machine is enabled and doing it's thing
-                if (_machine_Objects[_scorboy_index].done == true)
+            case States.Run_Machines:
+                if (!_machine_Objects[_scorboy_index].Block_is_Inside())
+                {
+                    LoseObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
+                    state = States.End;
+                }
+                else if (_machine_Objects[_scorboy_index].done)
                 {
                     _scorboy_index++;
                     scorboy_controller.Set_Scorboy(_scorboy_Objects[_scorboy_index]);
+                    scorboy_controller.Arm.LED_ON();
                     for (int joint_index = 0; joint_index < Scorboy_Arm.JOINTS_COUNT; joint_index++) _pid_controllers[joint_index].setpoint = scorboy_controller.Arm.Target_State().angles[joint_index];
                     state = States.Run_Arms;
                 }
-                Move_Camera_to_Target(new Vector2(Block.transform.position.x + cam_offset, -3.463393f));
+                Move_Camera_to_Target(new Vector2(Block.transform.position.x + cam_offset, ui_camera.transform.position.y));
                 break;
 
             case States.End:
+                Move_Camera_to_Target(new Vector2(Block.transform.position.x + cam_offset, ui_camera.transform.position.y));
                 break;
         }
     }

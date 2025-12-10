@@ -7,22 +7,17 @@ public class Pool : MonoBehaviour
 {
     public PID controller;
 
-    [Header("Objetos")]
-    public hpool hp;
-    public Setpointer sp;
+    [HideInInspector] public hpool hp;
+    [HideInInspector] public Setpointer setPoint;
 
-    public Slider kp_slider, ti_slider, td_slider;
+    [HideInInspector] public Slider kp_slider, ti_slider, td_slider;
 
-    [Header("Parametros Motor")]
-    [SerializeField] private float maxPump;
-    [SerializeField] private float minPump;
-
-    
     [Header("Misc")]
-    [SerializeField]
-    private bool _paused;
-    private float factor = 1.54f;   // Comentar de donde viene
-    private float y_offset;
+    [SerializeField] private bool _paused;
+    private float _factor;   // Comentar de donde viene
+    public float y_offset;
+    public float w_level;
+    public bool enable;
 
     public List<int> splashlist = new();
 
@@ -34,9 +29,10 @@ public class Pool : MonoBehaviour
     void Start()
     {
         _paused = false;
-        controller.setpoint = sp.value;
-        y_offset = transform.localPosition.y;
-        controller.h = (transform.localPosition.y - y_offset) / factor;
+        controller.setpoint = setPoint.value;
+        y_offset = -3;
+        _factor = 3 / 4.59f;
+        controller.h = (transform.localPosition.y - y_offset) / _factor;
     }
 
     // Update is called once per frame
@@ -48,9 +44,9 @@ public class Pool : MonoBehaviour
             controller.ki_gain = ti_slider.value;
             controller.kd_gain = td_slider.value;
 
-            controller.setpoint = sp.value;
+            controller.setpoint = setPoint.value;
 
-            if (sp.state == 1)  // Si se dio el valor del setpoint correctamente
+            if (setPoint.state == 1)  // Si se dio el valor del setpoint correctamente
             {
                 controller.p = 0;
                 if (splashlist.Count != 0)
@@ -77,14 +73,17 @@ public class Pool : MonoBehaviour
                     }
                 }
 
-                controller.h = (transform.localPosition.y - y_offset) / factor;    // Nivel sin el desplazamiento inicial en el eje y
-                controller.u = controller.Calculate();    // Señal PID
+                if(enable)
+                {
+                    controller.h = (transform.localPosition.y - y_offset) * _factor;    // Nivel sin el desplazamiento inicial en el eje y
+                    controller.u = controller.Calculate();    // Señal PID
 
-                controller.dh = hp.A * controller.h + hp.B * controller.u + controller.p; // Salida dh
+                    controller.dh = hp.A * controller.h + hp.B * controller.u + hp.E * controller.p; // Salida dh
 
-                float w_level = controller.Integrator();       // Integrador para obtener h despues del actuamiento
+                    float w_level = controller.Integrator();       // Integrador para obtener h despues del actuamiento
 
-                transform.localPosition = new Vector3(transform.localPosition.x, w_level + y_offset, transform.localPosition.z);
+                    transform.localPosition = new Vector3(transform.localPosition.x, w_level + y_offset, transform.localPosition.z);
+                }
             }
         }
     }

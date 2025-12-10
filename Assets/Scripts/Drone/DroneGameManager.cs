@@ -30,7 +30,7 @@ public class DroneGameManager : MonoBehaviour
     private void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        drone = GameObject.Find("Drone").GetComponent<hdrone>();
+        drone = GameObject.FindGameObjectWithTag("Player").GetComponent<hdrone>();
         panel = GameObject.Find("Control Panel").GetComponent<PIDPanel>();
         finishFlag = GameObject.Find("Flag").GetComponent<EndFlag>();
         canvasCenter = GameObject.Find("DroneLogo").transform.localPosition;

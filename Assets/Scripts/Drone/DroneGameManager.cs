@@ -4,43 +4,33 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DroneGameManager : MonoBehaviour
 {
+    public UnityEvent Cam_Zoom_Out;
+    public UnityEvent Cam_Follow_Drone;
+    public UnityEvent Cam_Final;
+
     public int state = 0;
     public int level;
     public List<GameObject> pointsList = new List<GameObject>();
     public List<Obstacle> wallList = new List<Obstacle>();
 
-    [HideInInspector]
-    public Camera mainCam;
-    [HideInInspector]
     public hdrone drone;
-    private PIDPanel panel;
-    private GameObject creator;
-    private EndFlag finishFlag;
-    private Vector3 canvasCenter;
-    private SpriteRenderer panelLogo;
-    private Image windArrow;
-    public GameObject WinObject, LoseObject;
-    public Slider KpSlider, TdSlider;
-    [SerializeField]
-    private int maxPoints, currentPoint = 0;
+    [SerializeField] private PIDPanel panel;
+    [SerializeField] private GameObject _point_creator;
+    [SerializeField] private EndFlag _finishFlag;
+    [SerializeField] private SpriteRenderer panelLogo;
+    [SerializeField] private Image windArrow;
+    [SerializeField] private GameObject WinObject, LoseObject;
+    [SerializeField] private Slider KpSlider, TdSlider;
+
+    [SerializeField] private int maxPoints;
+    private int currentPoint = 0;
 
     private void Start()
     {
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        drone = GameObject.FindGameObjectWithTag("Player").GetComponent<hdrone>();
-        panel = GameObject.Find("Control Panel").GetComponent<PIDPanel>();
-        finishFlag = GameObject.Find("Flag").GetComponent<EndFlag>();
-        canvasCenter = GameObject.Find("DroneLogo").transform.localPosition;
-        panelLogo = GameObject.Find("DroneLogo").GetComponent<SpriteRenderer>();
-        windArrow = GameObject.Find("Arrow").GetComponent<Image>();
-
-        creator = Instantiate(Resources.Load<GameObject>("Prefabs/PointCreator"), GameObject.Find("centerPoint").transform);
-        creator.SetActive(false);
-        mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, mainCam.transform.position.z);
-
         if (level == 0) // Wind force
         {
             float maxwind = 0.4f;
@@ -86,20 +76,21 @@ public class DroneGameManager : MonoBehaviour
                 }
                 break;
             case 3: // Point creating start
-                creator.SetActive(true);
+                Cam_Zoom_Out?.Invoke();
+                _point_creator.SetActive(true);
                 state++;
                 break;
             case 4: // Point creating end, then drone start
                 if (pointsList.Count == maxPoints)
                 {
-                    creator.SetActive(false);
+                    _point_creator.SetActive(false);
                     drone.targetpoint = new Vector2(pointsList[0].transform.position.x, pointsList[0].transform.position.y);
                     drone.Power(true);
                     state++;
                 }
                 break;
             case 5: // Drone is active
-                if (!finishFlag.win)
+                if (!_finishFlag.win)
                 {
                     if (currentPoint < maxPoints)
                     {
@@ -114,7 +105,7 @@ public class DroneGameManager : MonoBehaviour
                     }
                     else
                     {
-                        drone.targetpoint = new Vector2(finishFlag.transform.position.x - 20, finishFlag.transform.position.y);
+                        drone.targetpoint = new Vector2(_finishFlag.transform.position.x - 20, _finishFlag.transform.position.y);
                     }
 
                     foreach (Obstacle obs in wallList)
@@ -127,17 +118,18 @@ public class DroneGameManager : MonoBehaviour
 
                     if (drone.IsPowered())
                     {
-                        mainCam.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+                        Cam_Follow_Drone?.Invoke();
                     }
                     else
                     {
-                        LoseObject.transform.localPosition = new Vector3(0, canvasCenter.y, LoseObject.transform.localPosition.z);
+                        LoseObject.SetActive(true);
                         state++;
                     }
                 }
                 else
                 {
-                    WinObject.transform.localPosition = new Vector3(0, canvasCenter.y, WinObject.transform.localPosition.z);
+                    WinObject.SetActive(true);
+                    Cam_Final?.Invoke();
                     state++;
                 }
                 break;

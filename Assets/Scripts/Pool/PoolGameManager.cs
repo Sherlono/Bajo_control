@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class PoolGameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Pool pool;
-    private Spawner kidSpawner;
-    private Setpointer setpointer;
-    private GameObject WinObject, LoseObject;
-    private Vector3 pnt1, pnt2;
-    private Vector3 centerPoint;
+    [Header ("Game Objects")]
+    [SerializeField] private Spawner kidSpawner;
+    [SerializeField] private Setpointer setpointer;
 
+    [Header("Splashes")]
+    [SerializeField] private GameObject WinObject;
+    [SerializeField] private GameObject LoseObject;
+    [Header("Pool Points")]
+    [SerializeField] private GameObject pnt1;
+    [SerializeField] private GameObject pnt2;
+
+    private Vector3 pnt1_pos, pnt2_pos;
     private float a, b;
 
     private bool Below_Pool(Vector3 kid_position)
     {
         float kid_y_minus_offset = kid_position.y - 55;
-        bool below_area1 = kid_position.x <= pnt1.x && kid_y_minus_offset < pnt1.y;
-        bool below_area2 = kid_position.x <= pnt2.x && kid_y_minus_offset < a * kid_position.x + b;
-        bool below_area3 = kid_position.x > pnt2.x && kid_y_minus_offset < pnt2.y;
+        bool below_area1 = kid_position.x <= pnt1_pos.x && kid_y_minus_offset < pnt1_pos.y;
+        bool below_area2 = kid_position.x <= pnt2_pos.x && kid_y_minus_offset < a * kid_position.x + b;
+        bool below_area3 = kid_position.x > pnt2_pos.x && kid_y_minus_offset < pnt2_pos.y;
 
         return below_area1 || below_area2 || below_area3;
     }
@@ -27,25 +32,18 @@ public class PoolGameManager : MonoBehaviour
 
     private void Start()
     {
-        pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
-        kidSpawner = GameObject.Find("KidSpawner").GetComponent<Spawner>();
-        setpointer = GameObject.Find("Setpointer").GetComponent<Setpointer>();
-        pnt1 = GameObject.Find("p1 mark").GetComponent<Transform>().position;
-        pnt2 = GameObject.Find("p2 mark").GetComponent<Transform>().position;
+        pool = GameObject.Find("Water").GetComponent<Pool>();
+        pnt1_pos = pnt1.GetComponent<Transform>().position;
+        pnt2_pos = pnt2.GetComponent<Transform>().position;
 
-        a = (pnt2.y - pnt1.y) / (pnt2.x - pnt1.x);
-        b = pnt1.y - a * pnt1.x;
-
-        WinObject = GameObject.Find("WinSplash");
-        LoseObject = GameObject.Find("FailSplash");
-
-        centerPoint = GameObject.Find("centerPoint").transform.localPosition;
+        a = (pnt2_pos.y - pnt1_pos.y) / (pnt2_pos.x - pnt1_pos.x);
+        b = pnt1_pos.y - a * pnt1_pos.x;
     }
 
     private void FixedUpdate()
     {
         if (kidSpawner.kidCount == kidSpawner.maxKids && kidSpawner.kidList.Count == 0) { // Win
-            WinObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
+            WinObject.SetActive(true);
             gameObject.SetActive(false);
         } else {
             if (setpointer.state == 1) {  // Simulation start
@@ -67,7 +65,7 @@ public class PoolGameManager : MonoBehaviour
                 }
             }
             if (pool.IsPaused() && setpointer.state == 1) {    // Fail
-                LoseObject.transform.localPosition = new Vector3(0, centerPoint.y, transform.localPosition.z);
+                LoseObject.SetActive(true);
                 kidSpawner.Activate(false);
                 foreach(GameObject kid in kidSpawner.kidList) kid.GetComponent<Kid>().Pause(true);
                 gameObject.SetActive(false);

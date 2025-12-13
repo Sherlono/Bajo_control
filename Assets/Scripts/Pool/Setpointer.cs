@@ -9,7 +9,7 @@ public class Setpointer : MonoBehaviour
     public float value;
     private float min_position, max_position, max_value;
     private float last_time;
-    public int state = 0;
+    [HideInInspector] public int state = 0;
 
     // Start is called before the first frame update
     void Start()

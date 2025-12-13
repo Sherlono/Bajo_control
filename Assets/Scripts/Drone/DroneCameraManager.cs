@@ -5,34 +5,36 @@ using UnityEngine;
 
 public class DroneCameraManager : MonoBehaviour
 {
-    private DroneGameManager manager;
-    //private hdrone drone;
+    [SerializeField] private GameObject drone;
     private Camera _camera;
 
-    private float zoom;
+    private int state = 0;
+    [SerializeField] private float zoom;
     private float posX, posY;
     private float vel = 0f, smoothTime = 0.25f;
     private Vector2 focusPoint;
 
-    // Start is called before the first frame update
+    public void Set_State(int s)
+    {
+        state = s;
+    }
+
     void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<DroneGameManager>();
-        //drone = manager.drone;
-
         posX = transform.position.x;
         posY = transform.position.y;
 
-        GameObject Focus = GameObject.Find("FocusPoint");
-        focusPoint = new Vector2(Focus.GetComponent<Transform>().position.x, Focus.GetComponent<Transform>().position.y);
+        Transform Focus = GameObject.Find("FocusPoint").transform;
+        focusPoint = new Vector2(Focus.position.x, Focus.position.y);
         _camera = GetComponent<Camera>();
         zoom = _camera.orthographicSize;
+
+        _camera.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (manager.GetComponent<DroneGameManager>().state == 4)
+        if (state == 1)
         {
             if (zoom <= 300f)
             {
@@ -66,6 +68,11 @@ public class DroneCameraManager : MonoBehaviour
             posX = focusPoint.x;
             posY = focusPoint.y;
             _camera.transform.position = new Vector3(x, y, _camera.transform.position.z);
+
+        }else if (state == 2)
+        {
+            transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+            _camera.orthographicSize = 240;
         }
         else
         {

@@ -1,4 +1,7 @@
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.U2D.IK;
 
 namespace jv
 {
@@ -63,4 +66,21 @@ namespace jv
         }
 
     }
+
+    public struct StateSpace
+    {
+        public StateSpace(float a, float b, float e)
+        {
+            A = a;
+            B = b;
+            E = e;
+        }
+        public float A, B, E;
+
+        public float Solve_Next_State(float x, float u, float p)  // Retorna x[k + 1]
+        {
+            return A * x + B * u + E * p;
+        }
+    }
+
 }

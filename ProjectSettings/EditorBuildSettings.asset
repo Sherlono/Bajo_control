@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Intro_scene.unity
-    guid: 74442e09c24855d4f9496116f30d3788
-  - enabled: 1
     path: Assets/Scenes/Pool/Pool_scene_1.unity
     guid: 9824413d0a6aa1e48a9f4c8bebac10bb
   - enabled: 1

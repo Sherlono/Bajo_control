@@ -2,32 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hpool : MonoBehaviour
+/*public struct SpaceState
 {
-    public Pool pool;
-    public float A, B, E;
-    private const float stage1 = 1.5f, stage2 = 3.0f;
-
-    // Update is called once per frame
-    void Update()
+    SpaceState(float a, float b, float c)
     {
-        if (pool.controller.h < 0) // 
-        {
-            A = 0; B = 0.0316f; E = 1;
-        }
-        else if (pool.controller.h < stage1)   // Mitad inferior
-        {
-            A = -0.1171f; B = 0.0316f; E = 1;
-        }
-        else if (pool.controller.h < stage2)   // Mitad superior
-        {
-            A = -0.0313f; B = 0.02f; E = 1;
-        }
-        else // Sobre limite
-        {
-            //A = -0.0313f; B = 0; E = 0;
-            pool.Pause(true);
-        }
-
+        A = a;
+        B = b;
+        C = c;
     }
-}
+    public float A, B, E;
+}*/

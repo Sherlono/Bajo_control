@@ -1,4 +1,5 @@
 using jv;
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -7,6 +8,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FactoryGameManager : MonoBehaviour
 {
+    public static FactoryGameManager instance;
+
+    public static event Action LoseAction;
+
     [System.Serializable] public enum States
     {
         Config_Arms,
@@ -16,17 +21,12 @@ public class FactoryGameManager : MonoBehaviour
     }
 
     [Header("Objects")]
-    [HideInInspector]
+    [SerializeField] private List<GameObject> _scorboy_Objects = new();
     public Scorboy_Controller scorboy_controller;
-    public GameObject Scorboy_Prefab;
-    private List<GameObject> _scorboy_Objects = new();
-    public Factory_Machine[] _machine_Objects;
-    public Conveyor_Belt _conveyor;
-    [HideInInspector] public Factory_Block Block;
 
-    [HideInInspector] public GameObject WinObject;
-    [HideInInspector] public GameObject LoseObject;
-    private Vector3 centerPoint;
+    [SerializeField] private Factory_Machine[] _machine_Objects;
+    [SerializeField] private Conveyor_Belt _conveyor;
+    [SerializeField] private Factory_Block Block;
 
     [Header("PID Stuff")]
     public float max_output;
@@ -35,7 +35,7 @@ public class FactoryGameManager : MonoBehaviour
 
     [Header("Camera Stuff")]
     public Camera ui_camera;
-    public float cam_offset;
+    const float cam_offset = 2.7f;
 
     [Header("Botones")]
     [HideInInspector] public Button next_arm_btn;
@@ -141,12 +141,14 @@ public class FactoryGameManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         Scorboy_Arm.max_states = 15;
 
-        for (int i = 0; i < scorboy_max; i++)
+        /*for (int i = 0; i < scorboy_max; i++)
         {
             GameObject newScorboy = Instantiate(Scorboy_Prefab,
-                                                new Vector3(-7.0f + i*7.0f, -3.0f, -1),
+                                                new Vector3(-7.0f + i*7.0f, -3.0f, -2),
                                                 Quaternion.identity);
 
             newScorboy.tag = "Controlable";
@@ -154,13 +156,14 @@ public class FactoryGameManager : MonoBehaviour
             if (i == 0) Arm.LED_ON();
 
             _scorboy_Objects.Add(newScorboy);
-        }
+        }*/
 
         ui_camera.transform.position = new Vector3(_scorboy_Objects[_scorboy_index].transform.position.x + cam_offset, ui_camera.transform.position.y, ui_camera.transform.position.z);
     }
     private void Start()
     {
         _machine_Objects[0].Set_Highlight(true);
+
         foreach (PID pid_controller in _pid_controllers)
         {
             pid_controller.max_output = max_output;
@@ -176,6 +179,8 @@ public class FactoryGameManager : MonoBehaviour
     }
     private void OnDestroy()
     {
+        instance = null;
+
         next_arm_btn.onClick.RemoveListener(Next_Arm_btn);
         save_state_btn.onClick.RemoveListener(Create_State);
         reset_block_btn.onClick.RemoveListener(delegate { Block.Load_Saved_Block(); });
@@ -216,12 +221,9 @@ public class FactoryGameManager : MonoBehaviour
                         scorboy_controller.Arm.state_index = 0;
                         state = States.End;
 
-                        //WinObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
                         scorboy_controller.Arm.LED_OFF();
 
                         _conveyor.Set_Enable(true);
-
-                        Debug.Log("All done!");
                     }
                 }
 
@@ -231,7 +233,7 @@ public class FactoryGameManager : MonoBehaviour
             case States.Run_Machines:
                 if (!_machine_Objects[_scorboy_index].Block_is_Inside())
                 {
-                    LoseObject.transform.position = new Vector3(WinObject.transform.position.x, centerPoint.y, WinObject.transform.position.z);
+                    LoseAction?.Invoke();
                     state = States.End;
                 }
                 else if (_machine_Objects[_scorboy_index].done)

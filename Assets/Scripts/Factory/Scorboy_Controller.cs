@@ -4,15 +4,18 @@ using UnityEngine.UI;
 
 public class Scorboy_Controller : MonoBehaviour
 {
-    [HideInInspector] public GameObject Scorbot_obj;
-    [HideInInspector] public Scorboy_Arm Arm;
-    [HideInInspector] public Scorboy_Claw Claw;
+    public GameObject Scorbot_obj;
+    public Scorboy_Arm Arm;
+    public Scorboy_Claw Claw;
 
-    public Button[] buttons = new Button[10];
+    [HideInInspector] public Button clawToggleBtn;
+    [HideInInspector] public Button allLeftBtn;
+    [HideInInspector] public Button allRightBtn;
+    [HideInInspector] public Button[] buttons = new Button[6];
 
-    public TextMeshProUGUI State_number_display;
-    private float joint_speed = 20.0f;
-    private int prev_state_count;
+    [HideInInspector] public TextMeshProUGUI StateNumberDisplay;
+    const float joint_speed = 20.0f;
+    private int _prev_state_count;
 
     public void Set_Scorboy(GameObject new_scorboy)
     {
@@ -28,7 +31,17 @@ public class Scorboy_Controller : MonoBehaviour
 
     public void Toggle_Interactable()
     {
+        clawToggleBtn.interactable = !clawToggleBtn.interactable;
+        allLeftBtn.interactable = !allLeftBtn.interactable;
+        allRightBtn.interactable = !allRightBtn.interactable;
         foreach (Button btn in buttons) btn.interactable = !btn.interactable;
+    }
+
+    private void All_Set(float speed)
+    {
+        Arm.Joint_Set(0, speed);
+        Arm.Joint_Set(1, speed);
+        Arm.Joint_Set(2, speed);
     }
 
     private void Start()
@@ -37,34 +50,52 @@ public class Scorboy_Controller : MonoBehaviour
         Claw = Scorbot_obj.transform.GetChild(0).GetComponent<Scorboy_Claw>();
         Arm = Scorbot_obj.gameObject.GetComponent<Scorboy_Arm>();
 
-        prev_state_count = 0;
+        _prev_state_count = 0;
 
-        buttons[0].onClick.AddListener(delegate { Claw.Toggle(); });
+        clawToggleBtn.onClick.AddListener(delegate { Claw.Toggle(); });
+        allLeftBtn.gameObject.GetComponent<MouseHoldable>().MouseHold.AddListener(delegate { All_Set(-joint_speed); });
+        allLeftBtn.gameObject.GetComponent<MouseHoldable>().MouseRelease.AddListener(delegate { All_Set(0); });
+        allRightBtn.gameObject.GetComponent<MouseHoldable>().MouseHold.AddListener(delegate { All_Set(joint_speed); });
+        allRightBtn.gameObject.GetComponent<MouseHoldable>().MouseRelease.AddListener(delegate { All_Set(0); });
 
         for (int i = 0; i < 3; i++)
         {
-            int joint_index = i, btn_index = 1 + i * 3;
-            buttons[btn_index].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
-            buttons[btn_index + 1].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, 0); });
-            buttons[btn_index + 2].onClick.AddListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+            int joint_index = i, btn_index = i * 2;
+            MouseHoldable holdable_1 = buttons[btn_index].gameObject.GetComponent<MouseHoldable>();
+            MouseHoldable holdable_2 = buttons[btn_index + 1].gameObject.GetComponent<MouseHoldable>();
+            holdable_1.MouseHold.AddListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
+            holdable_1.MouseRelease.AddListener(delegate { Arm.Joint_Set(joint_index, 0); });
+            holdable_2.MouseHold.AddListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+            holdable_2.MouseRelease.AddListener(delegate { Arm.Joint_Set(joint_index, 0); });
         }
     }
 
     private void OnDestroy()
     {
-        buttons[0].onClick.RemoveListener(delegate { Claw.Toggle(); });
+        clawToggleBtn.onClick.RemoveListener(delegate { Claw.Toggle(); });
+        allLeftBtn.gameObject.GetComponent<MouseHoldable>().MouseHold.RemoveListener(delegate { All_Set(-joint_speed); });
+        allLeftBtn.gameObject.GetComponent<MouseHoldable>().MouseRelease.RemoveListener(delegate { All_Set(0); });
+        allRightBtn.gameObject.GetComponent<MouseHoldable>().MouseHold.RemoveListener(delegate { All_Set(joint_speed); });
+        allRightBtn.gameObject.GetComponent<MouseHoldable>().MouseRelease.RemoveListener(delegate { All_Set(0); });
+
         for (int i = 0; i < 3; i++)
         {
-            int joint_index = i, btn_index = 1 + i * 3;
-            buttons[btn_index].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
-            buttons[btn_index + 1].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, 0); });
-            buttons[btn_index + 2].onClick.RemoveListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+            int joint_index = i, btn_index = i * 2;
+            MouseHoldable holdable_1 = buttons[btn_index].gameObject.GetComponent<MouseHoldable>();
+            MouseHoldable holdable_2 = buttons[btn_index + 1].gameObject.GetComponent<MouseHoldable>();
+            holdable_1.MouseHold.RemoveListener(delegate { Arm.Joint_Set(joint_index, -joint_speed); });
+            holdable_1.MouseRelease.RemoveListener(delegate { Arm.Joint_Set(joint_index, 0); });
+            holdable_2.MouseHold.RemoveListener(delegate { Arm.Joint_Set(joint_index, joint_speed); });
+            holdable_2.MouseRelease.RemoveListener(delegate { Arm.Joint_Set(joint_index, 0); });
         }
     }
 
     private void FixedUpdate()
     {
-        if(prev_state_count != Arm.State_List.Count) State_number_display.text = Arm.State_List.Count.ToString();
-        prev_state_count = Arm.State_List.Count;
+        if(_prev_state_count != Arm.State_List.Count)
+        {
+            StateNumberDisplay.text = Arm.State_List.Count.ToString();
+        }
+        _prev_state_count = Arm.State_List.Count;
     }
 }

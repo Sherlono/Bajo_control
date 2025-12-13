@@ -11,9 +11,9 @@ public class Factory_Machine : MonoBehaviour
     public Vector3 transformed_scale;
     public Color transformed_color;
 
-    [HideInInspector] public GameObject curtain;
-    [HideInInspector] public GameObject arrow;
-    [HideInInspector] public SpriteRenderer LED_sr;
+    [SerializeField] private GameObject curtain;
+    [SerializeField] private GameObject arrow;
+    [SerializeField] private SpriteRenderer LED_sr;
     private Collider2D trigger;
 
     [Header("Data")]

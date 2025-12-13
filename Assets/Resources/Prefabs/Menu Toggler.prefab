@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2808324410151496488}
   - component: {fileID: 3347693982851689990}
   m_Layer: 5
-  m_Name: Pausa
+  m_Name: Menu Toggler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

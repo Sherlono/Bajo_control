@@ -16,7 +16,7 @@ public class Kid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pool = GameObject.Find("Water_Surface").GetComponent<Pool>();
+        pool = GameObject.Find("Water").GetComponent<Pool>();
         kidanim = GetComponent<Animator>();
         target = 190 + Random.value * 380;
         _y = transform.position.y;

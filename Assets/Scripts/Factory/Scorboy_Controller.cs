@@ -24,11 +24,6 @@ public class Scorboy_Controller : MonoBehaviour
         Claw = new_scorboy.transform.GetChild(0).GetComponent<Scorboy_Claw>();
     }
 
-    public void Freeze_Scorboy()
-    {
-        for(int joint_index = 0; joint_index < 3; joint_index++) Arm.Joint_Set(joint_index, 0);
-    }
-
     public void Toggle_Interactable()
     {
         clawToggleBtn.interactable = !clawToggleBtn.interactable;

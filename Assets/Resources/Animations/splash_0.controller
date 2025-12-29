@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9030870020439896135
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb39fef81f244024aa98ff2478a27932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnAnimationEnd
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -57,7 +69,7 @@ AnimatorState:
   m_Transitions:
   - {fileID: 3536387284891030432}
   m_StateMachineBehaviours:
-  - {fileID: 7372862479761680323}
+  - {fileID: -9030870020439896135}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -84,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6c42a4501e34e4b859596955195e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splashSFX: {fileID: 0}
 --- !u!1107 &8054039081591315098
 AnimatorStateMachine:
   serializedVersion: 6

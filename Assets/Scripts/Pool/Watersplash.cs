@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Watersplash : StateMachineBehaviour
+public class Watersplash : MonoBehaviour
 {
-    //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        Destroy(animator.gameObject);
-    }
+    [SerializeField] private AudioClip splashSFX;
 
+    void Start()
+    {
+        float pitchVariance = 0.5f + UnityEngine.Random.Range(0f, 1f);
+        SoundFXManager.instance.PlaySoundEffectClip(splashSFX, transform, 1f, pitchVariance);
+    }
 }

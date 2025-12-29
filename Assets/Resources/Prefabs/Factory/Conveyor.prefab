@@ -434,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 518876610797544781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05353928, y: 0.20442331, z: 0.083333336}
+  m_LocalPosition: {x: -0.0009, y: 0.0337, z: 0.083333336}
   m_LocalScale: {x: 0.5, y: 0.16666667, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -492,7 +492,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 13.59, y: 2}
+  m_Size: {x: 13.55031, y: 1.6717043}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -530,7 +530,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4636593580046437783}
   - component: {fileID: 7479015337810692671}
-  - component: {fileID: 8995380251338216021}
   m_Layer: 0
   m_Name: Pillar 1 (1)
   m_TagString: Untagged
@@ -611,52 +610,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8995380251338216021
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138105597337188219}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &2255587942149879858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,7 +1275,7 @@ Transform:
   m_GameObject: {fileID: 6303635642927671329}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05353928, y: 0.064423315, z: 0.10000001}
+  m_LocalPosition: {x: 0, y: -0.079, z: 0.10000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1380,7 +1333,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 6.9566665, y: 0.7211667}
+  m_Size: {x: 6.7760186, y: 0.4702805}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1790,6 +1743,7 @@ GameObject:
   - component: {fileID: 5437543235950468597}
   - component: {fileID: 1471605682219132634}
   - component: {fileID: 5320158854550791408}
+  - component: {fileID: 3729301963794829669}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Untagged
@@ -1850,7 +1804,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.011666667}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1860,7 +1814,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6.806667, y: 0.29716668}
+  m_Size: {x: 6.806667, y: 0.2}
   m_EdgeRadius: 0
 --- !u!114 &5320158854550791408
 MonoBehaviour:
@@ -1877,5 +1831,21 @@ MonoBehaviour:
   Block_rb2d: {fileID: 0}
   belt_animation: {fileID: 3404974260412196338}
   arrow: {fileID: 3041809826215241905}
-  highlight: 0
   speed: 1.5
+  _taskData: {fileID: 3729301963794829669}
+--- !u!114 &3729301963794829669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056051609793753364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b03932ed020afd45a41a6b57d94a31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaskAction
+  _kind: 0
+  _taskId: 0
+  done: 0
+  fail: 0

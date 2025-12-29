@@ -16,8 +16,6 @@ public class PointCreator : MonoBehaviour
         BoxCollider2D collider = GetComponent<BoxCollider2D>();
         collider.size = new Vector2(width, height);
         collider.offset = Vector2.zero;
-
-        transform.position = new Vector3(manager.drone.transform.position.x, manager.drone.transform.position.y, transform.position.z);
     }
 
     void OnMouseUp()

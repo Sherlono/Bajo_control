@@ -1,22 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DroneCameraManager : MonoBehaviour
 {
+    public static DroneCameraManager instance;
+
+    public enum State
+    {
+        None,
+        PanOut,
+        Follow_Drone
+    }
+
     [SerializeField] private GameObject drone;
     private Camera _camera;
 
-    private int state = 0;
-    [SerializeField] private float zoom;
+    [SerializeField] private State state = State.None;
+    public static State GetState { get { return instance.state; } }
+
+    //[SerializeField] private float zoom;
     private float posX, posY;
     private float vel = 0f, smoothTime = 0.25f;
     private Vector2 focusPoint;
-
-    public void Set_State(int s)
+    
+    private void Set_State(State input)
     {
-        state = s;
+        state = input;
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        DroneGameManager.onCamEvent += Set_State;
+        Hazard.onEnter += delegate { Set_State(State.None); };
+    }
+
+    private void OnDestroy()
+    {
+        DroneGameManager.onCamEvent -= Set_State;
+        Hazard.onEnter -= delegate { Set_State(State.None); };
+        instance = null;
     }
 
     void Start()
@@ -27,56 +53,49 @@ public class DroneCameraManager : MonoBehaviour
         Transform Focus = GameObject.Find("FocusPoint").transform;
         focusPoint = new Vector2(Focus.position.x, Focus.position.y);
         _camera = GetComponent<Camera>();
-        zoom = _camera.orthographicSize;
 
         _camera.transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
     }
 
     void FixedUpdate()
     {
-        if (state == 1)
+        switch(state)
         {
-            if (zoom <= 300f)
-            {
+            case State.PanOut:
                 _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, 300f, ref vel, smoothTime);
-            }
-            else
-            {
-                _camera.orthographicSize = 300f;
-            }
 
-            float x, y;
+                float x, y;
 
-            if (_camera.transform.position.x < focusPoint.x)
-            {
-                x = Mathf.SmoothDamp(_camera.transform.position.x, posX, ref vel, smoothTime);
-            }
-            else
-            {
-                x = focusPoint.x;
-            }
+                if (_camera.transform.position.x < focusPoint.x)
+                {
+                    x = Mathf.SmoothDamp(_camera.transform.position.x, posX, ref vel, smoothTime);
+                }
+                else
+                {
+                    x = focusPoint.x;
+                }
 
-            if (_camera.transform.position.y < focusPoint.y)
-            {
-                y = Mathf.SmoothDamp(_camera.transform.position.y, posY, ref vel, smoothTime);
-            }
-            else
-            {
-                y = focusPoint.y;
-            }
+                if (_camera.transform.position.y < focusPoint.y)
+                {
+                    y = Mathf.SmoothDamp(_camera.transform.position.y, posY, ref vel, smoothTime);
+                }
+                else
+                {
+                    y = focusPoint.y;
+                }
 
-            posX = focusPoint.x;
-            posY = focusPoint.y;
-            _camera.transform.position = new Vector3(x, y, _camera.transform.position.z);
+                posX = focusPoint.x;
+                posY = focusPoint.y;
+                _camera.transform.position = new Vector3(x, y, _camera.transform.position.z);
+                break;
+            case State.Follow_Drone:
+                transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
+                _camera.orthographicSize = 240;
+                break;
+            default:
+                _camera.orthographicSize = 240;
+                break;
 
-        }else if (state == 2)
-        {
-            transform.position = new Vector3(drone.transform.position.x, drone.transform.position.y, transform.position.z);
-            _camera.orthographicSize = 240;
-        }
-        else
-        {
-            _camera.orthographicSize = 240;
         }
     }
 }

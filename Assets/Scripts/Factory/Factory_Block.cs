@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Factory_Block : MonoBehaviour
 {
@@ -8,6 +9,18 @@ public class Factory_Block : MonoBehaviour
     [HideInInspector] public Vector3 saved_pos;
     [HideInInspector] public Vector3 saved_scale;
     [HideInInspector] public Color saved_color;
+
+    public Button reset_btn;
+
+    private void Awake()
+    {
+        reset_btn.onClick.AddListener(Load_Saved_Block);
+    }
+
+    private void OnDestroy()
+    {
+        reset_btn.onClick.RemoveListener(Load_Saved_Block);
+    }
 
     void Start()
     {

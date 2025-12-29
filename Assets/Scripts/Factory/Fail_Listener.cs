@@ -10,14 +10,14 @@ public class Fail_Listener : MonoBehaviour
 
     private void Awake()
     {
-        FactoryGameManager.LoseAction += EnableObject;
+        TaskAction.onFail += EnableObject;
         GetComponent<Image>().enabled = true;
         gameObject.SetActive(false);
     }
 
     private void OnDestroy()
     {
-        FactoryGameManager.LoseAction -= EnableObject;
+        TaskAction.onFail -= EnableObject;
     }
 
 }

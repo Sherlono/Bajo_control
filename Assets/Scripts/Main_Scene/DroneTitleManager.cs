@@ -7,20 +7,16 @@ using UnityEngine.UI;
 
 public class DroneTitleManager : MonoBehaviour
 {
-    [HideInInspector]
-    public hdrone drone;
-    public Vector2 target;
+    [SerializeField] private hdrone drone;
+    [SerializeField] private GameObject targetObject;
+    private Vector2 target;
 
     private void Start()
     {
-        drone = GameObject.Find("Title").GetComponent<hdrone>();
-        target = GameObject.Find("TargetObj").transform.position;
-    }
+        target = targetObject.transform.position;
 
-    // Update is called once per frame
-    void Update()
-    {
         drone.targetpoint = new Vector2(target.x, target.y);
-        drone.Power(true);
+        drone.Power = true;
+        drone.Efficiency = 1f;
     }
 }

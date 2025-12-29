@@ -10,6 +10,7 @@ public class FactoryIntroManager : MonoBehaviour
     [SerializeField] private Scorboy_Controller _scorboy_controller;
     [SerializeField] private Factory_Machine _machine;
     [SerializeField] private Factory_Block _block;
+    [SerializeField] private GameObject _ScorTV;
 
     [SerializeField] private GameObject[] _info_cards;
     [SerializeField] private GameObject[] _extra_info;
@@ -17,7 +18,7 @@ public class FactoryIntroManager : MonoBehaviour
     [SerializeField] private Button _next_arm_btn;
 
     public Transform[] cam_targets;
-    public int card_index;
+    private int card_index;
 
     public Camera ui_camera;
     private Vector2 _cam_target;
@@ -34,7 +35,7 @@ public class FactoryIntroManager : MonoBehaviour
     {
         card_index++;
         _info_cards[card_index].SetActive(true);
-        _scorboy_controller.Freeze_Scorboy();
+        _scorboy_controller.Arm.Freeze();
         _cam_target = new Vector2(cam_targets[card_index].position.x + cam_offset, ui_camera.transform.position.y);
     }
 
@@ -71,7 +72,7 @@ public class FactoryIntroManager : MonoBehaviour
             }
             else
             {
-                _machine.Set_Highlight(card_index == 2);
+                _machine.Set_Highlight(0, card_index == 2);
                 _info_cards[card_index].SetActive(false);
                 card_index++;
                 _info_cards[card_index].SetActive(true);
@@ -87,6 +88,9 @@ public class FactoryIntroManager : MonoBehaviour
         }
         else _scorboy_controller.transform.localPosition = Vector2.Lerp(_scorboy_controller.transform.localPosition, new Vector2(_scorboy_controller.transform.localPosition.x, -630.0f), lerp_t);
 
-        Move_Camera_to_Target(_cam_target);
+        if (card_index == 2) _ScorTV.SetActive(true);
+        else _ScorTV.SetActive(false);
+
+            Move_Camera_to_Target(_cam_target);
     }
 }

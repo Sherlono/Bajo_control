@@ -8,29 +8,40 @@ public class Conveyor_Belt : MonoBehaviour
 
     [SerializeField] private GameObject arrow;
 
-    [HideInInspector] public bool _activate_arrow;
+    //[HideInInspector] public bool _activate_arrow;
     public float speed;
     private bool pushing = false;
-    private bool enable = false;
 
-    public void Set_Enable(bool option)
+    [SerializeField] private TaskAction _taskData;
+
+    private void Turn_On(int id)
     {
-        enable = option;
-        if (belt_animation.enabled != option)
+        if (id == _taskData.ID)
         {
-            if (option) belt_animation.enabled = true;
-            else belt_animation.enabled = false;
+            belt_animation.enabled = true;
         }
     }
-    public void Set_Highlight(bool option)
+
+    public void Set_Highlight(int id, bool option)
     {
-        _activate_arrow = option;
-        arrow.SetActive(option);
+        if (id == _taskData.ID) arrow.SetActive(option);
+    }
+
+    private void Awake()
+    {
+        FactoryGameManager.onStartTask += Turn_On;
+        FactoryGameManager.onHighlight += Set_Highlight;
+    }
+
+    private void OnDestroy()
+    {
+        FactoryGameManager.onStartTask -= Turn_On;
+        FactoryGameManager.onHighlight -= Set_Highlight;
     }
 
     private void FixedUpdate()
     {
-        if (enable && pushing)
+        if (belt_animation.enabled && pushing)
         {
             Block_rb2d_position = Block_rb2d.position;
             Block_rb2d_position += Vector2.right * speed * Time.fixedDeltaTime;

@@ -1,135 +1,151 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class DroneGameManager : MonoBehaviour
 {
-    public UnityEvent Cam_Zoom_Out;
-    public UnityEvent Cam_Follow_Drone;
-    public UnityEvent Cam_Final;
+    public static DroneGameManager instance;
 
-    public int state = 0;
+    public enum State
+    {
+        Tuning,
+        Routing,
+        Flying,
+        Over
+    }
+
+    public static event Action<DroneCameraManager.State> onCamEvent;
+
+    [SerializeField] private State state = 0;
     public int level;
+
     public List<GameObject> pointsList = new List<GameObject>();
-    public List<Obstacle> wallList = new List<Obstacle>();
 
     public hdrone drone;
-    [SerializeField] private PIDPanel panel;
-    [SerializeField] private GameObject _point_creator;
-    [SerializeField] private EndFlag _finishFlag;
-    [SerializeField] private SpriteRenderer panelLogo;
-    [SerializeField] private Image windArrow;
-    [SerializeField] private GameObject WinObject, LoseObject;
-    [SerializeField] private Slider KpSlider, TdSlider;
+    [SerializeField, HideInInspector] private GameObject _point_creator;
+    [SerializeField, HideInInspector] private EndFlag _finishFlag;
+    [SerializeField, HideInInspector] private SpriteRenderer panelLogo;
+    [SerializeField, HideInInspector] private Image windArrow;
+    [SerializeField, HideInInspector] private GameObject WinObject, LoseObject;
 
     [SerializeField] private int maxPoints;
-    private int currentPoint = 0;
+    public static int currentPoint = 0;
 
-    private void Start()
+    private void On_Point_Reached()
     {
-        if (level == 0) // Wind force
+        currentPoint++;
+        if (currentPoint != maxPoints)
         {
-            float maxwind = 0.4f;
-            drone.x_wind = Random.Range(-maxwind, maxwind);
-            drone.y_wind = Random.Range(-0.1f, 0.1f);
-            windArrow.transform.localScale = new Vector3(-drone.x_wind / maxwind, 1, 1);
+            drone.targetpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
         }
     }
 
-    // Update is called once per frame
+    private void Pass_Gains_2_Drone(int gains_set)
+    {
+        if(gains_set == 0)  // First set of PD gains passed
+        {
+            drone.Kp_x = PIDPanel.Kp;
+            drone.Kp_y = PIDPanel.Kp;
+            drone.Kv_x = PIDPanel.Td;
+            drone.Kv_y = PIDPanel.Td;
+        }
+        else if (gains_set == 1)  // Second set of PD gains passed
+        {
+            drone.Kp_phi = PIDPanel.Kp;
+            drone.Kv_phi = PIDPanel.Td;
+
+            onCamEvent?.Invoke(DroneCameraManager.State.PanOut);
+            _point_creator.SetActive(true);
+
+            state++;
+        }
+    }
+
+    private void Modify_Panel_Logo(int panelExiScreenCount)
+    {
+        if (panelExiScreenCount == 0)
+        {
+            panelLogo.sprite = Resources.Load("Graphics/drone_rotate", typeof(Sprite)) as Sprite;
+            PIDPanel.Restart();
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+        if (instance != null && instance != this) Destroy(this);
+
+        PIDPanel.onReady += Pass_Gains_2_Drone;
+        PIDPanel.onExitScreen += Modify_Panel_Logo;
+        refpoint.onReached += On_Point_Reached;
+    }
+
+    private void OnDestroy()
+    {
+        state = 0;
+        currentPoint = 0;
+
+        PIDPanel.onReady -= Pass_Gains_2_Drone;
+        PIDPanel.onExitScreen -= Modify_Panel_Logo;
+        refpoint.onReached -= On_Point_Reached;
+    }
+
+    private void Start()
+    {
+        LoseObject.gameObject.SetActive(false);
+
+        if (level == 0) // Wind force
+        {
+            float maxwind = 0.4f;
+            drone.x_wind = UnityEngine.Random.Range(-maxwind, maxwind);
+            drone.y_wind = UnityEngine.Random.Range(-0.1f, 0.1f);
+            windArrow.transform.localScale = new Vector3(-drone.x_wind / maxwind, 1, 1);
+        }
+
+        drone.Efficiency = hdrone.NORMALEFFICIENCY;
+    }
+
     void Update()
     {
         switch (state)
         {
-            case 0: // Entering first parameters
-                if (panel.state == 1)
-                {
-                    drone.Kp_x = KpSlider.value;
-                    drone.Kp_y = KpSlider.value;
-                    drone.Kv_x = TdSlider.value;
-                    drone.Kv_y = TdSlider.value;
-
-                    state++;
-                }
-                break;
-            case 1: // First parameters entered
-                if (panel.state == 2)
-                {
-                    panelLogo.sprite = Resources.Load("drone_rotate", typeof(Sprite)) as Sprite;
-                    panel.Restart();
-                    KpSlider.Reset();
-                    TdSlider.Reset();
-                    state++;
-                }
-                break;
-            case 2: // Entering second parameters
-                if (panel.state == 1)
-                {
-                    drone.Kp_phi = KpSlider.value;
-                    drone.Kv_phi = TdSlider.value;
-
-                    state++;
-                }
-                break;
-            case 3: // Point creating start
-                Cam_Zoom_Out?.Invoke();
-                _point_creator.SetActive(true);
-                state++;
-                break;
-            case 4: // Point creating end, then drone start
+            case State.Routing:
                 if (pointsList.Count == maxPoints)
                 {
                     _point_creator.SetActive(false);
                     drone.targetpoint = new Vector2(pointsList[0].transform.position.x, pointsList[0].transform.position.y);
-                    drone.Power(true);
+                    drone.Power = true;
                     state++;
                 }
                 break;
-            case 5: // Drone is active
+            case State.Flying:
                 if (!_finishFlag.win)
                 {
-                    if (currentPoint < maxPoints)
-                    {
-                        if (pointsList[currentPoint].GetComponent<refpoint>().done == true)
-                        {
-                            currentPoint++;
-                            if (currentPoint != maxPoints)
-                            {
-                                drone.targetpoint = new Vector2(pointsList[currentPoint].transform.position.x, pointsList[currentPoint].transform.position.y);
-                            }
-                        }
-                    }
-                    else
+                    if (currentPoint >= maxPoints)
                     {
                         drone.targetpoint = new Vector2(_finishFlag.transform.position.x - 20, _finishFlag.transform.position.y);
                     }
 
-                    foreach (Obstacle obs in wallList)
+                    if (drone.Power == true)
                     {
-                        if (obs.colided)
-                        {
-                            drone.Power(false);
-                        }
-                    }
-
-                    if (drone.IsPowered())
-                    {
-                        Cam_Follow_Drone?.Invoke();
+                        if (DroneCameraManager.GetState != DroneCameraManager.State.Follow_Drone) onCamEvent?.Invoke(DroneCameraManager.State.Follow_Drone);
                     }
                     else
                     {
                         LoseObject.SetActive(true);
+                        LoseObject.GetComponent<Image>().enabled = true;
+                        onCamEvent?.Invoke(DroneCameraManager.State.None);
                         state++;
                     }
                 }
                 else
                 {
                     WinObject.SetActive(true);
-                    Cam_Final?.Invoke();
+                    WinObject.GetComponent<Image>().enabled = true;
+                    onCamEvent?.Invoke(DroneCameraManager.State.None);
+                    drone.Efficiency = 1f;
                     state++;
                 }
                 break;

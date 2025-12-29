@@ -1,22 +1,34 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class refpoint : MonoBehaviour
 {
-    private Collider2D col;
-    public bool done;
+    public static event Action onReached;
 
-    // Start is called before the first frame update
-    void Start()
+    public static int pointCount;
+    public int id;
+
+    private void Awake()
     {
-        col = GetComponent<Collider2D>();
-        done = false;
+        id = pointCount;
+        pointCount++;
+    }
+
+    private void OnDestroy()
+    {
+        pointCount--;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        GetComponent<SpriteRenderer>().color = new Color(0, 0.8f, 0, 1f);
-        done = true;
+        if(id == DroneGameManager.currentPoint)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0, 0.9f, 0, 1f);
+            onReached?.Invoke();
+            Debug.Log("Point Reached!");
+        }
+
     }
 }

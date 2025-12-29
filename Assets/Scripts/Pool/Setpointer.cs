@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Setpointer : MonoBehaviour
 {
-    public PIDPanel PlayPID;
     public float value;
     private float min_position, max_position, max_value;
     private float last_time;
@@ -22,7 +21,7 @@ public class Setpointer : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayPID.state == 2 && Time.time - last_time > 0.5f)
+        if (PIDPanel.GetState == 2 && Time.time - last_time > 0.5f)
         {
             if (!Input.GetMouseButton(0)) //
             {
@@ -35,7 +34,7 @@ public class Setpointer : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if(PlayPID.state == 2)
+        if(PIDPanel.GetState == 2)
         {
             state++;
             GetComponent<Collider2D>().enabled = false;
@@ -45,7 +44,7 @@ public class Setpointer : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (state == 0 && PlayPID.state == 2)   // 
+        if (state == 0 && PIDPanel.GetState == 2)   // 
         {
             GetComponent<SpriteRenderer>().enabled = true;
             if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < min_position)

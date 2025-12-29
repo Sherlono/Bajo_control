@@ -5,10 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class hdrone : MonoBehaviour
 {
-    [HideInInspector]
-    public Vector2 targetpoint;
-    [HideInInspector]
-    public float x_des, y_des, vx_des = 0.0f, vy_des = 0.0f, ax_des = 0.0f, ay_des = 0.0f;  // Setpoint
+    [HideInInspector] public Vector2 targetpoint;
+
+    // Setpoint
+    public float x_des, y_des;
+    const float vx_des = 0.0f, vy_des = 0.0f, ax_des = 0.0f, ay_des = 0.0f;
+
     public float x_wind, y_wind;
 
     [Header("Ganancias PID")]
@@ -20,23 +22,20 @@ public class hdrone : MonoBehaviour
     public float Kv_phi;
 
     [Header("Fuerza")]
-    [SerializeField]
-    private float max_motor;         // 1.7658
-    [SerializeField]
-    private float F_clamped, M_clamped;
-    public float fuel;
-    private float _fuel_eficiency = 0.023f;
+    [SerializeField] private float _maxMotor;
+    private float _F_clamped, _M_clamped;
 
-    private Rigidbody2D rb2d;
+    public float battery;
+    public const float NORMALEFFICIENCY = 0.977f;
+    private float _batteryEfficiency = NORMALEFFICIENCY;
+    public float Efficiency { set { _batteryEfficiency = value;} }
+
+    [SerializeField] private Rigidbody2D rb2d;
     private float phi_c, F, M;
-    private float Ixx = 0.00025f;   // Mass moment of inertia (kg*m^2) 0.00025f
-    public float L;       // Arm length (m)
+    const float Ixx = 0.00025f; // Mass moment of inertia (kg*m^2)
+    const float L = 0.086f;     // Arm length (m)
     private bool _power;
-
-    void Trajectory(){
-        x_des = targetpoint.x;    // [m]
-        y_des = targetpoint.y;    // [m]
-    }
+    public bool Power { get { return _power; } set { _power = value; } }
 
     void Controller()
     {
@@ -46,50 +45,50 @@ public class hdrone : MonoBehaviour
     }
 
     void Clamp() {
-        float u1 = 0.5f * (F - (M / L));
-        float u2 = 0.5f * (F + (M / L));
+        float u_left = 0.5f * (F - (M / L));
+        float u_right = 0.5f * (F + (M / L));
 
-        float u1_clamped = Mathf.Min(Mathf.Max(0, u1), max_motor);
-        float u2_clamped = Mathf.Min(Mathf.Max(0, u2), max_motor);
-        F_clamped = u1_clamped + u2_clamped;
-        M_clamped = (u2_clamped - u1_clamped) * L;
-        fuel -= (F_clamped + M_clamped)*_fuel_eficiency;
+        float u_left_clamped = Mathf.Min(Mathf.Max(0, u_left), _maxMotor);
+        float u_right_clamped = Mathf.Min(Mathf.Max(0, u_right), _maxMotor);
+
+        _F_clamped = u_left_clamped + u_right_clamped;
+        _M_clamped = (u_right_clamped - u_left_clamped) * L;
     }
 
-    void xdot(){
-        Trajectory();
+    void Apply_Forces()
+    {
         Controller();
         Clamp();
-        
-        rb2d.AddRelativeForce(new Vector2(0, F_clamped));
-        rb2d.AddTorque(100 * rb2d.mass * M_clamped / Ixx);
+
+        rb2d.AddRelativeForce(new Vector2(0, _F_clamped));
+        rb2d.AddTorque(100 * rb2d.mass * _M_clamped / Ixx);
 
         rb2d.AddForce(new Vector2(x_wind, y_wind));
     }
 
-    public void Power(bool on)
+    private void Awake()
     {
-        _power = on;
+        Hazard.onEnter += delegate { Power = false; };
+        Obstacle.onCollide += delegate { Power = false; };
     }
 
-    public bool IsPowered() { return _power; }
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnDestroy()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        Hazard.onEnter -= delegate { Power = false; };
+        Obstacle.onCollide -= delegate { Power = false; };
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if(fuel <= 0)
+        if (battery <= 0) _power = false;
+        if (_power == true)
         {
-            _power = false;
-        }
-        if(_power == true)
-        {
-            xdot();
+            x_des = targetpoint.x;
+            y_des = targetpoint.y;
+
+            Apply_Forces();
+
+            battery -= (_F_clamped + _M_clamped) * (1 - _batteryEfficiency);
         }
     }
 

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class Scorboy_Arm : MonoBehaviour
@@ -8,10 +10,9 @@ public class Scorboy_Arm : MonoBehaviour
     public const int JOINTS_COUNT = 3;
     public static int max_states;
 
-    [System.Serializable]
-    public struct ArmState
+    [System.Serializable] public struct ArmPose
     {
-        public ArmState(float a_1, float a_2, float a_3, bool isopen)
+        public ArmPose(float a_1, float a_2, float a_3, bool isopen)
         {
             angles = new float[3];
             angles[0] = a_1;
@@ -32,12 +33,12 @@ public class Scorboy_Arm : MonoBehaviour
 
     [HideInInspector] public SpriteRenderer LED_sr;
 
-    public List<ArmState> State_List = new();
+    public List<ArmPose> State_List = new();
     public int state_index = 0;
 
-    public void Create_State()
+    public void Create_Pose()
     {
-        if(State_List.Count < max_states) State_List.Add(new ArmState(Angle(0), Angle(1), Angle(2), Claw.Is_Open()));
+        if(State_List.Count < max_states) State_List.Add(new ArmPose(Angle(0), Angle(1), Angle(2), Claw.Is_Open()));
     }
 
     // Functionality
@@ -47,14 +48,10 @@ public class Scorboy_Arm : MonoBehaviour
         hingeMotor.motorSpeed = value;
         joints[joint_index].motor = hingeMotor;
     }
-    // Getters
-    public float Angle(int joint_index)
+
+    public void Freeze()
     {
-        return joints[joint_index].jointAngle;
-    }
-    public ArmState Target_State()
-    {
-        return State_List[state_index];
+        for (int joint_index = 0; joint_index < 3; joint_index++) Joint_Set(joint_index, 0);
     }
 
     public void LED_ON()
@@ -64,6 +61,16 @@ public class Scorboy_Arm : MonoBehaviour
     public void LED_OFF()
     {
         LED_sr.color = Color.red;
+    }
+
+    // Getters
+    public float Angle(int joint_index)
+    {
+        return joints[joint_index].jointAngle;
+    }
+    public ArmPose Target_Pose()
+    {
+        return State_List[state_index];
     }
 
 }

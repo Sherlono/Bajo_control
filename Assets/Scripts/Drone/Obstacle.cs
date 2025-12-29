@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public bool colided = false;
+    public static event Action onCollide;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,8 +13,8 @@ public class Obstacle : MonoBehaviour
 
         if (collisionForce > 80.0f)     
         {
-            //Debug.Log("Strong collision detected! Force: " + collisionForce);
-            colided = true;
+            onCollide?.Invoke();
+            Debug.Log("Collision detected!");
         }
     }
 }

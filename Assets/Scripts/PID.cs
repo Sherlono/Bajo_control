@@ -14,14 +14,11 @@ namespace jv
 
         [Header("Variables sistema")]
         public float setpoint;
-        public float h;
-        public float u;
-        public float dh = 0, p = 0;
-        public float error = 0;
+        public float h = 0, dh = 0, u = 0, p = 0;
+        private float error = 0;
+        public float Error { get { return error; } }
 
-        [SerializeField] private float _prev_error;
-        [SerializeField] private float _integral;
-        [SerializeField] private float _memory;
+        private float _prev_error = 0, _integral = 0, _memory = 0;
 
         public float max_output;
         public float min_output;

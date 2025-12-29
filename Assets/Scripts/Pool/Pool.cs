@@ -13,7 +13,7 @@ public class Pool : MonoBehaviour
     [Header("Misc")]
     private StateSpace _state_space;
     [SerializeField] private bool _paused;
-    private float _factor;   // Transformada
+    private float _factor;
     public bool enable;
 
     public List<int> splashlist = new();
@@ -44,7 +44,6 @@ public class Pool : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         _state_space = new StateSpace(0f, 0.0316f, 1f);
@@ -54,7 +53,6 @@ public class Pool : MonoBehaviour
         controller.h = (transform.localPosition.y - y_offset) / _factor;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!_paused)

@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class InstantiatePrefab : MonoBehaviour
 {
-    public void AddObject(string option)
+    [SerializeField] private GameObject prefab;
+    public Vector3 position;
+    [SerializeField] private Transform _optionalTransform;
+
+    public void AddObject(string parent)
     {
-        switch (option)
-        {
-            case "Proportional":
-                Instantiate(Resources.Load<GameObject>("Prefabs/P_InfoCard"), GameObject.Find("centerPoint").transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("UI").transform);
-                break;
-            case "Integrative":
-                Instantiate(Resources.Load<GameObject>("Prefabs/I_InfoCard"), GameObject.Find("centerPoint").transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("UI").transform);
-                break;
-            case "Derivative":
-                Instantiate(Resources.Load<GameObject>("Prefabs/D_InfoCard"), GameObject.Find("centerPoint").transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("UI").transform);
-                break;
-        }
-        
+        Instantiate(prefab, _optionalTransform ? _optionalTransform.position : position, Quaternion.identity, GameObject.FindGameObjectWithTag(parent).transform);
     }
 }

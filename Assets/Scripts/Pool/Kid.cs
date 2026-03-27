@@ -7,10 +7,10 @@ public class Kid : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _clip;
+    [SerializeField] private Transform _feet;
 
     public enum Gender
     {
-        None,
         Boy,
         Girl
     }
@@ -84,7 +84,7 @@ public class Kid : MonoBehaviour
                         splashed = true;
                     }
 
-                    if (PoolGameManager.instance.Below_Pool(transform.position))
+                    if (PoolGameManager.instance.Below_Pool(transform.position, _feet.position.y))
                     {
                         PoolGameManager.instance.pool.Pause(true);
                         GameObject Hurt = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/hurt"),
@@ -128,7 +128,7 @@ public class Kid : MonoBehaviour
                 state++;
             }
 
-            if (PoolGameManager.instance.Below_Pool(transform.position))
+            if (PoolGameManager.instance.Below_Pool(transform.position, _feet.position.y))
             {
                 PoolGameManager.instance.pool.Pause(true);
                 GameObject Hurt = Instantiate(Resources.Load<GameObject>("Prefabs/Pool/hurt"),

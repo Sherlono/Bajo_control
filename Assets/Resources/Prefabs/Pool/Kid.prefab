@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -504, y: 84, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1830531806195099709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1}
 --- !u!212 &1514887538816609418
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 6955340733726363259}
   _clip: {fileID: 8300000, guid: abb22de1984c3d0449bbcf0e56537903, type: 3}
+  _feet: {fileID: 1830531806195099709}
   state: 0
   paused: 0
 --- !u!82 &6955340733726363259
@@ -228,3 +230,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8733494458038055328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1830531806195099709}
+  m_Layer: 0
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1830531806195099709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8733494458038055328}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.008726465, w: 0.999962}
+  m_LocalPosition: {x: 0, y: -55, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9010715651716341117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

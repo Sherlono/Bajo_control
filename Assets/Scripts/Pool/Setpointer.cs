@@ -10,7 +10,6 @@ public class Setpointer : MonoBehaviour
     private float last_time;
     [HideInInspector] public int state = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;

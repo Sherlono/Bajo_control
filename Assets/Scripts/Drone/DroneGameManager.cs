@@ -19,7 +19,6 @@ public class DroneGameManager : MonoBehaviour
     public static event Action<DroneCameraManager.State> onCamEvent;
 
     [SerializeField] private State state = 0;
-    public int level;
 
     public List<GameObject> pointsList = new List<GameObject>();
 
@@ -27,7 +26,6 @@ public class DroneGameManager : MonoBehaviour
     [SerializeField, HideInInspector] private GameObject _point_creator;
     [SerializeField, HideInInspector] private EndFlag _finishFlag;
     [SerializeField, HideInInspector] private SpriteRenderer panelLogo;
-    [SerializeField, HideInInspector] private Image windArrow;
     [SerializeField, HideInInspector] private GameObject WinObject, LoseObject;
 
     [SerializeField] private int maxPoints;
@@ -80,6 +78,10 @@ public class DroneGameManager : MonoBehaviour
         PIDPanel.onReady += Pass_Gains_2_Drone;
         PIDPanel.onExitScreen += Modify_Panel_Logo;
         refpoint.onReached += On_Point_Reached;
+
+        float maxwind = 0.4f;
+        drone.x_wind = UnityEngine.Random.Range(-maxwind, maxwind);
+        drone.y_wind = UnityEngine.Random.Range(-0.1f, 0.1f);
     }
 
     private void OnDestroy()
@@ -95,14 +97,6 @@ public class DroneGameManager : MonoBehaviour
     private void Start()
     {
         LoseObject.gameObject.SetActive(false);
-
-        if (level == 0) // Wind force
-        {
-            float maxwind = 0.4f;
-            drone.x_wind = UnityEngine.Random.Range(-maxwind, maxwind);
-            drone.y_wind = UnityEngine.Random.Range(-0.1f, 0.1f);
-            windArrow.transform.localScale = new Vector3(-drone.x_wind / maxwind, 1, 1);
-        }
 
         drone.Efficiency = hdrone.NORMALEFFICIENCY;
     }

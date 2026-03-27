@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class PointCreator : MonoBehaviour
 {
     [SerializeField] private DroneGameManager manager;
     [SerializeField] private Camera mainCam;
+    public static event Action<int> onCreatePoint;
 
     void Start()
     {
@@ -24,5 +26,6 @@ public class PointCreator : MonoBehaviour
         float y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         GameObject newpoint = Instantiate(Resources.Load<GameObject>("Prefabs/Drone/Refpoint"), new Vector3(x, y, 85), Quaternion.identity);
         manager.pointsList.Add(newpoint);
+        onCreatePoint.Invoke(manager.pointsList.Count);
     }
 }

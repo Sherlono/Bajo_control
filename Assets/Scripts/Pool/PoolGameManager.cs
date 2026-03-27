@@ -28,12 +28,12 @@ public class PoolGameManager : MonoBehaviour
     private Vector3 pnt1_pos, pnt2_pos;
     private float _a, _b;
 
-    public bool Below_Pool(Vector3 kid_position)
+    public bool Below_Pool(Vector3 kid_position, float feet_y)
     {
         float kid_y_minus_offset = kid_position.y - 55;
-        bool below_area1 = kid_position.x <= pnt1_pos.x && kid_y_minus_offset < pnt1_pos.y;
-        bool below_area2 = kid_position.x <= pnt2_pos.x && kid_y_minus_offset < _a * kid_position.x + _b;
-        bool below_area3 = kid_position.x > pnt2_pos.x && kid_y_minus_offset < pnt2_pos.y;
+        bool below_area1 = kid_position.x <= pnt1_pos.x && feet_y < pnt1_pos.y;
+        bool below_area2 = kid_position.x <= pnt2_pos.x && feet_y < _a * kid_position.x + _b;
+        bool below_area3 = kid_position.x > pnt2_pos.x && feet_y < pnt2_pos.y;
 
         return below_area1 || below_area2 || below_area3;
     }

@@ -27,7 +27,6 @@ public class refpoint : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = new Color(0, 0.9f, 0, 1f);
             onReached?.Invoke();
-            Debug.Log("Point Reached!");
         }
 
     }
